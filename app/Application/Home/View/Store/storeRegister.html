@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from m.58leke.com/index.php?s=/Index/newseller/code/Mjc2Ng== by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 03 Aug 2018 09:26:09 GMT -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<!-- /Added by HTTrack -->
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>注册</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link href="__PUBLIC__/Seller/css/open.css" rel="stylesheet" type="text/css">
+    <link href="__PUBLIC__/Seller/css/r_app.css" rel="stylesheet">
+    <script type="text/javascript" src="__PUBLIC__/Seller/js/jquery-1.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Seller/js/jquery.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Seller/js/open.js"></script>
+    <script src="__PUBLIC__/Seller/js/jquery.citys.js" type="text/javascript"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-117103124-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-117103124-1');
+    </script>
+
+</head>
+
+<body>
+    <style>
+        select {
+            width: 247px;
+            border: 1px solid #dedede;
+            height: 35px;
+            text-indent: 10px;
+            color: #999
+        }
+
+        .style-loginRegis .register ul li {
+            width: 33.33%;
+        }
+
+        .sjzc_6_tu {
+            width: 100px;
+            float: left;
+        }
+
+        .sjzc_6_tu a {
+            width: 100px;
+            height: 70px;
+            background: url(__PUBLIC__/Seller/images/wk-tu_1.jpg) no-repeat;
+            display: block;
+        }
+
+        .sjzc_6_tu a:hover {
+            background: url(__PUBLIC__/Seller/images/wk-tu_2.jpg) no-repeat;
+        }
+
+        .sjzc_6_tu_3 {
+            width: 100px;
+            margin-left: 10px;
+            float: left;
+        }
+
+        .sjzc_6_tu_3 a {
+            width: 100px;
+            height: 70px;
+            background: url(__PUBLIC__/Seller/images/wk-tu_5.jpg) no-repeat;
+            display: block;
+        }
+
+        .sjzc_6_tu_3 a:hover {
+            background: url(__PUBLIC__/Seller/images/wk-tu_6.jpg) no-repeat;
+        }
+    </style>
+    <div id="vue-creator-app">
+        <div>
+            <div class="header con_width">
+                <div class="logo">
+                    <a href="indexcfca.html?s=/Index/index.html">
+                        <img src="__PUBLIC__/Seller/images/logo.png">
+                    </a>
+                </div>
+            </div>
+            <div class="style-loginRegis">
+                <div class="H45"></div>
+                <div class="register">
+                    <p class="title">注册商家</p>
+                    <div data-reg-first="" id="Con1" style="display: block;">
+                        <ul class="out">
+                            <li class="n current">
+                                <p>验证商家信息</p>
+                            </li>
+                            <li class="n">
+                                <p>填写商家资料</p>
+                            </li>
+                            <li class="n ">
+                                <p>实名认证</p>
+                            </li>
+                        </ul>
+                        <dl>
+                            <dd>
+                                <span class="left">手机号码：</span>
+                                <span class="right">
+                                    <input id="mobile" placeholder="请输入11位手机号" class="text" type="text" maxlength="11"
+                                        onkeyup="value=value.replace(/[^\d]/g,'')">
+                                </span>
+                            </dd>
+                            <dd>
+                                <span class="left">验证码：</span>
+                                <span class="right">
+                                    <input name="code" placeholder="请输入4位验证码" id="verify" class="text2" type="text" maxlength="4" onkeyup="value=value.replace(/[^\d]/g,'')">
+                                    <img src="{:U('User/verify')}" id="verifyImg" style="cursor:pointer;width:76px;height:34px">
+                                </span>
+                            </dd>
+                            <dd>
+                                <span class="left">手机验证码：</span>
+                                <span class="right">
+                                    <input placeholder="请输入6位手机验证码" id="mocode" class="text" type="text" maxlength="6" onkeyup="value=value.replace(/[^\d]/g,'')">
+                                    <a href="javascript:void(0);" class="sendSMS GetMocode" style="font-size:10px;height: 34px;line-height: 35px">获取验证码</a>
+                                </span>
+                            </dd>
+                        </dl>
+                        <div class="H20"></div>
+                        <a class="nextStep" id="Go1" href="javascript:void(0);">下一步</a>
+                        <div class="H45"></div>
+                    </div>
+                    <div data-reg-second="" id="Con2" style="display: none;">
+                        <ul class="out">
+                            <li class="n ">
+                                <p>验证商家信息</p>
+                            </li>
+                            <li class="n current">
+                                <p>填写商家资料</p>
+                            </li>
+                            <li class="n ">
+                                <p>实名认证</p>
+                            </li>
+                        </ul>
+                        <dl>
+                            <dd>
+                                <span class="left">登录密码：</span>
+                                <span class="right">
+                                    <input id="loginpass" placeholder="请输入登录密码" class="text" type="password" maxlength="20">
+                                </span>
+                            </dd>
+                            <dd>
+                                <span class="left">确认密码：</span>
+                                <span class="right">
+                                    <input id="checkpass" placeholder="请输入确认密码" class="text" type="password" maxlength="20">
+                                </span>
+                            </dd>
+                            <dd>
+                                <span class="left">联系QQ：</span>
+                                <span class="right">
+                                    <input id="sellerqq" placeholder="请输入QQ号码" class="text" type="text" maxlength="15" onkeyup="this.value=this.value.replace(/\D/g,'')">
+                                </span>
+                            </dd>
+                            <dd>
+                                <span class="left">微信号：</span>
+                                <span class="right">
+                                    <input id="sellerweixin" placeholder="请输入微信号" class="text" type="text" maxlength="20">
+                                </span>
+                            </dd>
+                            <div id="demo1" class="citys">
+                                <dd>
+                                    <span class="left">所在地：</span>
+                                    <span class="right">
+                                        <select name="province" id="province"></select>
+                                    </span>
+                                </dd>
+                                <dd>
+                                    <span class="left">&nbsp;</span>
+                                    <span class="right">
+                                        <select name="city" id="city"></select>
+                                    </span>
+                                </dd>
+                                <dd>
+                                    <span class="left">&nbsp;</span>
+                                    <span class="right">
+                                        <select name="area" id="area"></select>
+                                    </span>
+                                </dd>
+                            </div>
+                        </dl>
+                        <div class="H20"></div>
+                        <a class="nextStep" id="Go2">下一步</a>
+                        <div class="H45"></div>
+                    </div>
+                    <div data-reg-second="" id="Con3" style="display: none;">
+                        <ul class="out">
+                            <li class="n ">
+                                <p>验证商家信息</p>
+                            </li>
+                            <li class="n">
+                                <p style="border-left: 0;">填写商家资料</p>
+                            </li>
+                            <li class="n current">
+                                <p>实名认证</p>
+                            </li>
+                        </ul>
+                        <dl>
+                            <dd>
+                                <span class="left">真实姓名：</span>
+                                <span class="right">
+                                    <input id="sellername" placeholder="请输入真实姓名" class="text" type="text" maxlength="5">
+                                </span>
+                            </dd>
+                            <dd>
+                                <span class="left">身份证号码：</span>
+                                <span class="right">
+                                    <input id="sellercard" placeholder="请输入身份证号码" class="text" type="text" maxlength="18">
+                                </span>
+                            </dd>
+                            <dd>
+                                <span class="left">类目：</span>
+                                <span class="right">
+                                    <input id="sellerclass" placeholder="请输入类目" class="text" type="text" onchange="this.value=this.value.replace(/[^\u4e00-\u9fa5]/g,'')">
+                                </span>
+                            </dd>
+                            <dd>
+                                <span class="left">店铺年营业额：</span>
+                                <span class="right">
+                                    <input id="sellerbusiness" placeholder="请输入店铺年营业额" class="text" type="text" onkeyup="this.value=this.value.replace(/[^\d.]/g,'')">
+                                    <font style="color:red">万元</font>
+                                </span>
+                            </dd>
+                            <dd>
+                                <span class="left">店铺日常补单量：</span>
+                                <span class="right">
+                                    <input id="sellersingle" placeholder="请输入店铺日常补单量" class="text" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')">
+                                    <font style="color:red">单</font>
+                                </span>
+                            </dd>
+                            <dd style="padding:10px 0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;">
+                                <p class="cl" style="color:red;margin-left: 124px;">天猫商家：营业执照（提高通过率）</p>
+                                <p class="cl" style="color:red;margin-left: 124px;">C店：店主身份证正面照</p>
+                            </dd>
+                            <dd>
+                                <span class="left">上传营业执照：</span>
+                                <span class="right">
+                                    <p class="sjzc_6_tu">
+                                        <a href="javascript:;">
+                                            <input type="file" id="handle_img1" class="uploadimg" data-id="1" style="width:100px;padding:0;height: 70px;opacity:0;" onchange="javascript:setImagePreviews(this);"
+                                                accept="image/jpeg,image/jpg,image/png">
+                                        </a>
+                                    </p>
+                                    <p class="sjzc_6_tu_3" id="dd1"></p>
+                                    <!--<p class="sjzc_6_tu_3">
+					                        <a target="_blank" href="http://image.phoebe731.cn/Public/Seller/images/zc-dpht.png"></a>
+					                    </p>-->
+                                </span>
+                            </dd>
+                            <dd>
+                                <span class="left">上传店铺后台截图：</span>
+                                <span class="right">
+                                    <p class="sjzc_6_tu">
+                                        <a href="javascript:;">
+                                            <input type="file" id="handle_img2" class="uploadimg" data-id="2" style="width:100px;padding:0;height: 70px;opacity:0;" onchange="javascript:setImagePreviews(this);"
+                                                accept="image/jpeg,image/jpg,image/png">
+                                        </a>
+                                    </p>
+                                    <p class="sjzc_6_tu_3" id="dd2"></p>
+                                    <p class="sjzc_6_tu_3">
+                                        <a target="_blank" href="__PUBLIC__/Seller/images/zc-dpht.png"></a>
+                                    </p>
+                                </span>
+                            </dd>
+                        </dl>
+                        <div class="H20"></div>
+                        <a class="nextStep Go3" id="Go3">完成</a>
+                        <div class="H45"></div>
+                    </div>
+                    <div id="Con4" style="display: none;">
+                        <p class="red reset-success" style="text-align:center;">商家注册成功</p>
+                        <p class="reset-tip" style="text-align:center;margin-bottom:20px">请使用密码进行登录</p>
+                        <a href="{:U('Home/Store/storeLogin')}" class="nextStep" style="margin-bottom:20px">去登录看看</a>
+                    </div>
+                </div>
+                <script>
+                    $("#verifyImg").click(function () {
+                        var verifyURL = "{:U('User/verify',array())}";
+                        var time = new Date().getTime();
+                        $("#verifyImg").attr({
+                            "src": verifyURL
+                        });
+                    });
+                </script>
+                <script>
+                    $('#demo1').citys({
+                        required: false,
+                        nodata: 'disabled',
+                        onChange: function (data) {
+                            //var text = data['direct']?'(直辖市)':'';
+                            //alert('当前选中地区：'+data['province']+text+' '+data['city']+' '+data['area']);
+                        }
+                    });
+
+                    $(function () {
+                        $('#reload').click(function () {
+                            var verifyimg = $("#reload").attr("src");
+                            if (verifyimg.indexOf('?') > 0) {
+                                $("#reload").attr("src", verifyimg + '&random=' + Math.random());
+                            } else {
+                                $("#reload").attr("src", verifyimg.replace(/\?.*$/, '') + '?' + Math.random());
+                            }
+                        });
+
+                        $('#mobile').keyup(function () {
+                            var mobile = $('#mobile').val();
+                            if (mobile != '' && mobile.length == 11) {
+                                $('.sendSMS').removeAttr('disabled').addClass('GetMocode');
+                            } else {
+                                $('.sendSMS').attr('disabled', 'disabled').removeClass('GetMocode');
+                            }
+                        });
+
+                        $(document).on('click', '.GetMocode', function () {
+                            var mobile = $('#mobile').val();
+                            var verify = $('#verify').val();
+                            var extension = "Mjc2Ng==";
+                            if (extension == '') {
+                                $.openAlter('参数错误', '操作提示');
+                                window.setTimeout(function () {
+                                    window.location.href = 'indexcfca.html?s=/Index/index.html';
+                                }, 800);
+                                return;
+                            }
+                            if (mobile == '' || mobile.length < 11) {
+                                $.openAlter('请输入11位手机号', '提示'); return;
+                            }
+                            if (verify == '' || verify.length < 4) {
+                                $.openAlter('请输入4位验证码', '提示'); return;
+                            }
+                            $.ajax({
+                                type: "post",
+                                url: "/index.php?s=/Index/CheckVerifys.html",
+                                data: { 'verify': verify, 'mobile': mobile, 'extension': extension },
+                                dataType: "json",
+                                error: function (XmlHttpRequest, textStatus, errorThrown) {
+                                    $.openAlter(XmlHttpRequest.responseText, '提示', { width: 250, height: 50 });
+                                },
+                                success: function (data) {
+                                    if (data.code == 0) {
+                                        $.openAlter(data.msgs, '提示');
+                                        $('#reload').click();
+                                    } else {
+                                        $.ajax({
+                                            type: 'post',
+                                            url: '/index.php?s=/Index/GetMocode.html',
+                                            data: { 'mobile': mobile, 'extension': extension },
+                                            dataType: 'json',
+                                            beforeSend: function () {
+                                                $('#sendSMS').val('发送中...');
+                                                $("#sendSMS").attr("disabled", "disabled");
+                                            }, success: function (data) {
+                                                $.openAlter(data.msgs, '操作提示');
+                                                $('#sendSMS').val('获取验证码');
+                                                $("#sendSMS").removeAttr("disabled");
+                                            }, error: function () {
+                                                $.openAlter('网络超时，请重试', '操作提示');
+                                                $('#sendSMS').val('获取验证码');
+                                                $("#sendSMS").removeAttr("disabled");
+                                                $('#reload').click();
+                                            }
+                                        });
+                                    }
+                                }
+                            });
+                        });
+
+                        $('#Go1').click(function () {
+                            var mobile = $('#mobile').val();
+                            var verify = $('#verify').val();
+                            var mocode = $('#mocode').val();
+                            var extension = "Mjc2Ng==";
+                            if (extension == '') {
+                                $.openAlter('参数错误', '操作提示');
+                                window.setTimeout(function () {
+                                    window.location.href = 'indexcfca.html?s=/Index/index.html';
+                                }, 800);
+                                return;
+                            }
+                            if (mobile == '' || mobile.length < 11) {
+                                $.openAlter('请输入11位手机号', '提示'); return;
+                            }
+                            if (verify == '' || verify.length < 4) {
+                                $.openAlter('请输入4位验证码', '提示'); return;
+                            }
+                            if (mocode == '' || mocode.length < 6) {
+                                $.openAlter('请输入6位手机验证码', '提示'); return;
+                            }
+                            $.ajax({
+                                type: "post",
+                                url: '{:U('Home/Store/store_step1')}',
+                                data: { 'mobile': mobile, 'mocode': mocode, 'extension': extension, 'verify': verify },
+                                dataType: "json",
+                                error: function (XmlHttpRequest, textStatus, errorThrown) {
+                                    $.openAlter(XmlHttpRequest.responseText, '提示', { width: 250, height: 50 });
+                                },
+                                success: function (data) {
+                                    if (data.code == 0) {
+                                        $.openAlter(data.msg, '提示');
+                                    } else {
+                                        $('#Con1').hide();
+                                        $('#Con2').show();
+                                    }
+                                }
+                            });
+                        });
+
+                        $('#Go2').click(function () {
+                            var mobile = $('#mobile').val();
+                            var loginpass = $('#loginpass').val();
+                            var checkpass = $('#checkpass').val();
+                            var sellerqq = $('#sellerqq').val();
+                            var sellerweixin = $('#sellerweixin').val();
+                            var extension = "Mjc2Ng==";
+                            if (extension == '') {
+                                $.openAlter('参数错误', '操作提示');
+                                window.setTimeout(function () {
+                                    window.location.href = 'indexcfca.html?s=/Index/index.html';
+                                }, 800);
+                                return;
+                            }
+                            if (loginpass == '') {
+                                $.openAlter('请输入登录密码', '操作提示'); return;
+                            }
+                            if (loginpass.length < 6) {
+                                $.openAlter('登录密码不能少于六位', '提示'); return;
+                            }
+                            if (checkpass == '') {
+                                $.openAlter('请输入确认密码', '操作提示'); return;
+                            }
+                            if (checkpass.length < 6) {
+                                $.openAlter('确认密码不能少于六位', '提示'); return;
+                            }
+                            if (loginpass != checkpass) {
+                                $.openAlter('两次密码不一致', '操作提示'); return;
+                            }
+                            if (sellerqq == '') {
+                                $.openAlter('请输入QQ号码', '操作提示'); return;
+                            }
+                            if (sellerqq.length < 6) {
+                                $.openAlter('QQ号码不能少于六位', '提示'); return;
+                            }
+                            if (sellerweixin == '') {
+                                $.openAlter('请输入微信号', '操作提示'); return;
+                            }
+                            if (sellerweixin.length < 6) {
+                                $.openAlter('微信号不能少于六位', '提示'); return;
+                            }
+                            if ($('#province').val() != '') {
+                                var province = $('#province option:selected').text();
+                            } else {
+                                var province = '';
+                            }
+                            if (province == '') {
+                                $.openAlter('请选择省份', '提示'); return;
+                            }
+                            if ($('#city').val() != '') {
+                                var city = $('#city option:selected').text();
+                            } else {
+                                var city = '';
+                            }
+                            if ($('#area').val() != '') {
+                                var area = $('#area option:selected').text();
+                            } else {
+                                var area = '';
+                            }
+                            if (city == '' && area == '' || city != '' && area == '') {
+                                $.openAlter('请选择城市', '提示'); return;
+                            }
+                            $('#Con2').hide();
+                            $('#Con3').show();
+                        });
+
+                        var flag = true;
+                        $('#Go3').click(function () {
+                            var mobile = $('#mobile').val();
+                            var loginpass = $('#loginpass').val();
+                            var checkpass = $('#checkpass').val();
+                            var sellerqq = $('#sellerqq').val();
+                            var sellerweixin = $('#sellerweixin').val();
+                            var sellername = $('#sellername').val();
+                            var sellercard = $('#sellercard').val();
+                            var sellerclass = $('#sellerclass').val();
+                            var sellerbusiness = $('#sellerbusiness').val();
+                            var sellersingle = $('#sellersingle').val();
+                            var handle_img1 = $('#handle_img1').val();
+                            var handle_img2 = $('#handle_img2').val();
+                            var extension = "Mjc2Ng==";
+                            if (extension == '') {
+                                $.openAlter('参数错误', '提示');
+                                window.setTimeout(function () {
+                                    window.location.href = 'indexcfca.html?s=/Index/index.html';
+                                }, 800);
+                                return;
+                            }
+                            if (loginpass == '') {
+                                $.openAlter('请输入登录密码', '提示');
+                                $('#Con3').hide();
+                                $('#Con2').show();
+                                return;
+                            }
+                            if (loginpass.length < 6) {
+                                $.openAlter('登录密码不能少于六位', '提示');
+                                $('#Con3').hide();
+                                $('#Con2').show();
+                                return;
+                            }
+                            if (checkpass == '') {
+                                $.openAlter('请输入确认密码', '提示');
+                                $('#Con3').hide();
+                                $('#Con2').show();
+                                return;
+                            }
+                            if (checkpass.length < 6) {
+                                $.openAlter('确认密码不能少于六位', '提示');
+                                $('#Con3').hide();
+                                $('#Con2').show();
+                                return;
+                            }
+                            if (loginpass != checkpass) {
+                                $.openAlter('两次密码不一致', '提示');
+                                $('#Con3').hide();
+                                $('#Con2').show();
+                                return;
+                            }
+                            if (sellerqq == '') {
+                                $.openAlter('请输入QQ号码', '提示');
+                                $('#Con3').hide();
+                                $('#Con2').show();
+                                return;
+                            }
+                            if (sellerqq.length < 6) {
+                                $.openAlter('QQ号码不能少于六位', '提示');
+                                $('#Con3').hide();
+                                $('#Con2').show();
+                                return;
+                            }
+                            if (sellerweixin == '') {
+                                $.openAlter('请输入微信号', '提示');
+                                $('#Con3').hide();
+                                $('#Con2').show();
+                                return;
+                            }
+                            if (sellerweixin.length < 6) {
+                                $.openAlter('微信号不能少于六位', '提示');
+                                $('#Con3').hide();
+                                $('#Con2').show();
+                                return;
+                            }
+                            if ($('#province').val() != '') {
+                                var province = $('#province option:selected').text();
+                            } else {
+                                var province = '';
+                            }
+                            if (province == '') {
+                                $.openAlter('请选择省份', '提示');
+                                $('#Con3').hide();
+                                $('#Con2').show();
+                                return;
+                            }
+                            if ($('#city').val() != '') {
+                                var city = $('#city option:selected').text();
+                            } else {
+                                var city = '';
+                            }
+                            if ($('#area').val() != '') {
+                                var area = $('#area option:selected').text();
+                            } else {
+                                var area = '';
+                            }
+                            if (city == '' && area == '' || city != '' && area == '') {
+                                $.openAlter('请选择城市', '提示');
+                                $('#Con3').hide();
+                                $('#Con2').show();
+                                return;
+                            }
+                            if (sellername == '') {
+                                $.openAlter('请输入真实姓名', '提示');
+                                return;
+                            }
+                            if (sellercard == '') {
+                                $.openAlter('请输入身份证号码', '提示');
+                                return;
+                            }
+                            if (sellerclass == '') {
+                                $.openAlter('请输入类目', '提示');
+                                return;
+                            }
+                            if (sellerbusiness == '') {
+                                $.openAlter('请输入店铺年营业额', '提示');
+                                return;
+                            }
+                            if (sellersingle == '') {
+                                $.openAlter('请输入店铺日常补单量', '提示');
+                                return;
+                            }
+                            if (handle_img1 == '') {
+                                $.openAlter('请上传营业执照', '提示'); return;
+                            }
+                            if (handle_img2 == '') {
+                                $.openAlter('请上传店铺后台截图', '提示'); return;
+                            }
+
+                            var formData = new FormData();
+
+                            formData.append("mobile", mobile);
+                            formData.append("loginpass", loginpass);
+                            formData.append("checkpass", checkpass);
+                            formData.append("sellerqq", sellerqq);
+                            formData.append("sellerweixin", sellerweixin);
+                            formData.append("sellername", sellername);
+                            formData.append("sellercard", sellercard);
+                            formData.append("sellerclass", sellerclass);
+                            formData.append("sellerbusiness", sellerbusiness);
+                            formData.append("sellersingle", sellersingle);
+                            formData.append("province", province);
+                            formData.append("city", city);
+                            formData.append("area", area);
+                            formData.append("extension", extension);
+
+                            formData.append("handle_img1", $("#handle_img1")[0].files[0]);
+                            formData.append("handle_img2", $("#handle_img2")[0].files[0]);
+                            if (flag) {
+                                flag = false;
+                                $.ajax({
+                                    type: "post",
+                                    url: '{:U('Home/Store/storeAdd')}',
+                                    data: formData,
+                                    dataType: "json",
+                                    processData: false,
+                                    contentType: false,
+                                    beforeSend: function () {
+                                        $('.Go3').html('上传中...');
+                                        $('.Go3').css('background-color', '#0099e5');
+                                    }, error: function (XmlHttpRequest, textStatus, errorThrown) {
+                                        flag = true;
+                                        $.openAlter(XmlHttpRequest.responseText, '提示', { width: 250, height: 50 });
+                                        $('.Go3').html('完成');
+                                        $('.Go3').css('background-color', '#0099e5');
+                                    },
+                                    success: function (data) {
+                                        flag = true;
+                                        $('.Go3').html('完成');
+                                        $('.Go3').css('background-color', '#0099e5');
+                                        if (data.code == 0) {
+                                            $.openAlter(data.msgs, '提示');
+                                        } else {
+                                            $('#Con3').hide();
+                                            $('#Con4').show();
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                    });
+
+                    function setImagePreviews(data) {
+                        var docObj = $(data)[0];
+                        var id = $(data).attr('data-id');
+                        var dd = $('#dd' + id)[0];
+                        dd.innerHTML = "";
+                        var fileList = docObj.files;
+                        for (var i = 0; i < fileList.length; i++) {
+                            dd.innerHTML += "<img id='imgdd" + id + i + "'  />";
+                            var imgObjPreview = document.getElementById("imgdd" + id + i);
+                            if (docObj.files && docObj.files[i]) {
+                                imgObjPreview.style.display = 'block';
+                                imgObjPreview.style.width = '100px';
+                                imgObjPreview.style.height = '70px';
+                                imgObjPreview.src = window.URL.createObjectURL(docObj.files[i]);
+                            } else {
+                                docObj.select();
+                                var imgSrc = document.selection.createRange().text;
+                                var localImagId = document.getElementById("img" + id + i);
+                                localImagId.style.width = "100px";
+                                localImagId.style.height = "70px";
+                                try {
+                                    localImagId.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
+                                    localImagId.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = imgSrc;
+                                }
+                                catch (e) {
+                                    $.openAlter('您上传的图片格式不正确，请重新选择!', '提示', { width: 250, top: 280, height: 50 });
+                                    return false;
+                                }
+                                imgObjPreview.style.display = 'none';
+                                document.selection.empty();
+                            }
+                        }
+                        return true;
+                    }
+                </script>
+            </div>
+        </div>
+    </div>
+</body>
+
+<!-- Mirrored from m.58leke.com/index.php?s=/Index/newseller/code/Mjc2Ng== by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 03 Aug 2018 09:26:16 GMT -->
+
+</html>

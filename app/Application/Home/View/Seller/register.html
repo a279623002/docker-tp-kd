@@ -1,0 +1,320 @@
+﻿<!DOCTYPE html>
+<html>
+<!-- Mirrored from laike.oaishua.com/Login/register.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 17 Jul 2018 06:13:35 GMT -->
+<!-- Added by HTTrack -->
+
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+  <!-- /Added by HTTrack -->
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>用户注册</title>
+  <meta name="keywords" content="易网包会员注册" />
+  <meta name="description" content="易网包会员注册" />
+  <link rel="stylesheet" href="__PUBLIC__/Home/css/login.css" />
+  <link rel="stylesheet" href="__PUBLIC__/Home/css/amazeui.min.css" />
+  <script src="__PUBLIC__/Home/js/jquery-1.7.2.js"></script>
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/base.css" />
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/shao.css" />
+  <!-- bootstrap -->
+  <link href="__PUBLIC__/Home/css/bootstrap.css" rel="stylesheet" />
+  <link href="__PUBLIC__/Home/css/bootstrap-overrides.css" type="text/css" rel="stylesheet" />
+  <!-- libraries -->
+  <link href="__PUBLIC__/Home/css/font-awesome.css" type="text/css" rel="stylesheet" />
+  <!-- global styles -->
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/layout.css">
+  <!-- this page specific styles -->
+  <link rel="stylesheet" href="__PUBLIC__/Home/css/m.index.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="__PUBLIC__/Home/css/amazeui.datatables.css" />
+  <!--am-g-->
+  <style>
+    body {
+      background: #f5f5f5;
+    }
+
+    .am-table .am-active {
+      font-weight: bold;
+      color: #32a0ee
+    }
+
+    .notification-dropdown {
+      width: 10%;
+      text-align: center;
+    }
+
+    .notification-dropdown a {
+      color: #FFF !important;
+      font-size: 16px !important;
+    }
+
+    a {
+      text-decoration: none !important;
+    }
+
+    .notification-dropdown a:hover {
+      background: #1fa799 !important;
+    }
+
+    body::-webkit-scrollbar {
+      display: none
+    }
+
+    #rightTools {
+      height: 235px;
+      width: 70px;
+      position: fixed;
+      right: 0px;
+      top: 200px;
+      background: #FFF;
+      z-index: 9999;
+    }
+
+    #rightTools ul {
+      width: 70px;
+      padding: 0;
+      margin: 0;
+    }
+
+    #rightTools ul li {
+      width: 70px;
+      height: 80px;
+      list-style-type: none;
+      text-align: center;
+      border-bottom: 1px solid #EEE;
+      margin-bottom: 5px;
+      cursor: pointer;
+    }
+
+    #rightTools ul li:last-child {
+      border: none;
+    }
+
+    #rightTools ul li a {
+      display: block;
+      padding-top: 15px;
+      margin-bottom: 5px;
+    }
+
+    .show_code {
+      display: none;
+      position: absolute;
+      right: 100px;
+      top: 50px;
+    }
+
+    .show_code img {
+      width: 150px;
+      height: 150px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- top -->
+  <div style="float:left;width:100%;height:80px;position: relative;z-index: 9999;background: #FFF;">
+    <div style="width:75%;margin:0 auto;">
+      <a href="/">
+        <img src="__PUBLIC__/Seller/images/logo.png" style="float: left; margin-top: 15px;" alt="">
+      </a>
+
+      <div style="float:right;">
+
+        <if condition="($seller_id neq 0)">
+          <a href="{:U('Home/Seller/index')}">
+            <img src="__PUBLIC__/Seller/images/seller_pic.png" alt="">
+          </a>
+          <span style="font-size: 16px; color:black; line-height: 80px; padding: 5px;">欢迎回来，{$seller.account}</span>
+          <a style="font-size: 16px; color:black; line-height: 80px; background: #f7f7f7; padding:5px 10px 5px 10px;" href="{:U('Home/Seller/logout')}">退出</a>
+          <else />
+          <a style="font-size: 20px; color:black; line-height: 80px;" href="{:U('Home/Seller/login')}">会员登录</a> |
+          <a style="font-size: 20px; color:black; line-height: 80px;" href="{:U('Home/Seller/register')}">免费注册</a>
+        </if>
+      </div>
+      <marquee direction="left" behavior="scroll" scrollamount="5" scrolldelay="10" align="top" bgcolor="#eee" width="30%" hspace="20"
+        vspace="10" onmouseover="this.stop()" onmouseout="this.start()" style="font-size: 1.6rem;padding: 2px;border-radius: 10px;margin: 2% 0 0 10%;">
+        {$notice}
+      </marquee>
+    </div>
+  </div>
+  <!-- end top -->
+
+  <!-- navbar -->
+  <header class="navbar" role="banner" style="background:#21ae9f;margin-bottom: 0 !important;">
+    <ul class="nav navbar-nav pull-left" style="padding-left: 12%; width: 100%;">
+      <li class="notification-dropdown ">
+        <a href="/">首页</a>
+      </li>
+      <li class="notification-dropdown ">
+                <a href="{:U('Home/Seller/index')}">会员中心</a>
+            </li>
+      <li class="notification-dropdown ">
+        <a href="{:U('Home/Order/pay')}">充值 </a>
+      </li>
+      <li class="notification-dropdown ">
+        <a href="{:U('Home/Express/newadd')}">发布任务</a>
+      </li>
+      <li class="notification-dropdown ">
+        <a href="{:U('Home/Express/explist')}">任务记录</a>
+      </li>
+      <li class="notification-dropdown ">
+        <a href="{:U('Home/Seller/union')}">推广赚钱</a>
+      </li>
+
+    </ul>
+
+    <!-- <ul class="nav navbar-nav pull-right">
+             <li class="notification-dropdown">
+                 <a href="{:U('Home/Seller/accountlog')}" title="消费记录">余额：{$seller.money} 元</a>
+             </li>
+             <li class="notification-dropdown">
+                 <a href="{:U('Home/Order/pay')}">充值 </a>
+             </li>
+             <li class="notification-dropdown">
+                 <a href="{:U('Home/Seller/logout')}" role="button" title="退出">
+                     <i class="icon-signout"></i>
+                 </a>
+             </li>
+             <li class="notification-dropdown">
+                 <a href="javascript:;" id="admin-fullscreen">
+                     <span class="am-icon-arrows-alt"></span>
+                     <span class="admin-fullText">开启全屏</span>
+                 </a>
+             </li>
+         </ul> -->
+  </header>
+  <!-- end navbar -->
+
+  <div class="banner-show" id="js_ban_content">
+    <div class="cell bns-01">
+      <div class="con">
+      </div>
+    </div>
+    <div class="cell bns-02" style="display:none;">
+      <div class="con">
+        <a href="../danhao/index.html" target="_blank" class="banner-link">
+          <i>单号对比</i>
+        </a>
+      </div>
+    </div>
+    <div class="cell bns-03" style="display:none;">
+      <div class="con">
+        <a href="../News/read/id/15.html" target="_blank" class="banner-link">
+          <i>招代理</i>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="banner-control" id="js_ban_button_box">
+    <a href="javascript:;" class="left">左</a>
+    <a href="javascript:;" class="right">右</a>
+  </div>
+  <div class="container">
+    <div class="register-box">
+      <div class="reg-slogan">
+        用户注册<a href="{:U('Home/Seller/login')}">登录</a>
+      </div>
+      <div class="reg-form" id="js-form-mobile">
+        <form name="myform" action="" method="post" id="loginForm">
+          <input type="hidden" name="t" value="{$t}" />
+          <div class="cell">
+            <input type="tel" name="account" id="account" class="text" placeholder="请输入实名制手机号码" />
+          </div>
+          <div class="cell">
+            <input type="password" name="password" id="password" class="text" placeholder="设置密码" />
+          </div>
+          <div class="cell">
+            <input type="password" name="confirm_password" id="confirm_password" class="text" placeholder="重复密码" />
+          </div>
+          <div class="cell">
+            <input type="text" name="QQ" id="QQ" class="text" placeholder="填写QQ号" />
+          </div>
+          <div class="cell">
+            <input type="text" name="code" id="js-verifys" class="text" placeholder="填写验证码" />
+            <img src="{:U('Seller/verify')}" class="imgverify" id="verifyImg" />
+          </div>
+          <div class="bottom">
+            <a id="js-mobile_btn" href="javascript:register();" class="button btn-reg">立即注册</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div id="rightTools">
+    <ul>
+      <li>
+        <a target="_blank" href="http://wpa.qq.com/msgrd?V=1&amp;uin=3144824074&amp;Site=客服&amp;Menu=yes">
+          <img border="0" src="__PUBLIC__/Seller/images/QQ.png" alt="点击这里给我发消息" title="点击这里给我发消息" />
+        </a>
+        <span>QQ客服</span>
+      </li>
+      <li id="wechat_code">
+        <img border="0" src="__PUBLIC__/Seller/images/wechat.png" style="margin-top: 20px;" />
+        <br />
+        <span>微信客服</span>
+      </li>
+      <li>
+        <a href="javascript:;" class="back_to_top" title="回到顶部">
+          <img border="0" src="__PUBLIC__/Seller/images/top.png" />
+        </a>
+      </li>
+    </ul>
+    <div class="show_code">
+      <img border="0" src="__PUBLIC__/Home/images/eqcode.jpg" />
+    </div>
+  </div>
+
+  <footer class="am-footer am-footer-default" style="background: #2e2e2e;">
+    <div class="am-footer-miscs " style="color: #FFF;">
+      <p>
+        <a href="{:U('Home/Article/detail')}" style="color: #FFF;">运营技巧</a>&nbsp;&nbsp;|
+        <a href="{:U('Home/Article/detail')}" style="color: #FFF;">帮助说明</a>&nbsp;&nbsp;| 友情链接: &nbsp;&nbsp;
+        <foreach name='flink' item='vo' key='k'>
+          <a href="{$vo.link}" class="" style="color: #FFF;">
+            <!-- <img src="__PUBLIC__/../Uploads/flink/{$vo['pic']}" style="width: 20px; height: 20px;" alt="" srcset=""> -->
+            {$vo.name}</a>&nbsp;&nbsp;
+        </foreach>
+      </p>
+      <br />
+      <p>由
+        <a href="/" title="易网包" target="_blank" style="color: #FFF;"> 易网包 </a>提供技术支持</p>
+      <p>CopyRight©2018 YW Inc.</p>
+      <p> </p>
+    </div>
+  </footer>
+  <script>
+    $("#verifyImg").click(function () {
+      var verifyURL = "{:U('Seller/verify',array())}";
+      var time = new Date().getTime();
+      $("#verifyImg").attr({
+        "src": verifyURL
+      });
+    });
+  </script>
+
+  <script type="text/javascript">
+    function register() {
+      $.ajax({
+        url: '{:U('Seller/register')}',
+				type: 'post',
+        dataType: 'json',
+        data: $("#loginForm").serialize(),
+        success: function (data) {
+          if (data.state) {
+            window.location.href = "{:U('Seller/login')}";
+          } else {
+            alert(data.msg);
+          }
+        }
+      });
+    }
+    $(function () {
+      $('#wechat_code').mouseover(function () {
+        $('.show_code').show();
+      });
+      $('#wechat_code').mouseleave(function () {
+        $('.show_code').hide();
+      });
+    })
+  </script>
+</body>
+
+</html>

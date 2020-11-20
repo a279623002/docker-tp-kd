@@ -1,0 +1,121 @@
+<include file="Index/header" />
+    <div id="pad-wrapper"></div>
+
+    <div class="am-g">
+        <div class="am-u-md-6">
+            <div data-am-widget="accordion" class="am-accordion am-accordion-gapped">
+                <dl class="am-accordion-item am-active">
+                    <dt class="am-accordion-title">帮助说明 & 会员公告</dt>
+                    <dd class="am-accordion-bd am-collapse am-in">
+                        <!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
+                        <div class="am-accordion-content">
+                            <table class="am-table am-table-bordered am-table-striped am-margin-bottom-xs am-table-centered">
+                                <thead>
+                                <tr>
+                                    <th>标题</th>
+                                    <th>时间</th>
+                                    <th>分类</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <foreach name='top_article' item='vo' key='k'>
+                                    <td><a style="cursor: pointer" href="javascript:open_artice({$vo.article_id});" >{$vo.title}</a></td>
+                                    <td>{$vo.add_time}</td>
+                                    <if condition="($vo.cate eq 1)"><td>运营技巧</td>
+                                        <elseif condition="($vo.cate eq 2)"/>
+                                        <td>推广赚钱</td>
+                                        <elseif condition="($vo.cate eq 3)"/>
+                                        <td>加盟代理</td>
+                                        <else/>
+                                        <td>-</td>
+                                    </if>
+                                    </tr>
+                                </foreach>
+                                </tbody>
+                            </table>
+
+                            <ul class="am-list">
+                            </ul>
+                        </div>
+                    </dd>
+                </dl>
+            </div>
+
+        </div>
+        <div class="am-u-md-6">
+            <section data-am-widget="accordion" class="am-accordion am-accordion-gapped">
+                <dl class="am-accordion-item am-active">
+                    <dt class="am-accordion-title">
+                        会员等级说明
+                    </dt>
+                    <dd class="am-accordion-bd am-collapse am-in">
+                        <!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
+                        <div class="am-accordion-content">
+                            <table class="am-table am-table-bordered am-table-striped am-margin-bottom-xs am-table-centered">
+                                <thead>
+                                    <tr>
+                                        <th>会员等级</th>
+                                        <th>所需积分</th>
+                                        <th>空包价格(圆通)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <foreach name='top_grade' item='vo' key='k'>
+                                        <if condition="($top_seller_level['level_id'] eq $vo['level_id'])">
+                                            <tr class="am-active">
+                                                <else />
+                                                <tr>
+                                        </if>
+                                        <td>{$vo.level_name}</td>
+                                        <td>{$vo.growth_from}</td>
+                                        <td>{$vo.price}</td>
+                                        </tr>
+                                    </foreach>
+                                    <tr>
+                                        <td colspan="3">积分规则：等级积分等于您的充值金额(如：累计充值500元，等级积分为500)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </dd>
+                </dl>
+            </section>
+        </div>
+        <div class="am-modal am-modal-confirm" tabindex="-1" id="article_info">
+            <div class="am-modal-dialog" style="width: 750px;">
+                <div class="am-modal-hd" style="padding-bottom:10px; background: #00b7a3;color: #FFF;">公告内容 <span class="am-modal-btn" data-am-modal-cancel style="float: right;color: white; font-size: 22px;margin-top: -5px;">X</span></div>
+                <div class="am-modal-bd" id="content" style="height: 500px;width:700px;overflow: auto;padding: 10px;">
+
+                </div>
+                <!-- 
+                   <div class="am-modal-footer">
+                        <span class="am-modal-btn" data-am-modal-cancel>关闭</span>
+                    </div>
+                     -->
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function open_artice(articel_id) {
+        $.ajax({
+            url: '{:U('Home/Seller/article')}',
+                type: 'post',
+                dataType: 'json',
+                data: { 'articel_id': articel_id },
+                success: function (data) {
+           $('#content').html(data.msgs);
+        }
+    })
+
+        $('#article_info').modal({
+            relatedTarget: this,
+            onConfirm: function (options) {
+            },
+            onCancel: function () {
+            }
+        });
+    }
+</script>
+<!--am-g-->
+<include file="Index/footer" />

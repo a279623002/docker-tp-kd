@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/style/style.css" />
+	<script src="__PUBLIC__/Admin/js/jquery.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Admin/js/common.js"></script>
+</head>
+
+<body>
+	<div class="main">
+		<div class="box">
+			<div class="bhead">
+				<h2>用户金额记录</h2>
+			</div>
+			<div class="bmiddle">
+				<div class="bcon">
+					<form name="myform" action="" method="post">
+						<table border="0" cellpadding="0" cellspacing="1" width="100%" class="listtable">
+							<tr>
+								<th>ID</th>
+								<th>金额</th>
+								<th>类型</th>
+								<th>内容</th>
+								<th>日期</th>
+								<th>积分</th>
+								<!-- <th>操作</th> -->
+							</tr>
+							<foreach name='list' item='vo' key='k'>
+								<tr>
+									<td align="center">{$vo.f_id}</td>
+									<td align="center">{$vo.money}</td>
+									<td align="center">
+										<if condition="($vo.change_type eq 1)">充值
+											<else /> 消费
+										</if>
+									</td>
+									<td align="center">{$vo.change_desc}</td>
+									<td align="center">{$vo.change_time}</td>
+									<td align="center">{$vo.points}</td>
+									<!-- <td align="center">
+										<a href="javascript:del({$vo.f_id})">删除</a>
+									</td> -->
+								</tr>
+							</foreach>
+
+						</table>
+					</form>
+					<ul class="am-datatable-pager am-pagination am-pagination-right am-text-sm"> {$page} </ul>
+				</div>
+			</div>
+			<div class="bfoot">
+				<font color="#003366">Copyright:2015 易网包在线操作系统 版权所有</font>
+			</div>
+		</div>
+	</div>
+	<script data-cfasync="false" src="/cdn-cgi/scripts/f2bf09f8/cloudflare-static/email-decode.min.js"></script>
+</body>
+
+</html>

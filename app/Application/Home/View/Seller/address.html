@@ -1,0 +1,561 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>我的发货地址</title>
+    <meta name="keywords" content="我的发货地址" />
+    <meta name="description" content="我的发货地址" />
+    <!-- bootstrap -->
+    <link href="__PUBLIC__/Home/css/bootstrap.css" rel="stylesheet" />
+    <link href="__PUBLIC__/Home/css/bootstrap-overrides.css" type="text/css" rel="stylesheet" />
+    <!-- libraries -->
+    <link href="__PUBLIC__/Home/css/font-awesome.css" type="text/css" rel="stylesheet" />
+    <!-- global styles -->
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/layout.css">
+    <!-- this page specific styles -->
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/amazeui.min.css" />
+    <style>
+        .province,
+        .city,
+        .area {
+            display: none
+        }
+    </style>
+</head>
+
+<body>
+    <!-- navbar -->
+    <header class="navbar navbar-inverse" role="banner">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">
+                <img src="__PUBLIC__/Home/img/logo.png">
+            </a>
+        </div>
+        <ul class="nav navbar-nav pull-left">
+            <li class="notification-dropdown ">
+                <a href="/">网站首页</a>
+            </li>
+            <li class="notification-dropdown ">
+                <a href="{:U('Home/Order/pay')}">充值 </a>
+            </li>
+            <li class="notification-dropdown ">
+                <a href="{:U('Home/Express/newadd')}">发布任务</a>
+            </li>
+            <li class="notification-dropdown ">
+                <a href="{:U('Home/Express/explist')}">任务记录</a>
+            </li>
+            <li class="notification-dropdown ">
+                <a href="{:U('Home/User/union')}">推广赚钱</a>
+            </li>
+
+        </ul>
+
+        <ul class="nav navbar-nav pull-right">
+            <li class="notification-dropdown">
+                <a href="{:U('Home/User/index')}" title="会员中心"> {$user.account}</a>
+            </li>
+            <li class="notification-dropdown">
+                <a href="{:U('Home/User/accountlog')}" title="消费记录">余额：{$user.money} 元</a>
+            </li>
+            <li class="notification-dropdown">
+                <a href="{:U('Home/Order/pay')}">充值 </a>
+            </li>
+            <li class="notification-dropdown">
+                <a href="{:U('Home/User/logout')}" role="button" title="退出">
+                    <i class="icon-signout"></i>
+                </a>
+            </li>
+            <li class="notification-dropdown">
+                <a href="javascript:;" id="admin-fullscreen">
+                    <span class="am-icon-arrows-alt"></span>
+                    <span class="admin-fullText">开启全屏</span>
+                </a>
+            </li>
+        </ul>
+    </header>
+    <!-- end navbar -->
+    <!-- sidebar -->
+    <div id="sidebar-nav">
+        <ul id="dashboard-menu">
+            <li>
+                <div class="pointer">
+                    <div class="arrow"></div>
+                    <div class="arrow_border"></div>
+                </div>
+
+                <a href="{:U('Home/User/index')}">
+                    <i class="icon-home"></i>
+                    <span>用户首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="{:U('Home/Shop/assistant')}">
+                    <i class="am-icon-info-circle"></i>
+                    <span>智能助手</span>
+                </a>
+            </li>
+            <li>
+                <a href="{:U('Home/Shop/shop')}">
+                    <i class="am-icon-circle-o"></i>
+                    <span>店铺管理</span>
+                </a>
+            </li>
+            <li>
+                <a class="dropdown-toggle" href="javascript:;">
+                    <i class="icon-edit"></i>
+                    <span>发布任务</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+
+                    <li>
+                        <a href="{:U('Home/Express/newadd')}">发布圆通任务</a>
+                    </li>
+                    <li>
+                        <a href="{:U('Home/Express/uploads')}">批量下单</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="{:U('Home/Express/explist')}">
+                    <i class="icon-list"></i>
+                    <span>任务记录</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="{:U('Home/Express/uplog')}">
+                    <i class="icon-list"></i>
+                    <span>导入记录</span>
+                </a>
+            </li>
+
+            <li>
+                <a class="dropdown-toggle" href="javascript:;">
+                    <i class="icon-jpy"></i>
+                    <span>财务管理</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li>
+                        <a href="{:U('Home/User/accountlog')}">消费记录</a>
+                    </li>
+                    <li>
+                        <a href="{:U('Home/User/record')}">充值记录</a>
+                    </li>
+                    <li>
+                        <a href="{:U('Home/Order/pay')}">余额充值</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="{:U('Home/User/union')}">
+                    <i class="icon-group"></i>
+                    <span>推广赚钱</span>
+                </a>
+            </li>
+
+            <li class="active">
+                <a class="dropdown-toggle ui-elements" href="javascript:;">
+                    <i class="icon-user"></i>
+                    <span>我的信息</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li>
+                        <a href="{:U('Home/User/password')}">修改密码</a>
+                    </li>
+                    <li>
+                        <a href="{:U('Home/User/account')}">修改资料</a>
+                    </li>
+                    <li class="active">
+                        <a href="{:U('Home/User/address')}">我的地址</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="{:U('Home/User/logout')}">
+                    <i class="icon-signout"></i>
+                    <span>退出登录</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- end sidebar -->
+
+    <!-- main container -->
+    <div class="content">
+        <div class="am-panel-default">
+            <div class="am-panel-hd">我的发货地址</div>
+            <div class="am-panel-bd">
+                <form action="" method="post" id="address" data-am-validator>
+                    <input type="hidden" name="id" value="{$user_list.id}">
+                    <fieldset>
+                        <div class="am-g am-margin-bottom-xs">
+                            <div class="task_list_left">用户名：</div>
+                            <div class="task_list_right">
+                                <font color="#FF0000">{$user.account}</font>
+                            </div>
+                        </div>
+                        <div class="am-g am-margin-bottom-xs">
+                            <div class="task_list_left">旺旺名：</div>
+                            <div class="task_list_right">
+                                <input name="wangwang" type="text" class="task_input" placeholder="必须填写卖家旺旺名,0信誉的不审核" value="{$user_list.wangwang}" required> 提交后联系在线客服审核
+                            </div>
+                        </div>
+                        <div class="am-g am-margin-bottom-xs">
+                            <div class="task_list_left">发件人：</div>
+                            <div class="task_list_right">
+                                <input name="addresser" value="{$user_list.addresser}" type="text" class="task_input" required>
+                            </div>
+                        </div>
+                        <div class="am-g am-margin-bottom-xs">
+                            <div class="task_list_left">手机号码：</div>
+                            <div class="task_list_right">
+                                <input id="jihao" value="{$user_list.mobile}" name="mobile" type="text" class="task_input" required>
+                            </div>
+                        </div>
+                        <div class="am-g am-margin-bottom-xs">
+                            <div class="task_list_left">验证码：</div>
+                            <div class="task_list_right">
+                                <input name="a_yanzma" type="text" class="task_num" required>&nbsp;&nbsp;
+                                <button type="button" class="am-btn am-btn-primary am-btn-sm" onClick="yanzma()">点击发送验证码</button>
+                            </div>
+                        </div>
+                        <div class="am-g am-margin-bottom-xs">
+                            <div class="task_list_left">发件地区：</div>
+                            <div class="task_list_right" id="dem">
+                                <select data-am-selected="{maxHeight: 200,btnWidth:100,placeholder:'选择省份'}" name="province" value="{$user_list.province}"
+                                    required class="province">
+                                    <option value="">选择省份</option>
+                                </select>
+                                <select data-am-selected="{maxHeight: 200,btnWidth:100,placeholder:'选择城市'}" name="city" value="{$user_list.city}" required
+                                    class="city">
+                                    <option value="">选择城市</option>
+                                </select>
+                                <select data-am-selected="{maxHeight: 200,btnWidth:100,placeholder:'选择区'}" name="district" value="{$user_list.district}"
+                                    required class="area">
+                                    <option value="">选择区域</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="am-g am-margin-bottom-xs">
+                            <div class="task_list_left">详细地址：</div>
+                            <div class="task_list_right">
+                                <input name="address" type="text" class="task_url" placeholder="建议您如实填写店铺实际发货地址，请详细到街道名称和门牌号码" required>
+                            </div>
+                        </div>
+
+                        <div class="am-g am-margin-bottom-xs">
+                            <div class="task_list_left">操作：</div>
+                            <div class="task_list_right am-margin-left-xl am-padding-left-xl">
+                                <input type="button" class="am-btn am-btn-warning am-round" onclick="addressAdd();" value="确认提交"> &nbsp;&nbsp;请一定填写真实地址信息，否则查不到物流记录，请知晓。
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <div class="am-panel-bd">
+            <table class="am-table am-table-striped am-table-bordered am-table-hover am-table-radius am-table-compact" id="apptable">
+                <thead>
+                    <tr>
+
+                        <th>店铺名</th>
+                        <th>发货人</th>
+                        <th>手机</th>
+                        <th>所在地区</th>
+                        <th>详细地址</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <foreach name="list" item="item" key="key">
+                        <tr>
+                            <td>{$item.wangwang}</td>
+                            <td>{$item.addresser}</td>
+                            <td>{$item.mobile}</td>
+                            <td>{$item.province}-{$item.city}-{$item.district}</td>
+                            <td>{$item.address}</td>
+                            <td>{$item.status_name}</td>
+                            <td>
+                                <a href="{:U('Home/User/address/id/'.$item['id'])}">修改</a> -
+                                <a href="javascript:del({$item.id})">删除</a> -&nbsp;
+                                <if condition="($item.status eq 3)">默认地址
+                                    <else />
+                                    <button type="button" class="am-btn am-btn-xs am-round am-btn-danger" onclick="defaultAddress({$item.id})">默认地址</button>
+                                </if>
+                            </td>
+                        </tr>
+                    </foreach>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- scripts -->
+    <script src="__PUBLIC__/Home/js/jquery.min.js"></script>
+    <script src="__PUBLIC__/Home/js/amazeui.min.js"></script>
+    <script src="__PUBLIC__/Home/js/jquery.validate.min.js"></script>
+    <script src="__PUBLIC__/Home/js/app.js"></script>
+    <script src="__PUBLIC__/Home/js/address.js"></script>
+    <script src="__PUBLIC__/Home/js/jquery.cxselect.js"></script>
+    <script type="text/javascript">
+        $('#dem').cxSelect({
+            url: '__PUBLIC__/Home/js/cityData.json',               // 如果服务器不支持 .json 类型文件，请将文件改为 .js 文件 
+            selects: ['province', 'city', 'area']   // 数组格式，请注意顺序 
+        }); 
+    </script>
+    <footer class="am-footer am-footer-default">
+        <div class="am-footer-miscs ">
+            <p>由
+                <a href="/" title="易网包" target="_blank" class=""> 易网包 </a>提供技术支持</p>
+            <p>CopyRight©2018 YW Inc.</p>
+            <p> </p>
+        </div>
+    </footer>
+    <script type="text/javascript">
+
+        function OnlineOver() {
+            document.getElementById("aFloatTools_Show").style.display = "none";
+            document.getElementById("divFloatToolsView").style.display = "block";
+            document.getElementById("aFloatTools_Hide").style.display = "block";
+            document.getElementById("floatTools").style.width = "190px";
+        }
+        function OnlineOut() {
+            document.getElementById("aFloatTools_Show").style.display = "block";
+            document.getElementById("aFloatTools_Hide").style.display = "none";
+            document.getElementById("divFloatToolsView").style.display = "none";
+            document.getElementById("floatTools").style.width = "36px";
+        }
+        if (typeof (HTMLElement) != "undefined")    //给firefox定义contains()方法，ie下不起作用
+        {
+            HTMLElement.prototype.contains = function (obj) {
+                while (obj != null && typeof (obj.tagName) != "undefind") { //通过循环对比来判断是不是obj的父元素
+                    if (obj == this) return true;
+                    obj = obj.parentNode;
+                }
+                return false;
+            };
+        }
+        function hideMsgBox(theEvent) { //theEvent用来传入事件，Firefox的方式
+            if (theEvent) {
+                var browser = navigator.userAgent; //取得浏览器属性
+                if (browser.indexOf("Firefox") > 0) { //如果是Firefox
+                    if (document.getElementById('divFloatToolsView').contains(theEvent.relatedTarget)) { //如果是子元素
+                        return; //结束函式
+                    }
+                }
+                if (browser.indexOf("MSIE") > 0) { //如果是IE
+                    if (document.getElementById('divFloatToolsView').contains(event.toElement)) { //如果是子元素
+                        return; //结束函式
+                    }
+                }
+            }
+            /*要执行的操作*/
+            document.getElementById("aFloatTools_Show").style.display = "block";
+            document.getElementById("aFloatTools_Hide").style.display = "none";
+            document.getElementById("divFloatToolsView").style.display = "none";
+            document.getElementById("floatTools").style.width = "36px";
+        }
+    </script>
+
+    <script type="text/javascript">
+        function addressAdd() {
+            $.ajax({
+                url: '{:U('User/address')}',
+				type: 'post',
+                dataType: 'json',
+                data: $("#address").serialize(),
+                success: function (data) {
+                    if (data.state) {
+                        alert(data.msg);
+                        window.location.reload();
+                    } else {
+                        alert(data.msg);
+                    }
+                }
+            });
+        }
+
+        function del(ID) {
+            if (confirm('确定删除吗？') == true) {
+                $.ajax({
+                    url: '{:U('User/addressDel')}',
+ 				type: 'post',
+                    dataType: 'json',
+                    data: { 'id': ID },
+                    success: function (data) {
+                        if (data.state) {
+                            alert(data.msg);
+                            window.location.reload();
+                        } else {
+                            alert(data.msg);
+                        }
+                    }
+                });
+            }
+        }
+        function defaultAddress(ID) {
+            $.ajax({
+                url: '{:U('Home/User/defaultAddress')}',
+                type: 'post',
+                dataType: 'json',
+                data: { 'id': ID },
+                success: function (data) {
+                    if (data.state) {
+                        window.location.reload();
+                    } else {
+                        alert(data.msg);
+                    }
+                }
+            })
+        }
+    </script>
+
+    <style type="text/css">
+        .rides-cs {
+            font-size: 12px;
+            background: #29a7e2;
+            position: fixed;
+            top: 250px;
+            right: 0px;
+            _position: absolute;
+            z-index: 1500;
+            border-radius: 6px 0px 0 6px;
+        }
+
+        .rides-cs a {
+            color: #00A0E9;
+        }
+
+        .rides-cs a:hover {
+            color: #ff8100;
+            text-decoration: none;
+        }
+
+        .rides-cs .floatL {
+            width: 36px;
+            float: left;
+            position: relative;
+            z-index: 1;
+            margin-top: 21px;
+            height: 181px;
+        }
+
+        .rides-cs .floatL a {
+            font-size: 0;
+            text-indent: -999em;
+            display: block;
+        }
+
+        .rides-cs .floatR {
+            width: 130px;
+            float: left;
+            padding: 5px;
+            overflow: hidden;
+        }
+
+        .rides-cs .floatR .cn {
+            background: #F7F7F7;
+            border-radius: 6px;
+            margin-top: 4px;
+        }
+
+        .rides-cs .cn .titZx {
+            font-size: 14px;
+            color: #333;
+            font-weight: 600;
+            line-height: 24px;
+            padding: 5px;
+            text-align: center;
+        }
+
+        .rides-cs .cn ul {
+            padding: 0px;
+        }
+
+        .rides-cs .cn ul li {
+            line-height: 38px;
+            height: 38px;
+            border-bottom: solid 1px #E6E4E4;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .rides-cs .cn ul li span {
+            color: #777;
+        }
+
+        .rides-cs .cn ul li a {
+            color: #777;
+        }
+
+        .rides-cs .cn ul li img {
+            vertical-align: middle;
+            display: inline
+        }
+
+        .rides-cs .btnOpen,
+        .rides-cs .btnCtn {
+            position: relative;
+            z-index: 9;
+            top: 25px;
+            left: 0;
+            background-image: url(__PUBLIC__/Home/img/qqopen.png);
+            background-repeat: no-repeat;
+            display: block;
+            height: 146px;
+            padding: 8px;
+        }
+
+        .rides-cs .btnOpen {
+            background-position: 0 0;
+        }
+
+        .rides-cs .btnCtn {
+            background-position: -37px 0;
+        }
+
+        .rides-cs ul li.top {
+            border-bottom: solid #ACE5F9 1px;
+        }
+
+        .rides-cs ul li.bot {
+            border-bottom: none;
+        }
+    </style>
+    <div id="floatTools" class="rides-cs" style="height:246px;">
+        <div class="floatL">
+            <a id="aFloatTools_Show" class="btnOpen" title="查看在线客服" style="top:20px;display:block" href="javascript:OnlineOver();">展开</a>
+            <a id="aFloatTools_Hide" class="btnCtn" title="关闭在线客服" style="top:20px;display:none" href="javascript:hideMsgBox()">收缩</a>
+        </div>
+        <div id="divFloatToolsView" class="floatR" style="display:none;height:237px;width:140px;">
+            <div class="cn">
+                <h4 class="titZx">在线咨询</h4>
+                <ul>
+                    <li>
+                        <span>客服</span>
+                        <a target="_blank" href="http://wpa.qq.com/msgrd?V=1&amp;uin=4844952&amp;Site=客服&amp;Menu=yes">
+                            <img border="0" src="http://wpa.qq.com/pa?p=2:4844952:51" alt="点击这里给我发消息" title="点击这里给我发消息" />
+                        </a>
+                    </li>
+                    <li>
+                        <span>代理</span>
+                        <a target="_blank" href="http://wpa.qq.com/msgrd?V=1&amp;uin=4844952&amp;Site=代理咨询&amp;Menu=yes">
+                            <img border="0" src="http://wpa.qq.com/pa?p=2:4844952:51" alt="点击这里给我发消息" title="点击这里给我发消息" />
+                        </a>
+                    </li>
+                    <li style="border:none;">
+                        <span>每天9:00-18:00在线</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

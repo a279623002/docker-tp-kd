@@ -1,0 +1,89 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title></title>
+<link rel="stylesheet" type="text/css" href="/Public/stadmin/style/style.css" />
+<script type="text/javascript" src="/Public/stadmin/js/common.js"></script>
+<script type="text/javascript" charset="utf-8" src="/Public/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="/Public/ueditor/ueditor.all.js"></script>
+</head>
+<body>
+<div class="main">
+	<div class="box">
+		<div class="bhead">
+			<h2>添加文档</h2>
+		</div>
+		<div class="bmiddle">
+			<div class="bcon">
+				<form name="myform" action="/stadmin/Archive/insert.html" method="post" enctype="multipart/form-data" onSubmit="return checkmyform()">
+              <table border="0" width="100%" class="listtable">
+                <tr>
+                  <th>文档标题：</th>
+                  <td><input type="text" name="title" style="width:300px" /></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <th>文档分类：</th>
+                  <td>
+                  <select name="typeid" style="width:150px;">
+                                    </select>
+                  </td>
+                  <td></td>
+                </tr>
+                 <tr>
+                  <th>SEO关键词：</th>
+                  <td><input type="text" name="seokeywords" style="width:300px" /></td>
+                  <td></td>
+                </tr>
+                 <tr>
+                  <th>内容摘要：</th>
+                  <td> 
+                    <textarea name="seodescription" rows="5"  style="width:300px;height:50px"></textarea>
+                  </td>
+                  <td></td>
+                </tr>
+               <!-- <tr>
+                  <th>缩略图：</th>
+                  <td>
+                  <input type="file" name="pic" style="width:300px" class="file"/></td>
+                  <td></td>
+                </tr> -->
+            <!--    <tr>
+                	<th>文档排序：</th>
+                	<td><input type="text" name="sortrank" style="width:300px" /> <span class="intro">数字越小越靠前</span></td>
+                	<td></td>
+                </tr> -->
+                <tr>
+                  <th valign="top">文档正文：</th>
+                  <td>
+<textarea id="myEditor" name="body" style="width:700px;height:300px;"></textarea>
+<script type="text/javascript">
+    var editor = new UE.ui.Editor();
+    editor.render("myEditor");
+    editor.ready(function(){
+        editor.setHeight(300);
+    });
+</script>
+                  </td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <th></th>
+                  <td>
+                	<input type="submit" class="button" value="确认提交" />
+                  </td>
+                  <td></td>
+                </tr>
+              </table>
+            </form>
+			</div>
+		</div>
+		<div class="bfoot">
+			<font color="#003366">Copyright:2015 快递网在线操作系统 版权所有</font>
+		</div>
+	</div>
+</div>
+</body>
+</html>

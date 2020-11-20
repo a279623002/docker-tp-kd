@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>续费价格设置</title>
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/style/style.css" />
+	<script src="__PUBLIC__/Admin/js/jquery.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Admin/js/common.js"></script>
+</head>
+
+<body>
+	<div class="main">
+		<div class="box">
+			<div class="bhead">
+				<h2 style="display:inline-block;">续费价格设置</h2>&nbsp;&nbsp;--
+				<a href="{:U('Store/renewEdit')}">添加</a>&nbsp;&nbsp;
+			</div>
+			<div class="bmiddle">
+				<div class="bcon">
+					<table border="0" cellpadding="0" cellspacing="1" width="100%" class="listtable">
+						<tr>
+							<th width="50">ID</th>
+							<th width="80">月份</th>
+							<th width="350">价格</th>
+							<th width="120">操作</th>
+						</tr>
+						<foreach name='list' item='vo' key='k'>
+							<tr>
+								<td align="center">{$vo.renew_id}</td>
+								<td align="center">{$vo.month}</td>
+								<td align="center">{$vo.price}</td>
+								<td align="center">
+									<a href="{:U('Store/renewEdit/renew_id/'.$vo['renew_id'])}">修改</a>&nbsp;&nbsp;
+									<a href="javascript:del({$vo.renew_id})">删除</a>
+								</td>
+							</tr>
+						</foreach>
+					</table>
+					{$page}
+				</div>
+			</div>
+			<div class="bfoot">
+				<font color="#003366">Copyright:2015 易网包在线操作系统 版权所有</font>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="__PUBLIC__/Admin/js/jquery.min.js"></script>
+	<script>
+		function del(ID) {
+			$.ajax({
+				url: '{:U('Store/delRenew')}',
+				type: 'post',
+				data: { 'renew_id': ID },
+				dataType: 'json',
+				success: function (data) {
+					alert(data.msg);
+					window.location.reload();
+				}
+			})
+		}
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+@CHARSET "UTF-8";
+body{
+	background:#014051;
+	color:#FFF;
+	line-height:20px;
+	font-family:microsoft yahei;
+	font-size:14px;
+}
+a:link,a:visited{
+	color:#fff;
+	text-decoration:none;
+}
+a img{
+	border:none;
+}
+h1,h2,h3,h4{
+	font-weight:normal;
+}
+.inp{
+	padding:8px;
+	color:#666;
+	border:0;
+	width:158px;
+}
+
+.login{
+	background:#019AAC;
+	width:400px;
+	margin:0 auto;
+	margin-top:100px;
+}
+.login_top{
+	height:45px;
+	line-height:45px;
+	font-size:18px;
+	padding-left:20px;
+	background:#015D67;
+}
+.login_con{
+	padding:20px;
+}
+
+.login_con td{
+	padding:6px 4px;
+}
+.login_con .inp{
+	width:180px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

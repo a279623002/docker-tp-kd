@@ -1,0 +1,106 @@
+﻿.ow_black_overlay
+{
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 1001;
+    -moz-opacity: 0.8;
+    opacity: .80;
+    filter: alpha(opacity=80);
+}
+.ow_ycgl_tc
+{
+    position: absolute;
+    height: auto;
+    overflow: hidden;
+    background-color: #fff;
+    z-index: 1002;
+    font-size: 14px;
+    font-family: "微软雅黑";
+}
+/*open_alert*/
+.sjzc_t
+{
+    /*width: 800px;   height: auto;*/
+    position: absolute;
+    height: auto;
+    z-index: 1003;
+    overflow: auto;
+    border: 1px solid #ddd;
+    background: #fff;
+    font-size: 14px;
+    font-family: "微软雅黑";
+}
+.sjzc_1_t
+{
+    height: 50px;
+    border-bottom: 1px solid #ddd;
+    line-height: 50px;
+    font-size: 18px;
+}
+.sjzc_2_t
+{
+    padding: 20px;
+    height: auto;
+    overflow: hidden;
+}
+.sjzc_5_t
+{
+    margin: 20px auto 0 auto;
+    overflow: hidden;
+    height: auto;
+    text-align: center;
+}
+.sjzc_5_t li
+{
+    overflow: hidden;
+    height: auto;
+    margin-top: 20px;
+}
+.sjzc_5_t li p
+{
+    float: left;
+}
+.sjzc_7_t
+{
+}
+.sjzc_7_t a
+{
+    width: 120px;
+    height: 44px;
+    line-height: 44px;
+    text-align: center;
+    display: block;
+    background: #4882f0;
+    color: #fff;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+    border-radius: 20px;
+}
+.sjzc_7_t a:hover
+{
+    background: #2a69e2;
+}
+.sjzc_7_t .ad
+{
+    background: #FF99CC;
+}
+.sjzc_7_t .ad:hover
+{
+    background: #CC99CC;
+}
+.sjzc_7_t .aOne
+{
+    background: #ff9900;
+}
+.sjzc_7_t .aOne:hover
+{
+    background: #e58a01;
+}
+
+ 

@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/style/style.css" />
+	<script src="__PUBLIC__/Admin/js/jquery.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Admin/js/common.js"></script>
+</head>
+
+<body>
+	<div class="main">
+		<div class="box">
+			<div class="bhead">
+				<h2>商家列表</h2>
+			</div>
+			<div class="bmiddle">
+				<div class="bcon">
+					<div class="search">
+						<form name="searchform" action="{:U('Store/sshow')}" method="get">
+							<input type="text" name="mobile" class="inp" placeholder="商家手机" />&nbsp;&nbsp;
+							<input type="submit" class="search_btn" value="搜索" />
+						</form>
+					</div>
+					<form name="myform" action="" method="post">
+						<table border="0" cellpadding="0" cellspacing="1" width="100%" class="listtable">
+							<tr>
+								<th>商家ID</th>
+								<th>真实姓名</th>
+								<th>身份证号</th>
+								<th>手机</th>
+								<th>qq</th>
+								<th>微信</th>
+								<th>地址</th>
+								<th>类目</th>
+								<th>店铺年营业额</th>
+								<th>店铺日常补单量</th>
+								<th>状态</th>
+								<th>添加时间</th>
+								<th>操作</th>
+							</tr>
+							<foreach name='list' item='vo' key='k'>
+								<tr>
+									<td align="center">{$vo.store_id}</td>
+									<td align="center">{$vo.sellername}</td>
+									<td align="center">{$vo.sellercard}</td>
+									<td align="center">{$vo.mobile}</td>
+									<td align="center">{$vo.sellerqq}</td>
+									<td align="center">{$vo.sellerweixin}</td>
+									<td align="center">{$vo.province}-{$vo.city}-{$vo.area}</td>
+									<td align="center">{$vo.sellerclass}</td>
+									<td align="center">{$vo.sellerbusiness}</td>
+									<td align="center">{$vo.sellersingle}</td>
+									<td align="center">
+										<if condition="($vo.status eq 1)">正常
+											<else />冻结
+										</if>
+									</td>
+									<td align="center">{$vo.addtime}</td>
+									<td align="center">
+										<if condition="($vo.status eq 1)">
+											<a href="javascript:freeze({$vo.store_id}, 2)">
+												<font color=green>冻结</font>
+											</a>
+											<else />
+											<a href="javascript:freeze({$vo.store_id}, 1)">
+												<font color=green>解冻</font>
+											</a>
+										</if>
+
+										&nbsp;&nbsp;
+										<a href="javascript:changePw({$vo.store_id})">改密</a>&nbsp;&nbsp;
+
+									</td>
+								</tr>
+							</foreach>
+
+						</table>
+					</form>
+					<ul class="am-datatable-pager am-pagination am-pagination-right am-text-sm"> {$page} </ul>
+				</div>
+			</div>
+			<div class="bfoot">
+				<font color="#003366">Copyright:2015 易网包在线操作系统 版权所有</font>
+			</div>
+		</div>
+	</div>
+	<script data-cfasync="false" src="/cdn-cgi/scripts/f2bf09f8/cloudflare-static/email-decode.min.js"></script>
+	<script>
+		function changePw(ID) {
+			var password = prompt('请输入新密码：');
+			if (password) {
+				$.ajax({
+					url: '{:U('Store/changePw')}',
+					type: 'post',
+					dataType: 'json',
+					data: { 'store_id': ID, 'new_password': password },
+					success: function (data) {
+						alert(data.msg);
+						window.location.reload();
+					}
+				})
+			}
+		}
+
+		function freeze(ID, status) {
+			if (confirm('是否（解）冻结该用户？')) {
+				$.ajax({
+					url: '{:U('Store/freeze')}',
+					type: 'post',
+					dataType: 'json',
+					data: { 'store_id': ID , 'status': status},
+					success: function (data) {
+						alert(data.msg);
+						window.location.reload();
+					}
+				})
+			}
+		}
+	</script>
+</body>
+
+</html>

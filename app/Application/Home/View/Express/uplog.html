@@ -1,0 +1,95 @@
+<include file="Index/header" />
+<div class="am-panel-default">
+    <div class="am-panel-hd">批量发布记录</div>
+    <div class="am-panel-bd">
+        <div class="am-alert am-alert-secondary" data-am-alert>
+            <button type="button" class="am-close">&times;</button>
+            <p>温馨提示：订购第三方批量发货软件快递发货！！
+                <a href="{:U('Home/Express/shuoming')}" target="_blank" style="color:#FF0000">批量发货说明</a>
+            </p>
+        </div>
+
+        <ul class="am-nav am-nav-pills">
+            <li>
+                <a href="{:U('Home/Express/explist')}">全部记录</a>
+            </li>
+            <li>
+                <a href="{:U('Home/Express/shuoming')}" target="_blank">发货说明</a>
+            </li>
+
+            <form action="{:U('Home/Express/uplog')}" method="POST" class="am-u-lg-4 am-margin-bottom-xs am-fr">
+                <div class="am-input-group">
+                    <input type="text" class="am-form-field" name="key" placeholder="查询发货店铺">
+                    <span class="am-input-group-btn">
+                        <button class="am-btn am-btn-primary " type="submit" style="background-color: #00b7a3;border-color: #00b7a3;">搜索</button>
+                    </span>
+
+                </div>
+            </form>
+        </ul>
+        <table class="am-table am-table-striped am-table-bordered am-table-hover am-table-radius am-table-compact" id="apptables">
+            <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>发货店铺</th>
+                    <th>快递公司</th>
+                    <th>订单总数</th>
+                    <th>成功数量</th>
+                    <th>下单时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <foreach name='list' item='vo' key='k'>
+                    <tr>
+                        <td>{$vo.uplog_id}</td>
+                        <td>{$vo.shop}</td>
+                        <td>
+                            <if condition="($vo.express eq 1)">圆通
+
+                            </if>
+                        </td>
+                        <td>{$vo.count}</td>
+                        <td>{$vo.success_count}</td>
+                        <td>{$vo.time}</td>
+                        <td>
+                            <a href="javascript:uplogDel({$vo.uplog_id});">删除</a>
+                        </td>
+                    </tr>
+                </foreach>
+            </tbody>
+        </table>
+        <div class="am-g">
+            <div class="am-u-sm-4"> </div>
+            <div class="am-u-sm-8">
+                {$page}
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function uplogDel(ID) {
+        $.ajax({
+            url: '{:U('Home/Express/uplogDel')}',
+            type: 'post',
+            data: { 'uplog_id': ID },
+            dataType: 'json',
+            success: function (data) {
+                if (data.state) {
+                    alert('删除成功');
+                    window.location.reload();
+                } else {
+                    alert(data.msg);
+                }
+            }
+        })
+    }
+</script>
+<script>
+
+    $(function () {
+        $('li.active').removeClass('active');
+        $('#sidebar-nav #dashboard-menu > li').eq(3).addClass('active');
+    })
+</script>
+<include file="Index/footer" />

@@ -1,0 +1,86 @@
+<include file="Index/header" />
+<div class="am-panel-default">
+    <div class="am-panel-hd">
+        修改个人资料
+    </div>
+    <div class="am-panel-bd">
+        <form action="" method="post" id="account">
+            <div class="am-g am-margin-bottom">
+                <div class="task_list_left">
+                    用户名：
+                </div>
+                <div class="task_list_right">
+                    <font color="#FF0000">{$seller.account}</font>
+                </div>
+            </div>
+            <div class="am-g am-margin-bottom">
+                <div class="task_list_left">
+                    邮箱：
+                </div>
+                <div class="task_list_right">
+                    <input name="email" type="eamil" class="task_input" value="{$seller.email}" />
+                </div>
+            </div>
+            <div class="am-g am-margin-bottom">
+                <div class="task_list_left">
+                    QQ：
+                </div>
+                <div class="task_list_right">
+                    <input name="QQ" type="text" class="task_input" value="{$seller.qq}" />
+                </div>
+            </div>
+            <div class="am-g am-margin-bottom">
+                <div class="task_list_left">
+                    手机号码：
+                </div>
+                <div class="task_list_right">
+                    <input name="mobile" type="number" class="task_input" value="{$seller.mobile}" />
+                </div>
+            </div>
+            <div class="am-g am-margin-bottom">
+                <div class="task_list_left">
+                    支付宝：
+                </div>
+                <div class="task_list_right">
+                    <input name="alipay" type="text" class="task_input" value="{$seller.alipay}" placeholder="充值的时候方便查询" />
+                </div>
+            </div>
+            <div class="am-g am-margin-bottom">
+                <div class="task_list_left">
+                    操作：
+                </div>
+                <div class="task_list_right am-margin-left-xl am-padding-left-xl">
+                    <input type="button" class="am-btn am-btn-warning am-round" onclick="account();" style="background-color:#00b7a3; border-color:#00b7a3;" value="确认修改" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function account() {
+        $.ajax({
+            url: '{:U('Seller/account')}',
+				type: 'post',
+            dataType: 'json',
+            data: $("#account").serialize(),
+            success: function (data) {
+                if (data.state) {
+                    alert(data.msg);
+                    window.location.reload();
+                } else {
+                    alert(data.msg);
+                }
+            }
+        });
+    }
+</script>
+
+<script>
+    $(function () {
+        $('li.active').removeClass('active');
+        $('.submenu:last').show();
+        $('.submenu:last li').eq(1).addClass('active');
+    })
+</script>
+<include file="Index/footer" />

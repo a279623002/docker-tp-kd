@@ -1,0 +1,187 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<!-- Mirrored from laike.oaishua.com/Login/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 17 Jul 2018 06:13:31 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>用户登录</title>
+<meta name="keywords" content="快递网会员登录" />
+<meta name="description" content="快递网会员登录" />
+<link rel="stylesheet" href="../Public/Home/css/login.css"/> 
+<link rel="stylesheet" href="../Public/Home/css/amazeui.min.css"/>  
+<script src="../Public/Home/js/jquery-1.7.2.js"></script>
+<link rel="stylesheet" type="text/css" href="../Public/Home/css/base.css">
+<link rel="stylesheet" type="text/css" href="../Public/Home/css/shao.css">
+</head>
+<body>
+<!-- navbar -->
+<div class="newCommonHead" id="totalHead">
+	<div class="headNewContent">
+		<a href="../index.html"><div class="Img-imgLogo230" style="float: left;"></div></a>
+		<ul class="menuBanner">  
+          <li class="menuItem"><a href="../index.html"><div class="mainMenu ">首页</div></a> </li>
+          <li class="menuItem"><a href="../Member/index.html"><div class="mainMenu ">用户中心</div></a> </li>
+          <li class="menuItem"><a href="index.html"><div class="mainMenu ">余额充值</div></a> </li>  
+          <li class="menuItem"><a href="index.html"><div class="mainMenu ">我要下单</div></a> </li>
+          <li class="menuItem"><a href="index.html"><div class="mainMenu ">推广赚钱</div></a> </li>
+          <li class="menuItem"><a href="../News/cate/id/1.html"><div class="mainMenu ">运营技巧</div></a> </li>
+          <li class="menuItem"><a href="../Page/show/id/4.html"><div class="mainMenu ">关于我们</div></a> </li>   
+		</ul>
+		<div class="personalInfo">
+          <div>  
+           <a href="index.html">会员登录</a>  |  <a href="register.html">免费注册</a>
+                      </div>
+        </div>
+	</div>
+</div> 
+<!-- end navbar -->
+
+<div class="banner-show" id="js_ban_content">
+		<div class="cell bns-01">
+			<div class="con">
+			</div>
+		</div>
+		<div class="cell bns-02" style="display:none;">
+			<div class="con">
+				<a href="../danhao/index.html" target="_blank" class="banner-link">
+				<i>单号对比</i></a> </div>
+		</div>
+		<div class="cell bns-03" style="display:none;">
+			<div class="con">
+				<a href="../News/read/id/15.html" target="_blank" class="banner-link">
+				<i>招代理</i></a> </div>
+		</div>
+</div>
+<div class="banner-control" id="js_ban_button_box">
+		<a href="javascript:;" class="left">左</a>
+		<a href="javascript:;" class="right">右</a>
+</div>
+
+<script src="../Public/Home/js/login.js"></script>  
+
+<div class="container">
+		<div class="login-box">
+			<div class="reg-slogan">用户登录</div>
+			<div class="reg-form" id="js-form-mobile">
+             <form name="myform" action="http://laike.oaishua.com/Login/logincheck.html" method="post">
+				<br>
+				<div class="cell">
+					<label for="js-mobile_ipt">填写帐号</label>
+					<input type="text" name="uname" id="js-mobile_ipt" class="text" />
+				</div>
+				<div class="cell">
+					<label for="js-mobile_pwd_ipt">填写密码</label>
+					<input type="password" name="pwd" id="js-mobile_pwd_ipt" class="text" />
+			    </div>
+				<div class="bottom">
+					<a id="js-mobile_btn" href="javascript:;" onClick="return checkmyform()" class="button btn-green">登录</a>
+                </div><br>
+                <div class="bottom">
+					<a id="js-mobile_btn" href="register.html" class="button btn-reg">立即注册</a>
+                </div> <br>  
+                <a href="pwdback.html">忘记密码？</a>
+              </form>       
+			</div>
+		</div>
+</div>
+<div id="footer" class="po-footer tc" style="position: static;">
+	<div class="wrap">	
+			<p><span style="font-family:Microsoft YaHei;">Copyright © 2014 版权所有 快递网</span></p>
+			<p>豫ICP备13035788号</p>
+            <p>  
+        </p><div align="center">tj</div>
+    <p></p>
+		</div>	
+</div>
+<script type="text/javascript">
+
+function OnlineOver(){
+document.getElementById("aFloatTools_Show").style.display = "none";
+document.getElementById("divFloatToolsView").style.display = "block";
+document.getElementById("aFloatTools_Hide").style.display = "block";
+document.getElementById("floatTools").style.width = "190px";
+}
+function OnlineOut(){
+document.getElementById("aFloatTools_Show").style.display = "block";
+document.getElementById("aFloatTools_Hide").style.display = "none";
+document.getElementById("divFloatToolsView").style.display = "none";
+document.getElementById("floatTools").style.width = "36px";
+}
+if(typeof(HTMLElement)!="undefined")    //给firefox定义contains()方法，ie下不起作用
+{   
+      HTMLElement.prototype.contains=function(obj)   
+      {   
+          while(obj!=null&&typeof(obj.tagName)!="undefind"){ //通过循环对比来判断是不是obj的父元素
+   　　　　if(obj==this) return true;   
+   　　　　obj=obj.parentNode;
+   　　}   
+          return false;   
+      };   
+}  
+function hideMsgBox(theEvent){ //theEvent用来传入事件，Firefox的方式
+　 if (theEvent){
+　 var browser=navigator.userAgent; //取得浏览器属性
+　 if (browser.indexOf("Firefox")>0){ //如果是Firefox
+　　 if (document.getElementById('divFloatToolsView').contains(theEvent.relatedTarget)) { //如果是子元素
+　　 return; //结束函式
+} 
+} 
+if (browser.indexOf("MSIE")>0){ //如果是IE
+if (document.getElementById('divFloatToolsView').contains(event.toElement)) { //如果是子元素
+return; //结束函式
+}
+}
+}
+/*要执行的操作*/
+document.getElementById("aFloatTools_Show").style.display = "block";
+document.getElementById("aFloatTools_Hide").style.display = "none";
+document.getElementById("divFloatToolsView").style.display = "none";
+document.getElementById("floatTools").style.width = "36px";
+}
+</script>
+<style type="text/css">
+	.rides-cs {  font-size: 12px; background:#29a7e2; position: fixed; top: 250px; right: 0px; _position: absolute; z-index: 1500; border-radius:6px 0px 0 6px;}
+	.rides-cs a { color: #00A0E9;}
+	.rides-cs a:hover { color: #ff8100; text-decoration: none;}
+	.rides-cs .floatL { width: 36px; float:left; position: relative; z-index:1;margin-top: 21px;height: 181px;}
+	.rides-cs .floatL a { font-size:0; text-indent: -999em; display: block;}
+	.rides-cs .floatR { width: 130px; float: left; padding: 5px; overflow:hidden;}
+	.rides-cs .floatR .cn {background:#F7F7F7; border-radius:6px;margin-top:4px;}
+	.rides-cs .cn .titZx{ font-size: 14px; color: #333;font-weight:600; line-height:24px;padding:5px;text-align:center;}
+	.rides-cs .cn ul {padding:0px;}
+	.rides-cs .cn ul li { line-height: 38px; height:38px;border-bottom: solid 1px #E6E4E4;overflow: hidden;text-align:center;}
+	.rides-cs .cn ul li span { color: #777;}
+	.rides-cs .cn ul li a{color: #777;}
+	.rides-cs .cn ul li img { vertical-align: middle; display:inline}
+	.rides-cs .btnOpen, .rides-cs .btnCtn {  position: relative; z-index:9; top:25px; left: 0;  background-image: url(../Public/Home/img/qqopen.png); background-repeat: no-repeat; display:block;  height: 146px; padding: 8px;}
+	.rides-cs .btnOpen { background-position: 0 0;}
+	.rides-cs .btnCtn { background-position: -37px 0;}
+	.rides-cs ul li.top { border-bottom: solid #ACE5F9 1px;}
+	.rides-cs ul li.bot { border-bottom: none;}
+</style>
+<div id="floatTools" class="rides-cs" style="height:246px;">
+  <div class="floatL">
+  	<a id="aFloatTools_Show" class="btnOpen" title="查看在线客服" style="top:20px;display:block" href="javascript:OnlineOver();">展开</a>
+  	<a id="aFloatTools_Hide" class="btnCtn" title="关闭在线客服" style="top:20px;display:none" href="javascript:hideMsgBox()">收缩</a>
+  </div>
+  <div id="divFloatToolsView" class="floatR" style="display:none;height:237px;width:140px;">
+    <div class="cn">
+      <h4 class="titZx">在线咨询</h4>
+      <ul>
+        <li><span>客服</span> <a target="_blank" href="http://wpa.qq.com/msgrd?V=1&amp;uin=4844952&amp;Site=%e5%ae%a2%e6%9c%8d&amp;Menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:4844952:51" alt="点击这里给我发消息" title="点击这里给我发消息"/></a></li>
+        <li><span>代理</span> <a target="_blank" href="http://wpa.qq.com/msgrd?V=1&amp;uin=4844952&amp;Site=%e4%bb%a3%e7%90%86%e5%92%a8%e8%af%a2&amp;Menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:4844952:51" alt="点击这里给我发消息" title="点击这里给我发消息"/></a></li>
+        <li style="border:none;"><span>每天9:00-18:00在线</span> </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+	FancyForm.setup();
+});
+</script>
+</body>
+
+<!-- Mirrored from laike.oaishua.com/Login/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 17 Jul 2018 06:13:33 GMT -->
+</html>

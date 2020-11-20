@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/style/style.css" />
+	<script src="__PUBLIC__/Admin/js/jquery.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Admin/js/common.js"></script>
+	<script type="text/javascript" charset="utf-8" src="__PUBLIC__/Admin/js/WdatePicker.js"></script>
+</head>
+
+<body>
+	<div class="main">
+		<div class="box">
+			<div class="bhead">
+				<h2>任务记录</h2>
+			</div>
+			<div class="bmiddle">
+				<div class="bcon">
+					<div class="search">
+						<form name="searchForm" id="searchForm">
+							<input type="text" name="key" value="{:I('get.key')}" class="inp" placeholder="单号、宝贝收件人或者电话" /> 开始日期：
+							<input type="date" name="timestart" value="{:I('get.timestart')}" id="d_s" value="" /> 结束日期：
+							<input type="date" name="timeend" value="{:I('get.timeend')}" /> &nbsp;&nbsp;
+                            <input type="button" class="search_btn" onclick="search()" id="search_btn" style="cursor: hand" value="查 询" />
+						</form>
+					</div>
+					<table border="0" cellpadding="0" cellspacing="1" width="100%" class="listtable">
+						<tr>
+							<th>编号</th>
+							<th>商家ID</th>
+							<th>店铺ID</th>
+							<th>订单编号</th>
+							<th>买家昵称</th>
+                            <!--<th>发货人姓名</th>
+                            <th>发货人手机</th>
+                            <th>发货地址</th>-->
+                            <th>收货人姓名</th>
+                            <th>收货人手机</th>
+                            <th>收获地址</th>
+                            <!--<th>商品名称描述</th>
+                            <th>商品数量</th>
+                            <th>单个商品重量</th>-->
+							<th>快递方式</th>
+							<th>添加任务时间</th>
+							<th>操作</th>
+						</tr>
+						<foreach name='list' item='vo' key='k'>
+							<tr>
+								<td align="center">{$vo.task_id}</td>
+								<td align="center">{$vo.seller_id}</td>
+								<td align="center">{$vo.store_id}</td>
+								<td align="center">{$vo.order_no}</td>
+								<td align="center">{$vo.buyer_nick}</td>
+								<!--<td align="center">{$vo.send_name}</td>
+								<td align="center">{$vo.send_mobile}</td>
+								<td align="center">{$vo.send_provice}--{$vo.send_city}--{$vo.send_district}--{$vo.send_address}</td>-->
+								<td align="center">{$vo.receiver_name}</td>
+								<td align="center">{$vo.receiver_mobile}</td>
+								<td align="center">{$vo.receiver_provice}--{$vo.receiver_city}--{$vo.receiver_district}--{$vo.receiver_address}</td>
+								<!--<td align="center">{$vo.goods}</td>
+								<td align="center">{$vo.goods_nums}</td>
+								<td align="center">{$vo.goods_weight}</td>-->
+					
+								<td align="center">
+									<if condition="($vo.express eq 1)">圆通
+									</if>
+								</td>
+								<td align="center">{$vo.task_id}</td>
+								<td align="center">
+									<if condition="($vo.send_state eq 1)">
+										<a href="javascript:taskConfirm({$vo.task_id})">发货确认</a>&nbsp;&nbsp; | &nbsp;&nbsp;
+										<a href="javascript:taskDel({$vo.task_id})">删除</a>
+										<else />已发货
+									</if>
+								</td>
+							</tr>
+						</foreach>
+					</table>
+					<div class="pageno"> {$page} </div>
+				</div>
+			</div>
+			<div class="bfoot">
+				<font color="#003366">Copyright:2015 易网包在线操作系统 版权所有</font>
+			</div>
+		</div>
+	</div>
+	<script src="__PUBLIC__/Admin/js/jquery.min.js"></script>
+	<script>
+		function taskDel(ID) {
+			$.ajax({
+				url: '{:U('Seller/taskDel')}',
+				type: 'post',
+				dataType: 'json',
+				data: {'task_id':ID},
+				success: function(data) {
+					alert(data.msg);
+					window.location.reload();
+				}
+			});
+		}
+		function taskConfirm(ID) {
+			$.ajax({
+				url: '{:U('Seller/taskConfirm')}',
+				type: 'post',
+				dataType: 'json',
+				data: {'task_id':ID},
+				success: function(data) {
+					alert(data.msg);
+					window.location.reload();
+				}
+			});
+		}
+
+
+        function search()
+        {
+            public_url('{:U('Seller/exlist')}',1);
+        }
+
+        function public_url(url,type) {
+            var str1 = $('#searchForm').find('input').serialize();
+            var str2 = $('#searchForm').find('select').serialize();
+            var query = str1 + '&' + str2;
+            query = query.replace(/(&|^)(\w*?\d*?\-*?_*?)*?=?((?=&)|(?=$))/g, '');
+            query = query.replace(/^&/g, '');
+            if (url.indexOf('?') > 0) {
+                url += '&' + query;
+            } else {
+                url += '?' + query;
+            }
+
+            if (type == 1) {
+                window.location.href = url;
+            } else {
+                window.open(url);
+            }
+        }
+	</script>
+</body>
+
+</html>

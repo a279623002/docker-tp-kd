@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/style/style.css" />
+	<script src="__PUBLIC__/Admin/js/jquery.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Admin/js/common.js"></script>
+</head>
+
+<body>
+	<div class="main">
+		<div class="box">
+			<div class="bhead">
+				<h2>店铺列表</h2>
+			</div>
+			<div class="bmiddle">
+				<div class="bcon">
+					<div class="search">
+						<form name="searchform" action="{:U('Store/shop')}" method="get">
+							<input type="text" name="key" class="inp" placeholder="店铺名" />&nbsp;&nbsp;
+							<input type="submit" class="search_btn" value="搜索" />&nbsp;&nbsp;
+							<a href="{:U('Store/shop')}">全部用户</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+							<a href="{:U('Store/shop/status/1')}">未审核</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+							<a href="{:U('Store/shop/status/2')}">通过</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+							<a href="{:U('Store/shop/status/3')}">拒绝</a>
+						</form>
+					</div>
+					<form name="myform" action="" method="post">
+						<table border="0" cellpadding="0" cellspacing="1" width="100%" class="listtable">
+							<tr>
+								<th>店铺ID</th>
+								<th>所属用户</th>
+								<th>店铺名</th>
+								<th>掌柜号</th>
+								<th>所属平台</th>
+								<th>店铺性质</th>
+								<th>发货人</th>
+								<th>发货电话</th>
+								<th>发货地址</th>
+								<th>状态</th>
+								<th>智能助手状态</th>
+								<th>智能助手到期时间</th>
+								<th>上传截图</th>
+								<th>添加时间</th>
+								<th>操作</th>
+							</tr>
+							<foreach name='list' item='vo' key='k'>
+								<tr>
+									<td align="center">{$vo.store_id}</td>
+									<td align="center">{$vo.username}</td>
+									<td align="center">{$vo.store_nick}</td>
+									<td align="center">{$vo.manager}</td>
+									<td align="center">
+										<if condition="($detail.store_type eq 1)">淘宝
+											<elseif condition="$detail.store_type eq 2" />天猫店铺
+											<elseif condition="$detail.store_type eq 3" />1688
+											<elseif condition="$detail.store_type eq 4" />京东
+											<elseif condition="$detail.store_type eq 5" />微商
+											<else />其它
+										</if>
+									</td>
+									<td align="center">
+										<if condition="($vo.property eq 1)">个人
+											<else />其他
+										</if>
+									</td>
+									<td align="center">{$vo.name}</td>
+									<td align="center">{$vo.mobile}</td>
+									<td align="center">{$vo.province}-{$vo.city}-{$vo.district}--{$vo.address}</td>
+									<td align="center">
+										<if condition="($vo.status eq 2)">
+											<font color=green>开启</font>
+											<elseif condition="$vo.status eq 3" />
+											<font color=red>拒绝({$vo.msg})</font>
+											<else />
+											<font color=gray>未审核</font>
+										</if>
+									</td>
+									<td align="center">
+										<if condition="($vo.assistant eq 1)">
+											<font color=green>未授权</font>
+											<elseif condition="$vo.assistant eq 2" />
+											<font color=green>已授权</font>
+										</if>
+									</td>
+									<td align="center">
+										<font color=green>{$vo.print_deadline}</font>
+									</td>
+									<td align="center">
+										<a href="__PUBLIC__/../Uploads/shop/{$vo.image}" target="_blank">
+											<font color=skyblue>点击查看大图</font>
+										</a>
+									</td>
+									<td align="center">{$vo.add_time}</td>
+									<td align="center">
+										<if condition="($vo.status eq 1)">
+											<a href="javascript:auditing({$vo.store_id}, 3)">
+												<font color=green>拒绝</font>
+											</a>|
+											<a href="javascript:auditing({$vo.store_id}, 2)">
+												<font color=green>通过</font>
+											</a>
+											<else />
+											<font color=gray>已审核</font>|
+											<a href="{:U('Store/editShop/store_id/'.$vo['store_id'])}">
+												<font color=green>编辑</font>
+											</a>
+										</if>
+									</td>
+								</tr>
+							</foreach>
+
+						</table>
+					</form>
+					{$page}
+				</div>
+			</div>
+			<div class="bfoot">
+				<font color="#003366">Copyright:2015 易网包在线操作系统 版权所有</font>
+			</div>
+		</div>
+	</div>
+	<script data-cfasync="false" src="/cdn-cgi/scripts/f2bf09f8/cloudflare-static/email-decode.min.js"></script>
+	<script>
+
+
+		function auditing(ID, status) {
+			if (status == 3) {
+				var msg = prompt('备注原因：');
+			} else {
+				var msg = '通过审核';
+			}
+			if (msg) {
+				$.ajax({
+					url: '{:U('Store/auditing')}',
+					type: 'post',
+					dataType: 'json',
+					data: { 'store_id': ID, 'status': status, 'msg': msg },
+					success: function (data) {
+						alert(data.msg);
+						window.location.reload();
+					}
+				})
+			}
+		}
+	</script>
+</body>
+
+</html>

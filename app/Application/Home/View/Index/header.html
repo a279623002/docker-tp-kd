@@ -1,0 +1,432 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>易网包会员中心首页</title>
+    <meta name="keywords" content="易网包会员中心首页" />
+    <meta name="description" content="易网包会员中心首页" />
+    <!-- bootstrap -->
+    <link href="__PUBLIC__/Home/css/bootstrap.css" rel="stylesheet" />
+    <link href="__PUBLIC__/Home/css/bootstrap-overrides.css" type="text/css" rel="stylesheet" />
+    <!-- libraries -->
+    <link href="__PUBLIC__/Home/css/font-awesome.css" type="text/css" rel="stylesheet" />
+    <!-- global styles -->
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/layout.css">
+    <!-- this page specific styles -->
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/m.index.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/amazeui.min.css" />
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/amazeui.datatables.css" />
+    <!--am-g-->
+    <!-- scripts -->
+    <script src="__PUBLIC__/Home/js/jquery.min.js"></script>
+    <script src="__PUBLIC__/Home/js/amazeui.min.js"></script>
+    <script src="__PUBLIC__/Home/js/app.js"></script>
+    
+    <style>
+        body {
+            background: #f5f5f5;
+        }
+
+        .am-table .am-active {
+            font-weight: bold;
+            color: #32a0ee
+        }
+
+        .notification-dropdown {
+            width: 10%;
+            text-align: center;
+        }
+
+        .notification-dropdown a {
+            color: #FFF !important;
+            font-size: 16px !important;
+        }
+
+        a {
+            text-decoration: none !important;
+        }
+
+        .notification-dropdown a:hover {
+            background: #1fa799 !important;
+        }
+
+        .seller {
+            width: 100%;
+            min-height: 180px;
+            background: url("__PUBLIC__/Seller/images/seller_bg.png") no-repeat;;
+            background-color: #00b7a3;
+        }
+
+        .seller .seller_l {
+            width: 30%;
+            float: left;
+            margin: 1% 0 0 12.5%;
+        }
+
+        .seller .seller_l .seller_info {
+            margin-left: 20%;
+            margin-top: 25px;
+            color: #FFF;
+        }
+
+        .seller .seller_l .seller_info dt {
+            font-size: 24px;
+            font-weight: normal;
+        }
+
+        .seller .seller_l .seller_info dd {
+            font-size: 14px;
+            font-weight: normal;
+            margin-top:15px;
+        }
+
+        .seller .seller_r {
+            float: right;
+            width: 35%;
+            margin-right: 5%;
+        }
+
+        .seller .seller_r ul {
+            list-style-type: none;
+            margin-top: 50px;
+        }
+
+        .seller .seller_r ul li {
+            float: left;
+            width: 20%;
+            color: #FFF;
+            text-align: center;
+        }
+
+        .seller .seller_r ul li dt {
+            font-size: 26px;
+        }
+
+        .seller .seller_r ul li dd {
+            font-size: 14px;
+        }
+
+        #sidebar-nav {
+            padding: 0;
+            left: 12%;
+            background: #FFF;
+            margin-top: 10px;
+        }
+
+        #dashboard-menu {
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+        #dashboard-menu li {
+            text-align: center;
+            margin-top: 1px;
+        }
+
+        #dashboard-menu li span {
+
+            font-weight: normal;
+            text-shadow: none;
+            margin-left: 0 !important;
+            font-size: 16px;
+        }
+
+        #sidebar-nav #dashboard-menu>li>a {
+            border: none;
+        }
+
+        #sidebar-nav #dashboard-menu>li>a {
+            margin: 0 !important;
+        }
+
+        .active>a {
+            background: #21ae9f;
+            color: #FFF !important;
+            text-shadow: none !important;
+        }
+
+        .active>a:hover {
+            background: #21ae9f !important;
+        }
+
+        .active span {
+            color: #FFF;
+        }
+
+        #sidebar-nav #dashboard-menu > li.active i.user {
+            background: url("__PUBLIC__/Seller/images/user_active.png") no-repeat !important;
+        }
+
+        .user {
+            left: 30px !important;
+            top: 22px !important;
+            background: url("__PUBLIC__/Seller/images/user.png") no-repeat;
+        }
+
+        .chevron-down {
+            left: 150px !important;
+            top: 30px !important;
+            background: url("__PUBLIC__/Seller/images/arrow.png") no-repeat;
+        }
+
+        #sidebar-nav #dashboard-menu > li.active i.edit {
+            background: url("__PUBLIC__/Seller/images/edit_active.png") no-repeat !important;
+        }
+
+        .edit {
+            left: 30px !important;
+            top: 22px !important;
+            background: url("__PUBLIC__/Seller/images/edit.png") no-repeat;
+        }
+
+        #sidebar-nav #dashboard-menu > li.active i.group {
+            background: url("__PUBLIC__/Seller/images/group_active.png") no-repeat !important;
+        }
+
+        .group {
+            left: 30px !important;
+            top: 22px !important;
+            background: url("__PUBLIC__/Seller/images/group.png") no-repeat;
+        }
+
+        #sidebar-nav #dashboard-menu > li.active i.home {
+            background: url("__PUBLIC__/Seller/images/home_active.png") no-repeat !important;
+        }
+
+        .home {
+            left: 30px !important;
+            top: 22px !important;
+            background: url("__PUBLIC__/Seller/images/home.png") no-repeat;
+        }
+
+        #sidebar-nav #dashboard-menu > li.active i.jpy {
+            background: url("__PUBLIC__/Seller/images/jpy_active.png") no-repeat !important;
+        }
+
+        .jpy {
+            left: 30px !important;
+            top: 22px !important;
+            background: url("__PUBLIC__/Seller/images/jpy.png") no-repeat;
+        }
+
+        #sidebar-nav #dashboard-menu > li.active i.list {
+            background: url("__PUBLIC__/Seller/images/list_active.png") no-repeat !important;
+        }
+
+        .list {
+            left: 30px !important;
+            top: 22px !important;
+            background: url("__PUBLIC__/Seller/images/list.png") no-repeat;
+        }
+
+        #sidebar-nav #dashboard-menu > li.active i.uplog {
+            background: url("__PUBLIC__/Seller/images/uplog_active.png") no-repeat !important;
+        }
+
+        .uplog {
+            left: 30px !important;
+            top: 22px !important;
+            background: url("__PUBLIC__/Seller/images/uplog.png") no-repeat;
+        }
+        body::-webkit-scrollbar {display:none}
+    </style>
+</head>
+
+<body style="min-height: 1200px; ">
+    <!-- top -->
+    <div style="float:left;width:100%;height:80px;position: relative;z-index: 9999;background: #FFF;">
+        <div style="width: 75%;min-width:1380px;margin:0 auto;">
+            <a href="/">
+                <img src="__PUBLIC__/Seller/images/logo.png" style="float: left; margin-top: 15px;" alt="">
+            </a>
+
+            <div style="float:right;">
+
+                <if condition="($seller_id neq 0)">
+                    <a href="{:U('Home/Seller/index')}">
+                        <img src="__PUBLIC__/Seller/images/seller_pic.png" alt="">
+                    </a>
+                    <span style="font-size: 16px; color:black; line-height: 80px; padding: 5px;">欢迎回来，{$seller.account}</span>
+                    <a style="font-size: 16px; color:black; line-height: 80px; background: #f7f7f7; padding:5px 10px 5px 10px;" href="{:U('Home/Seller/logout')}">退出</a>
+                    <else />
+                    <a style="font-size: 20px; color:black; line-height: 80px;" href="{:U('Home/Seller/login')}">会员登录</a> |
+                    <a style="font-size: 20px; color:black; line-height: 80px;" href="{:U('Home/Seller/register')}">免费注册</a>
+                </if>
+            </div>
+            <div style="padding-top: 15px;">
+                <marquee direction="middle" behavior="scroll" scrollamount="5" scrolldelay="10" align="middle"  bgcolor="#eee" width="30%" hspace="20"
+                    vspace="10" onmouseover="this.stop()" onmouseout="this.start()" style="font-size: 1.6rem;padding: 2px;border-radius: 10px;margin: 1% 0 0 10%;">
+                    {$notice}
+                </marquee>
+            </div>
+        </div>
+    </div>
+    <!-- end top -->
+
+    <!-- navbar -->
+    <header class="navbar" role="banner" style="background:#21ae9f;margin-bottom: 0 !important;">
+        <ul class="nav navbar-nav pull-left" style="padding-left: 12%; width: 100%;">
+            <li class="notification-dropdown ">
+                <a href="/">首页</a>
+            </li>
+            <li class="notification-dropdown ">
+                <a href="{:U('Home/Seller/index')}">会员中心</a>
+            </li>
+            <li class="notification-dropdown ">
+                <a href="{:U('Home/Order/pay')}">充值 </a>
+            </li>
+            <li class="notification-dropdown ">
+                <a href="{:U('Home/Express/newadd')}">发布任务</a>
+            </li>
+            <li class="notification-dropdown ">
+                <a href="{:U('Home/Express/explist')}">任务记录</a>
+            </li>
+            <li class="notification-dropdown ">
+                <a href="{:U('Home/Seller/union')}">推广赚钱</a>
+            </li>
+
+        </ul>
+
+        <!-- <ul class="nav navbar-nav pull-right">
+            <li class="notification-dropdown">
+                <a href="{:U('Home/Seller/accountlog')}" title="消费记录">余额：{$seller.money} 元</a>
+            </li>
+            <li class="notification-dropdown">
+                <a href="{:U('Home/Order/pay')}">充值 </a>
+            </li>
+            <li class="notification-dropdown">
+                <a href="{:U('Home/Seller/logout')}" role="button" title="退出">
+                    <i class="icon-signout"></i>
+                </a>
+            </li>
+            <li class="notification-dropdown">
+                <a href="javascript:;" id="admin-fullscreen">
+                    <span class="am-icon-arrows-alt"></span>
+                    <span class="admin-fullText">开启全屏</span>
+                </a>
+            </li>
+        </ul> -->
+    </header>
+    <!-- end navbar -->
+
+    <!-- seller -->
+    <div class="seller">
+        <div class="seller_l">
+            <img src="__PUBLIC__/Seller/images/seller_img.png" style="float: left;padding-top: 10px;" alt="">
+            <div class="seller_info">
+                <dt>{$seller.account}</dt>
+                <dd>
+                    <div style="border: 1px solid #FFF; border-radius: 15px; display: inline; padding: 5px; font-size: 14px;">{$top_seller_level.level_name}</div>
+                    您还差 {$top_seller_level.up_point} 积分达到 {$top_seller_level.up_level_name}
+                </dd>
+            </div>
+        </div>
+        <div class="seller_r">
+            <ul>
+                <li>
+                    <dt>{$seller.money}</dt>
+                    <dd>余额</dd>
+                </li>
+                <li>
+                    <dt>{$seller.left_points}</dt>
+                    <dd>等级积分</dd>
+                </li>
+                <li>
+                    <dt>{$top_data.task}</dt>
+                    <dd>任务</dd>
+                </li>
+                <li>
+                    <dt>{$top_data.son}</dt>
+                    <dd>下线</dd>
+                </li>
+                <li>
+                    <a href="{:U('Home/Order/pay')}" style="color:#FFF; border: 1px solid #FFF; border-radius: 15px; display: inline; padding: 10px 20px; font-size: 14px; line-height: 70px;">我要充值</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- end seller -->
+
+    <!-- sidebar -->
+    <div id="sidebar-nav">
+        <ul id="dashboard-menu">
+            <li class="active">
+                <a href="{:U('Home/Seller/index')}">
+                    <i class="home"></i>
+                    <span>用户首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="{:U('Home/Express/newadd')}">
+                    <i class="edit"></i>
+                    <span>发布任务</span>
+                </a>
+            </li>
+            <li>
+                <a href="{:U('Home/Express/explist')}">
+                    <i class="list"></i>
+                    <span>任务记录</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="{:U('Home/Express/uplog')}">
+                    <i class="uplog"></i>
+                    <span>导入记录</span>
+                </a>
+            </li>
+
+            <li>
+                <a class="dropdown-toggle" href="javascript:;">
+                    <i class="jpy"></i>
+                    <span>财务管理</span>
+                    <i class="chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li>
+                        <a href="{:U('Home/Seller/accountlog')}">消费记录</a>
+                    </li>
+                    <li>
+                        <a href="{:U('Home/Seller/record')}">充值记录</a>
+                    </li>
+                    <li>
+                        <a href="{:U('Home/Order/pay')}">余额充值</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="{:U('Home/Seller/union')}">
+                    <i class="group"></i>
+                    <span>推广赚钱</span>
+                </a>
+            </li>
+
+            <li>
+                <a class="dropdown-toggle ui-elements" href="javascript:;">
+                    <i class="user"></i>
+                    <span>我的信息</span>
+                    <i class="chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li>
+                        <a href="{:U('Home/Seller/password')}">修改密码</a>
+                    </li>
+                    <li>
+                        <a href="{:U('Home/Seller/account')}">修改资料</a>
+                    </li>
+                    <li>
+                        <a href="{:U('Home/Store/assistant')}">智能助手</a>
+                    </li>
+                    <li>
+                        <a href="{:U('Home/Store/store')}">店铺管理</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <!-- end sidebar -->
+
+    <!-- main container -->
+    <div class="content" style="left: 14%; margin-top: 10px; margin-bottom: 62px; width: 70%; min-height: 500px;">

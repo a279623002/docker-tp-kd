@@ -1,0 +1,66 @@
+.newCommonHead {
+float:left;
+width: 100%;
+height: 86px;
+background-color: #333B39;
+}
+.newCommonHead .headNewContent {
+width: 1260px;
+margin: 0px auto;
+overflow:hidden;
+}
+.newCommonHead .headNewContent .menuBanner {
+height: 100%;
+float: left;
+margin-left: 12px;
+}
+.newCommonHead .headNewContent .personalInfo {
+float: right; 
+}
+.personalInfo  a{color:#CCCCCC;}
+.newCommonHead .headNewContent .menuBanner .menuItem {
+float: left;
+list-style-type: none;
+position: relative;
+width: 100px;
+}
+.newCommonHead .headNewContent .menuBanner .menuItem a {
+text-decoration: none;
+}
+ .newCommonHead .headNewContent .menuBanner .menuItem .mainMenu {
+width: 100px;
+height: 84px;
+color: #CCCCCC;
+line-height: 84px;
+border-top: 2px solid #333B39;
+font-size: 15px;
+text-align: center;
+}
+.newCommonHead .headNewContent .menuBanner .menuItem .mainMenu:hover {
+  border-top: 2px solid #00A2D3;
+  background-color: #252525;
+  color: #00A2D3;
+}
+.newCommonHead .headNewContent .menuBanner .menuItem .mainMenu.active {
+  border-top: 2px solid #00A2D3;
+  background-color: #252525;
+  color: #00A2D3;
+}
+.Img-imgLogo230 {
+width: 230px;
+height: 86px;
+background: url('../img/img_logo_230.html') 0px 0px no-repeat;
+}
+.newCommonHead .headNewContent .personalInfo div {
+height: 100%;
+float: left;
+font-size: 13px;
+color: #C1C1C1;
+margin-left: 12px;
+line-height: 86px;
+}
+.po-footer{ width: 100%;  color: #3a4950; background-color: #1e1f26;}
+.po-footer p{color: #595b64; }
+.po-footer p.footer-link{color: #797b86;}
+.po-footer a {color: #797b86;}
+.po-footer a:hover {color: #fff; text-decoration: underline;}

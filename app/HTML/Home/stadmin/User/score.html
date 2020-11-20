@@ -1,0 +1,66 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title></title>
+<link rel="stylesheet" type="text/css" href="/Public/stadmin/style/style.css" />
+<script type="text/javascript" src="/Public/stadmin/js/common.js"></script>
+ 
+</head>
+<body>
+<div class="main">
+	<div class="box">
+		<div class="bhead">
+			<h2>积分明细</h2>
+		</div>
+		<div class="bmiddle">
+			<div class="bcon">
+				<div class="search">
+					<form name="searchform" action="/stadmin/User/score/" method="get">
+					<input type="text" name="key" class="inp" placeholder="搜索用户名、任务ID"/>&nbsp;&nbsp;<input type="submit" class="search_btn" value="搜索" />
+					&nbsp;&nbsp;<a href="/stadmin/User/score.html">全部</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/stadmin/User/score/tid/1.html">增加</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                     <a href="/stadmin/User/score/tid/2.html">减少</a>
+					</form>
+				</div>
+				<form name="myform" action="" method="post">
+	        	<table border="0" cellpadding="0" cellspacing="1" width="100%" class="listtable">
+	            	<tr>
+	              		<th>编号</th><th>用户名</th><th>任务id</th><th>变动积分</th><th>变动类型</th><th>变动内容</th><th>发生日期</th><th>操作</th>
+	              	</tr>
+	              	<tr>
+	                	<td align="center">2</td>
+	                	<td align="center"><a href="/stadmin/User/score/uid/2.html" title="查看过多记录">ren</a></td>
+                        <td align="center">充值</td>
+	                	<td align="center"><font color="#FF0000">+1.00</font></td>
+                        <td align="center">充值</td>
+                        <td align="center">充值【1.00】元！,同时赠送积分1分</td>
+	                	<td align="center">2018-06-25 18:37:57</td>
+
+	                	<td align="center">
+	                		<a href="/stadmin/User/scoredel/tid/2.html">删除</a>
+	                	</td>
+	                </tr><tr>
+	                	<td align="center">1</td>
+	                	<td align="center"><a href="/stadmin/User/score/uid/1.html" title="查看过多记录">111111</a></td>
+                        <td align="center">1</td>
+	                	<td align="center"><font color="#0000FF">-3.00</font></td>
+                        <td align="center">扣除</td>
+                        <td align="center">发布空包任务ID为【1】的任务,扣除3.00元！</td>
+	                	<td align="center">2018-01-20 11:50:50</td>
+
+	                	<td align="center">
+	                		<a href="/stadmin/User/scoredel/tid/1.html">删除</a>
+	                	</td>
+	                </tr>	            </table>
+	            </form>
+	           <div class="pageno"> 2 条记录 1/1 页          </div>
+			</div>
+		</div>
+		<div class="bfoot">
+			<font color="#003366">Copyright:2015 快递网在线操作系统 版权所有</font>
+		</div>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/style/style.css" />
+	<script src="__PUBLIC__/Admin/js/jquery.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Admin/js/common.js"></script>
+</head>
+
+<body>
+	<div class="main">
+		<div class="box">
+			<div class="bhead">
+				<h2>充值记录</h2>
+			</div>
+			<div class="bmiddle">
+				<div class="bcon">
+					<div class="search">
+						<form name="searchform" action="{:U('Pay/record')}" method="get">
+							<input type="text" name="key" class="inp" placeholder="搜索用户名、支付宝交易号、订单编号" /> 开始日期：
+							<input type="date" name="timestart" id="d_s" value="" /> 结束日期：
+							<input type="date" name="timeend" /> &nbsp;&nbsp;
+							<input type="submit" class="search_btn" value="搜索" /> &nbsp;&nbsp;
+							<a href="{:U('Pay/record')}">全部</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+							<a href="{:U('Pay/record/pay_state/1')}">未支付</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+							<a href="{:U('Pay/record/pay_state/2')}">已支付</a>
+						</form>
+
+					</div>
+					<form name="myform" action="/stadmin/Pay/" method="post">
+						<table border="0" cellpadding="0" cellspacing="1" width="100%" class="listtable">
+							<tr>
+								<th>ID</th>
+								<th>充值编号</th>
+								<th>支付编号</th>
+								<th>付款帐号</th>
+								<th>金额</th>
+								<th>充值积分</th>
+								<th>会员账号</th>
+								<th>创建时间</th>
+								<th>付款时间</th>
+								<th>操作人</th>
+								<th>操作</th>
+							</tr>
+							<foreach name='list' item='vo' key='k'>
+								<tr>
+									<td align="center">{$vo.charge_id}</td>
+									<td align="center">{$vo.order_sn}</td>
+									<td align="center">
+										<if condition="($vo.pay_state eq 2)">
+											{$vo.pay_tradeno}
+											<else />--
+										</if>
+									</td>
+									<td align="center">{$vo.charge_account}</td>
+									<td align="center">{$vo.charge_money}</td>
+									<td align="center">{$vo.charge_points}</td>
+									<td align="center">{$vo.pay_account}</td>
+									<td align="center">{$vo.create_time}</td>
+									<td align="center">
+										<if condition="($vo.pay_state eq 2)">
+											{$vo.pay_time}
+											<else />--
+										</if>
+									</td>
+									<td align="center">
+										<if condition="($vo.pay_state eq 2)">
+											{$vo.pay_account}
+											<else />--
+										</if>
+									</td>
+									<td align="center">
+										<if condition="($vo.pay_state eq 1)">
+											<a href="{:U('Pay/aliok/charge_id/'.$vo['charge_id'])}">确认</a>&nbsp;&nbsp; | &nbsp;&nbsp;
+											<a href="javascript:del({$vo.charge_id})">删除</a>
+											<else />支付成功
+										</if>
+									</td>
+								</tr>
+							</foreach>
+						</table>
+					</form>
+					<div class="pageno"> {$page} </div>
+				</div>
+			</div>
+			<div class="bfoot">
+				<font color="#003366">Copyright:2015 易网包在线操作系统 版权所有</font>
+			</div>
+		</div>
+	</div>
+	<script data-cfasync="false" src="/cdn-cgi/scripts/f2bf09f8/cloudflare-static/email-decode.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Admin/js/jquery.min.js"></script>
+	<script>
+		function del(ID) {
+			$.ajax({
+				url: '{:U('Pay/recordDel')}',
+				type: 'post',
+				dataType: 'json',
+				data: { 'charge_id': ID },
+				success: function (data) {
+					alert(data.msg);
+					window.location.reload();
+				}
+			})
+		}
+	</script>
+</body>
+
+</html>

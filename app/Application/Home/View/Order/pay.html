@@ -1,0 +1,860 @@
+<include file="Index/header" />
+<div class="am-panel-default">
+    <div class="am-panel-hd">用户余额充值</div>
+    <div class="am-panel-bd">
+        <form action="" method="post" id="taskForm">
+            <div class="am-g am-margin-bottom">
+                <div class="task_list_left">充值账号：</div>
+                <div class="task_list_right">
+                    <font color="#FF0000">{$seller.account}</font>
+                </div>
+            </div>
+            <div class="am-g am-margin-bottom">
+                <div class="task_list_left">账户余额：</div>
+                <div class="task_list_right">
+                    <font color="#FF0000">{$seller.money}</font>
+                </div>
+            </div>
+            <div class="am-g am-margin-bottom">
+                <div class="task_list_left">充值金额：</div>
+                <div class="task_list_right">
+                    <input name="fee" id="fee" type="number" class="task_num" value="" onkeyup="if(!/^\d{0,30}$/.test(this.value)){layer.alert('只能输入数字');this.value='';}">
+                </div>
+            </div>
+            <div class="am-g am-margin-bottom">
+                <div class="task_list_left">付款方式：</div>
+                <div class="task_list_right">
+                    <select name="pay_type" data-am-selected="{maxHeight: 200,btnWidth:150}" required>
+                        <option value="1">支付宝</option>
+                        <!-- 
+                        <option value="2">微信</option>
+                        <option value="3">银联</option>
+                         -->
+                    </select>
+                </div>
+            </div>
+            <div class="am-g am-margin-bottom">
+                <div class="task_list_left">验证码：</div>
+                <div class="task_list_right">
+                    <input type="text" name="code" id="js-verifys" class="task_num" placeholder="填写验证码" />
+                    <img src="{:U('seller/verify')}" class="imgverify" id="verifyImg" />
+                </div>
+            </div>
+
+            <div class="am-g am-margin-bottom">
+                <div class="task_list_left">操作：</div>
+                <div class="task_list_right am-margin-left-xl am-padding-left-xl">
+                    <input type="button" onclick="javascript:toPay();" class="am-btn am-btn-warning am-round" style="background-color:#00b7a3;" value="提&nbsp;&nbsp;交">
+                </div>
+            </div>
+
+            <div class="am-g am-margin-bottom" style="padding-top: 35px;padding-left: 30px;border: dotted 1px;">
+                        <span style="display: inline-block;float: left;margin-right: 10px;">
+                            <img src="__PUBLIC__/Home/img/tanhao.png" style="width;41px;height:41px;">
+                        </span>
+                <div>
+                    <div style="width: 400px;float: left;">
+                        <h3>充值未到账？</h3>
+                        <p>若转账5分钟后未到账，请点击右方按钮进行手动充值。</p>
+                    </div>
+                    <input type="button" onclick="javascript:hand({$seller.seller_id});" class="am-btn am-btn-warning am-round" style="background-color:#00b7a3;" value="手动充值">
+                </div>
+            </div>
+
+            <button id="model" style="display: none;" type="button" class="am-btn am-btn-primary" data-am-modal="{target: '#my-alert'}">
+                Alert
+            </button>
+
+            <div class="am-modal am-modal-alert" tabindex="-1" id="my-alert">
+                <div class="am-modal-dialog">
+                    <div class="am-modal-hd">确保支付账号一致</div>
+                    <!-- <div class="am-modal-bd">
+                                Hello world！
+                            </div> -->
+                    <div class="am-modal-footer">
+                        <!-- <span class="am-modal-btn">确定</span> -->
+                        <a href="{:U('Home/Order/pay')}" class="am-model-btn">确定</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="am-modal am-modal-confirm" tabindex="-1" id="my-hand">
+    <div class="am-modal-dialog" style="width: 780px;">
+        <form action="#" method="post" id="handForm" name="handForm" enctype="multipart/form-data" data-am-validator>
+            <input type="hidden" id="seller_id" name="seller_id">
+            <div class="am-modal-hd"  style="padding-bottom:15px; background: #00b7a3; color: #FFF;">手动充值</div>
+            <div class="am-modal-bd">
+                <div class="yctc_458 ycgl_tc_1" style="height:500px; width:750px; overflow-y:auto">
+                    <div class="account1 mar_20_30">
+                        <div class="popup_3_1">
+                            <div class="popup_3_x1">
+                                <h3>请输入以下信息，确认充值是否到账：</h3>
+                                <div class="popup_3_form">
+                                    <ul>
+                                        <li>
+                                            <label>流水号：</label>
+                                            <div class="popup_3_input">
+                                                <!-- 流水号 -->
+                                                <input class="space_css poput_text" data-val="true" data-val-required="交易流水号必填" id="TradeNo" maxlength="50" name="TradeNo" placeholder="请输入本次转账的流水号" type="text" value="">
+                                                <!-- 流水号 -->
+                                            </div>
+                                            <a href="javascript:void(0)" class="t_blue seeAccount" id="aMsg">如何查找流水号？</a>
+                                        </li>
+                                        <li>
+                                            <div class="text"></div>
+                                        </li>
+                                        <li>
+                                            <label>充值金额：</label>
+                                            <input class="poput_text" data-val="true" data-val-number="字段 IncomeMoney 必须是一个数字。" data-val-required="支付金额必填" id="IncomeMoney" maxlength="10" name="IncomeMoney" placeholder="请输入本次转账的金额" type="text" value="">
+                                        </li>
+                                        <li class="tr mar_top_10">
+                                            <div class="dd_submit">
+                                                <input type="button" onclick="javascript:hand({$seller.seller_id});" class="am-btn am-btn-warning am-round" style="background-color:#00b7a3; border-color:#00b7a3;" value="提交">
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="popup_3_x2 mar_top_20">
+                                <h3 class="t_red">特别说明：</h3>
+                                <div class="popup_3_text">
+                                    <p>1、流水号一般为32位，请确保位数正确再进行提交，避免浪费手动充值次数；</p>
+                                    <p>2、当天提交信息错误次数超过30次，隔日才能进行手动充值；</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tc_account2"><h3></h3></div>
+                    <!--手动充值-->
+                    <!--手动充值-->
+                    <!-- 如何查看支付宝昵称？ -->
+                    <div class="popup poput_4" style="display:none;">
+                        <div class="tc_popup">
+                            <h2 class="popup_h2">如何查看流水号？<span class="close"><img src="__PUBLIC__/Home/img/sj-tc.png"></span></h2>
+                            <div class="tc_display_x1" style="padding-left: 50px;">
+                                <h3 class="popup_h3"><em class="b_blue"></em>流水号位置说明</h3>
+                                <div style="padding-left: 50px;text-align: left;">
+                                    1、打开支付宝APP，点击首页左上角的账单；</br>
+                                    2、找到为账户充值的转账记录，点击查看详情；</br>
+                                    3、在账单详情页点击创建时间，下方显示的订单号即是需要填写的流水号。
+                                </div>
+                                <h3 class="popup_h3"><em class="b_blue"></em>查找支付宝昵称示意图</h3>
+                                <div class="juetu" style="padding-bottom: 50px;">
+                                    <a href="__PUBLIC__/Home/img/juetu2.jpg" target="_blank">
+                                        <img src="__PUBLIC__/Home/img/juetu2.jpg">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dis_black"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="am-modal-footer">
+                <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    $("#verifyImg").click(function () {
+        var verifyURL = "{:U('seller/verify',array())}";
+        var time = new Date().getTime();
+        $("#verifyImg").attr({
+            "src": verifyURL
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".seeAccount").click(function () {
+            $(".poput_4").show();
+        });
+        $(".close").click(function () {
+            $(".popup").hide();
+        });
+    });
+
+    function toPay() {
+        if ($('#fee').val() == '') {
+            alert('请输入金额!');
+        } else {
+            $.ajax({
+                url: '{:U('Home/Order/pay')}',
+                type: 'post',
+                dataType: 'json',
+                data: { 'payAmount': $('#fee').val(), 'code': $('#js-verifys').val() },
+                async: false,
+                success: function (data) {
+                    if (data.state) {
+                        var nid = data.charge_id;
+                        var url = "{:U('Home/Order/make')}&charge_id=" + nid;
+                        var link = $("<a></a>").attr("href", url).attr("target", "_blank");
+                        $("body").append(link);
+                        link[0].click();
+                        link.remove();
+
+                    } else {
+                        alert(data.msg);
+                    }
+                }
+            });
+        }
+    }
+
+    //手动充值
+    function hand(ID) {
+
+    $('#my-hand').modal({
+        relatedTarget: this,
+        onConfirm: function (options) {
+            if (ID) $('#seller_id').val(ID);
+            var form = new FormData(document.getElementById("handForm"));
+            alert(ID);
+            $.ajax({
+                url: '{:U('Home/Order/hand')}',
+                    type: 'post',
+                    data: form,
+                    dataType: 'json',
+                    cache: false,
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {
+                alert(data.code);
+                if (data.code) {
+                    alert(data.msgs);
+                    window.location.href = "{:U('Home/Seller/record')}";
+                } else {
+                    alert(data.msgs);
+                }
+            }
+        })
+    },
+    // closeOnConfirm: false,
+    onCancel: function () {
+        // alert('算求，不弄了');
+    }
+    });
+    }
+</script>
+<script>
+    $(function () {
+        $('li.active').removeClass('active');
+        $('.submenu:first').show();
+        $('.submenu:first li').eq(2).addClass('active');
+    })
+</script>
+<style>
+    #aMsg:hover{ color:Black;}
+    input
+    {
+        font-family: "Microsoft YaHei";
+    }
+    .fl
+    {
+        float: left;
+    }
+    .fr
+    {
+        float: right;
+    }
+    .tc
+    {
+        text-align: center;
+    }
+    .tr
+    {
+        text-align: right;
+    }
+    .t_blue
+    {
+        color: #4882f0;
+    }
+    .t_red
+    {
+        color: red;
+    }
+    .b_blue
+    {
+        background: #4882f0;
+        color: #fff;
+
+    }
+    .b_f90
+    {
+        background: #f90;
+        color: #fff;
+    }
+    .t_999
+    {
+        color: #999;
+    }
+    .account
+    {
+        width: 980;
+        float: left;
+    }
+    .pad_20
+    {
+        padding: 20px;
+    }
+    .mar_20_30
+    {
+        margin: 20px 35px;
+        text-align: left;
+    }
+    .mar_top_10
+    {
+        margin-top: 10px;
+    }
+    .mar_top_20
+    {
+        margin-top: 20px;
+    }
+
+
+    .pdg_btm_20
+    {
+        padding-bottom: 20px;
+    }
+    .account1 h2
+    {
+        font-size: 14px;
+        margin-bottom: 10px;
+        background: url('Public/Home/img/icon_news.png') no-repeat 0px center;
+        padding-left: 25px;
+    }
+    .account1_x1
+    {
+        display: inline-block;
+        background: #fdf9f3;
+        border: 1px solid #fed89e;
+        padding: 10px 20px;
+    }
+    .account1_x1 dl
+    {
+        width: 49%;
+    }
+    .account1_x1 dt
+    {
+        display: block;
+        float: left;
+        width: 84px;
+        font-size: 14px;
+        font-weight: bold;
+        margin-right: 10px;
+    }
+    .account1_x1 dd
+    {
+        float: left;
+        width: 343px;
+        margin-left: 0px;
+        margin-top: 5px;
+        line-height: 25px;
+    }
+    .account2
+    {
+        margin: 10px 0px;
+        display: inline-block;
+        width: 100%;
+    }
+    .account2 span
+    {
+        float: left;
+    }
+    .question
+    {
+        color: red;
+        border: 1px solid red;
+        width: 15px;
+        height: 15px;
+        line-height: 15px;
+        display: block;
+        margin-left: 5px;
+        cursor: pointer;
+        text-align: center;
+        border-radius: 100%;
+    }
+    .account3_x1
+    {
+        border: 1px solid #eee;
+        padding: 15px 30px;
+        margin-top: 15px;
+    }
+    .account3_x2
+    {
+        border: 1px solid #eee;
+        padding: 15px 30px;
+        border-top: 0;
+    }
+    .account3_x1, .account3_x2_txt
+    {
+        display: flex;
+    }
+    .account3_x1 ul
+    {
+        width: 50%;
+    }
+    .account3_x1 li
+    {
+        margin-bottom: 35px;
+    }
+    .account3_x1 li:last-child
+    {
+        margin-bottom: 0;
+    }
+    .account3_x1 li em
+    {
+        width: 9px;
+        height: 9px;
+        border-radius: 100%;
+        float: left;
+        margin-top: 5px;
+        margin-right: 10px;
+    }
+    .account3_x1 li p
+    {
+        padding-left: 16px;
+        margin-top: 5px;
+    }
+    .account3_x1 li h3
+    {
+        font-weight: bold;
+        font-size: 14px;
+        display: flex;
+        position: relative;
+    }
+    .account3_x1 li h3 font
+    {
+        font-weight: normal;
+    }
+    .account3_x2 img
+    {
+        width: 45px;
+        height: 45px;
+        float: left;
+    }
+    .account3_x2_txt
+    {
+        padding-left: 15px;
+        align-items: center;
+    }
+    .account3_x2_txt a
+    {
+        width: 80px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        border-radius: 30px;
+        margin-left: 35px;
+    }
+    .account3_x2_txt h3
+    {
+        margin-bottom: 5px;
+        font-size: 14px;
+        font-weight: bold;
+    }
+    .account3_x1_txt
+    {
+        margin: 10px 0;
+    }
+    .account3_x1_txt .input_1
+    {
+        width: 225px;
+        height: 30px;
+        line-height: 30px;
+        text-indent: 20px;
+        border: 1px solid #ddd !important;
+        margin-right: 5px;
+        margin-left: 18px;
+    }
+    .account3_x1_txt1
+    {
+        border: 2px dashed #ddd;
+        width: 285px;
+        line-height: 25px;
+        padding: 10px;
+        border-radius: 5px;
+        margin-top: 13px;
+        margin-left: 18px;
+        height: 90px;
+        position: relative;
+    }
+    .account3_x1_txt1 span
+    {
+        display: block;
+        width: 100%;
+    }
+    .account3_x1_txt1 h4
+    {
+        position: absolute;
+        bottom: 10px;
+        text-align: right;
+        width: 94%;
+    }
+    .v_align
+    {
+        line-height: 43px;
+    }
+    .fs_20
+    {
+        font-size: 20px;
+    }
+    .account4
+    {
+        margin-top: 15px;
+    }
+    .account4 span
+    {
+        display: block;
+        height: 30px;
+        line-height: 30px;
+    }
+    .account4 p
+    {
+        line-height: 25px;
+        padding: 10px;
+        border: 1px solid #eee;
+    }
+    .account4 a
+    {
+        text-decoration: underline;
+    }
+    .account4 a:hover
+    {
+        color: red;
+    }
+    .display_block
+    {
+        display: none;
+        background: #fff;
+        border: 1px solid #f90;
+        padding: 10px;
+        width: 200px;
+        position: absolute;
+        top: -10px;
+        left: 110px;
+        border-radius: 5px;
+        text-align: left;
+    }
+    .display_block b
+    {
+        position: absolute;
+        left: -8px;
+        top: 15px;
+    }
+    .triangle-left
+    {
+        width: 0;
+        height: 0;
+        border-top: 5px solid transparent;
+        border-right: 8px solid #f90;
+        border-bottom: 5px solid transparent;
+    }
+    .triangle-top
+    {
+        width: 0;
+        height: 0;
+        position: absolute;
+        left: 103px;
+        top: -10px;
+        border-right: 8px solid transparent;
+        border-bottom: 10px solid #ddd;
+        border-left: 8px solid transparent;
+    }
+    .question:hover .display_block
+    {
+        display: block;
+    }
+    .display_explain
+    {
+        display: none;
+        margin-top: 15px;
+        border: 1px solid #ddd;
+        padding: 30px 20px;
+        position: relative;
+        background: url('Public/Home/img/step3.png') no-repeat center 25px #fff;
+        height: 90px;
+        font-size: 13px;
+    }
+    .display_explain li
+    {
+        width: 157px;
+        float: left;
+        margin-top: 30px;
+        text-align: left;
+    }
+    .display_explain li:first-child
+    {
+        margin-right: 180px;
+        margin-left: 5%;
+    }
+    .display_explain li:last-child
+    {
+        margin-left: 14%;
+        float: right;
+    }
+    .display_explain li a
+    {
+        text-decoration: underline;
+    }
+    .display_explain li a:hover
+    {
+        color: red;
+    }
+    .acc_explain
+    {
+        height: 15px;
+    }
+    /*弹窗*/
+
+    .dis_black
+    {
+        background: #000;
+        opacity: 0.5;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        left: 0px;
+        top: 0px;
+    }
+    .tc_popup {
+        width: 722px;
+        height: 500px;
+        position: absolute;
+        margin-top: -352px;
+        top: 71%;
+        background: #fff;
+        margin-left: -437.5px;
+        left: 59%;
+        z-index: 10000;
+    }
+    .popup_h2
+    {
+        height: 50px;
+        line-height: 50px;
+        font-size: 16px;
+        text-align: center;
+        border-bottom: 1px solid #eee;
+    }
+    .popup_h2 span
+    {
+        float: right;
+        cursor: pointer;
+    }
+    .popup_h3
+    {
+        height: 35px;
+        line-height: 35px;
+        font-size: 14px;
+        text-align: left;
+    }
+    .popup_h3 em
+    {
+        float: left;
+        width: 10px;
+        height: 10px;
+        border-radius: 100%;
+        margin-top: 13px;
+        margin-right: 8px;
+    }
+    .poput_ul ul
+    {
+        padding: 0px 30px;
+    }
+    .poput_ul li
+    {
+        height: 30px;
+        line-height: 30px;
+        padding-left: 40px;
+    }
+    .juetu
+    {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+    .juetu img
+    {
+        max-height: 430px;
+        max-width: 60%;
+        cursor: url('Public/Home/img/icon_big.png'),auto;
+    }
+    .step5
+    {
+        background: url('Public/Home/img/step5.png') no-repeat center top;
+        height: 140px;
+        margin-top: 15px;
+    }
+    .step5 li
+    {
+        width: 150px;
+        float: left;
+        margin-top: 50px;
+        padding: 0px 5px;
+        margin-left: 25px;
+    }
+    .step5 li:last-child
+    {
+        float: right;
+        padding: 0;
+        width: 90px;
+        margin-left: 5px;
+    }
+    .step5 li:first-child
+    {
+        float: left;
+    }
+    input
+    {
+        outline: none;
+    }
+    .popup_h2_blue
+    {
+        background: #4882f0;
+        color: #fff;
+        height: 40px;
+        line-height: 40px;
+        padding-left: 20px;
+        font-size: 16px;
+    }
+    .popup_h2_blue .close
+    {
+        float: right;
+        margin-top: -3px;
+        cursor: pointer;
+    }
+    .w_720_660
+    {
+        width: 720px;
+        height: 660px;
+        margin-top: -330px;
+        top: 50%;
+        left: 50%;
+        margin-left: -360px;
+        position: absolute;
+        z-index: 66;
+        background: #FFF;
+    }
+    .w_740_620
+    {
+        width: 740px;
+        height: 620px;
+        margin-top: -310px;
+        top: 50%;
+        left: 50%;
+        margin-left: -370px;
+        position: absolute;
+        z-index: 10000;
+        background: #FFF;
+    }
+    .popup_3_x1 h3
+    {
+        height: 35px;
+        line-height: 35px;
+        margin: 5px 0;
+        font-size: 14px;
+    }
+    .popup_3_form
+    {
+        background: #eee;
+        padding-top: 15px;;
+        display: inline-block;
+        line-height: 30px;
+        position: relative;
+    }
+    .popup_3_form li
+    {
+        display: inline-block;
+        width: 100%;
+    }
+    .popup_3_form label, .popup_3_input, .popup_3_form a
+    {
+        float: left;
+    }
+    .popup_3_form label
+    {
+        width: 75px;
+        text-align: right;
+    }
+    .space_css
+    {
+        letter-spacing: 1px;
+        font-weight: normal;
+    }
+    .poput_text
+    {
+        height: 30px;
+        line-height: 30px;
+        padding-left: 10px;
+        font-size: 14px;
+        border: 1px solid #ddd;
+        margin: 0 10px;
+        width: 380px;
+    }
+    .text
+    {
+        display: inline-block;
+        background: url('Public/Home/img/format.png') no-repeat 50px top;
+        width: 100%;
+        height: 30px;
+        margin-left:1px;
+    }
+    .button1
+    {
+        border: none;
+        width: 80px;
+        height: 30px;
+        border-radius: 30px;
+        cursor: pointer
+    }
+    .popup_3_text
+    {
+        padding: 15px;
+        background: #eee;
+        margin-top: 10px;
+        line-height: 30px;
+    }
+    .submit_tj
+    {
+        background-color:Gray;
+    }
+    .dd_submit a {
+        position: inherit;
+        right: 15px;
+        bottom: 15px;
+        border-radius: 5px;
+        display: block;
+        width: 100px;
+        height: 30px;
+        line-height: 30px;
+        background:grey;
+        color: #fff;
+        text-align: center;
+        border: none;
+        margin-top: 15px;
+        margin-left:550px;
+        border-radius: 30px;
+    }
+    .notice1
+    {
+        width: 714px !important;
+        height: 35px;
+        line-height: 35px;
+        border: 1px solid #fed89e;
+        padding-left: 17px;
+        color: #222;
+        position: relative;
+        font-size: 14px;
+        float: left;
+        text-align: left;
+        margin-left: 20px;
+        margin-top: 2px;
+        padding-top: 10px;
+        margin-bottom: 10px;
+        background: #fdf9f3;
+    }
+</style>
+<include file="Index/footer" />

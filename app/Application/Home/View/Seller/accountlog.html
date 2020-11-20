@@ -1,0 +1,116 @@
+<include file="Index/header" />
+<div class="am-panel-default">
+    <div class="am-panel-hd">消费记录</div>
+    <div class="am-panel-bd">
+        <ul class="am-nav am-nav-pills am-margin-bottom-xs">
+            <li class="am-active">
+                <a href="{:U('Seller/accountlog')}">全部</a>
+            </li>
+            <li>
+                <a href="{:U('Seller/accountlog/tid/1')}">增加</a>
+            </li>
+            <li>
+                <a href="{:U('Seller/accountlog/tid/2')}">扣除</a>
+            </li>
+            <li>
+                <a href="{:U('Seller/accountlog/tid/3')}">奖励</a>
+            </li>
+        </ul>
+        <table class="am-table am-table-striped am-table-bordered am-table-hover am-table-radius am-table-compact" id="apptable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>原有金额</th>
+                    <th>类型</th>
+                    <th>金额</th>
+                    <th>现有余额</th>
+                    <th>内容</th>
+                    <th>操作日期</th>
+                    <th>积分</th>
+                </tr>
+                <foreach name='list' item='vo' key='k'>
+                    <tr>
+                        <td>{$vo.f_id}</td>
+                        <td>{$vo.money_prev}</td>
+                        <td>
+                            <if condition="($vo.change_type eq 1)">充值
+                                <elseif condition="($vo.change_type eq 2)"/> 消费
+                                <elseif condition="($vo.change_type eq 3)"/> 返佣 
+                                <elseif condition="($vo.change_type eq 99)"/> 其他
+                                 
+                            </if>
+                        </td>
+                        <td>{$vo.money}</td>
+                        <td>{$vo.money_next}</td>
+                        <td>{$vo.change_desc}</td>
+                        <td>{$vo.change_time}</td>
+                        <td>{$vo.points}</td>
+                        <!--<td>
+                            <a href="javascript:del({$vo.f_id})">删除</a>
+                        </td>-->
+                    </tr>
+                </foreach>
+            </thead>
+            <tbody>
+
+
+            </tbody>
+        </table>
+        <div class="am-g">
+            <div class="am-u-sm-4"></div>
+            <div class="am-u-sm-8">
+                {$page}
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        var tid = '{$tid}';
+        tid = tid == '' ? 0 : tid;
+        $('.am-panel-bd li').eq(tid).addClass('am-active').siblings().removeClass('am-active');
+    })
+    $('#apptable').DataTable({
+        responsive: true,
+        dom: 'ti',
+        order: [4, "desc"],
+        bInfo: false,//页脚信息
+        columnDefs: [{
+            orderable: false,//禁用排序
+            targets: [0, 3, 5, 6]   //指定的列
+        }]
+    });
+</script>
+<script>
+    // $(function () {
+    //     $('.dropdown-toggle:first').click();
+    // })
+
+
+    function del(f_id) {
+        $.ajax({
+            url: '{:U("Seller/logDel")}',
+            type: 'post',
+            dataType: 'json',
+            data: { 'f_id': f_id },
+            success: function (data) {
+                if (data.state) {
+                    alert('删除成功');
+                    location.reload();
+                } else {
+                    alert(data.msg);
+                }
+            }
+
+        })
+    }
+</script>
+<script>
+    $(function () {
+        $('li.active').removeClass('active');
+        $('.submenu:first').show();
+        $('.submenu:first li').eq(0).addClass('active');
+    })
+</script>
+<include file="Index/footer" />

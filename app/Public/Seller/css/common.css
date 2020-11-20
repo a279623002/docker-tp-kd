@@ -1,0 +1,88 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+body { margin:0; padding:0; font-size:12px; color:#222; background:#f6f6f6; font-family:"Microsoft YaHei";font-weight:lighter;}
+div,form,img,ul,ol,li,dl,dt,dd,input,i{margin:0; padding:0; border:0; }
+li,dl,ul{list-style-type:none;}
+h2,h3,h4,h5,h6{ margin:0; padding:0; font-weight:normal;}
+p{margin:0;padding:0}
+h1{margin:0; padding:0;font-size:14px;}
+em,i{font-style:normal}
+img{vertical-align: top;}
+a{color: #222; text-decoration:none;}  
+a:focus{outline:none;}/*IE下*/
+a.hidefocus{outline:none}
+a:hover {color: #4882f0; text-decoration: none;}
+.clear{ clear:both;}
+
+
+/*表单共用样式*/
+input,textarea,select{outline:medium; font-family:"微软雅黑";}
+input:focus{border-color: #65a2f3;}
+textarea:focus{border-color: #65a2f3;}
+select:hover{ border-color: #65a2f3;}
+textarea{ resize:none; font-size:14px;}
+input{ padding-left:8px; font-size:14px; }
+textarea{ padding:8px; line-height:22px;}
+
+/*表单样式*/
+
+
+/*表格共用样式*/
+table{border:solid #ddd;border-width:0px 0px 0px 0px;text-align:center;width: 100%;border-collapse: collapse; font-size: 14px;}
+th,td{ padding: 10px; line-height: 22px;}
+td{border:solid #ddd;border-width:0px 1px 1px 0px;margin: 0px;}
+th{ background:#f5f5f5; border-bottom:1px solid #ddd; border-right:1px solid #ddd; font-weight:normal;}
+
+
+/*工单进度条*/
+b{ font-weight: normal;}
+.w-950{ width: 900px; margin: 0px auto; height:100px;}
+ol {list-style: none outside none;margin: 0;padding: 0;}
+.ui-step {color: #b7b7b7;padding: 0 60px;margin-bottom: 35px;position: relative;}
+.ui-step li {float: left;position: relative; width:256px; padding:0px; margin:0px;  display:block;}
+.ui-step .step-end {width: 120px; position: absolute; top: 0; right: -60px;}
+.xt_x1 {height:10px;background-color:#ccc;box-shadow: inset 0 1px 1px rgba(0,0,0,.2);margin-top: 13px;}
+.step-end .xt_x1 { display: none; }
+.lx_1{width: 120px; position: absolute; top: 0; left: -15px; text-align: center;}
+.nmb1 ,.nmb2{display: inline-block; *zoom:1; position: absolute; left: 0; top: 0; width: 30px; height: 30px; line-height: 30px;
+	color: #fff;background: url(../images/ui-step_cover_30x30.html) center no-repeat\9; font-family: "微软雅黑";
+	border-radius: 50%; border:5px solid #f0f5f0;
+	font-size: 16px;background-color: #b9b9b9;
+	box-shadow: inset 1px 1px 2px rgba(0,0,0,.2);}
+.gjz1{position: relative;top:38px;left: -42px;font-size: 12px;}
+.sd .nmb1{background-color: #4882f0;}
+.sd .gjz1 { color: #4882f0;}
+.sd .xt_x1 { background-color: #4882f0; }
+.step-active .nmb1 { background-color: #4882f0; }
+.step-active .gjz1 {color: #4882f0;}
+.nmb2 b,.gjz2 b{ opacity: 0;}
+
+.cexiao{ width: 950px; margin:10px auto; border:1px solid #EED97C; background:#FFFCEB; }
+.cexiao h3{ font-size: 15px; padding:0px 20px;}
+.cexiao h3 span{ margin-left: 25px;}
+.cexiao h3 span strong{ color:red;}
+
+/*lside_end*/
+.b_52cc89{background:#52cc89; color:#fff;}
+.t_999{color:#999;}
+.t_red{color:red;}
+.f90{ background:#f90;color:#fff;}
+.b_4882f0{background:#4882f0; color:#fff;}
+.anniu,.anniu_fabe ,.anniu_178 ,.anniu_70 ,.anniu_60{height: 30px; line-height:30px; text-align:center; border-radius:30px; display:block;}
+.anniu{width:90px;}
+.anniu_fabe{width:120px;}
+.anniu_178{width:178px;}
+.anniu_70{width:70px;}
+.anniu_60{width:60px;}
+.underline{text-decoration:underline;  color:#4882f0;}
+.underline:hover{text-decoration:underline;  color:#4882f0;}
+.anniu:hover,.anniu_fabe:hover,.anniu_178:hover,.anniu_70:hover,.anniu_60:hover{color: #ffffff;}
+
+/*分页*/
+div.jogger{text-align:center;padding:2px;margin:20px 7px 7px 7px;font-family:"lucida sans unicode", "lucida grande", lucidagrande, "lucida sans", geneva, verdana, sans-serif;}
+div.jogger a{padding:0.5em 0.64em 0.43em 0.64em;margin:2px;color:#fff;background-color:#1296db;text-decoration:none;}
+div.jogger a:hover{padding:0.5em 0.64em 0.43em 0.64em;margin:2px;color:#fff;background-color:#1296db;}
+div.jogger a:active{padding:0.5em 0.64em 0.43em 0.64em;margin:2px;color:#fff;background-color:#1296db;}
+div.jogger span.current{padding:0.5em 0.64em 0.43em 0.64em;margin:2px;color:#6d643c;background-color:#f6efcc;}
+div.jogger span.disabled{display:none;}

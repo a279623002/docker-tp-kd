@@ -1,0 +1,166 @@
+<include file="Index/header" />
+    <div class="am-panel-default">
+        <div class="am-panel-bd">
+            <form action="#" method="post" id="taskForm" name="exForm" data-am-validator>
+                <input type="hidden" name="unit_price" value="{$level.reduction}">
+                <fieldset>
+                    <div class="am-g am-margin-bottom-xs">
+                        <div class="task_list_left">快递：</div>
+                        <div class="task_list_right">
+                            <select name="express" data-am-selected="{maxHeight: 200,btnWidth:200,placeholder:'选择快递'}" required>
+                                <option value="1">圆通(推荐)</option>
+
+                            </select> 您当前为
+                            <span class="error">{$level.level_name}</span>,价格为
+                            <span class="error">{$level.price}元</span>一单。
+                        </div>
+                    </div>
+                    <div class="am-g am-margin-bottom-xs">
+                        <div class="task_list_left">发货店铺：</div>
+                        <div class="task_list_right" style="width: 200px;">
+                            <select name="store_id" data-am-selected="{maxHeight: 200,btnWidth:200}" required>
+                                <foreach name='store' item='vo' key='k'>
+                                    <option value="{$vo.store_nick}">{$vo.store_nick}</option>
+                                </foreach>
+                            </select>
+                        </div>
+                        <div class="task_list_left">宝贝重量：</div>
+                        <div class="task_list_right" style="width:110px;">
+                            <input style="width: 105px;" name="goods_weight" type="number" value="{$vo.goods_weight}" class="task_input">&nbsp;
+                        </div>
+                    </div>
+                    <div class="am-g am-margin-bottom-xs">
+                        <div class="task_list_left">发货地址：</div>
+                        <div class="task_list_right">
+                            <select name="address_key" data-am-selected="{maxHeight: 200,btnWidth:460}" required>
+                                <foreach name='store' item='vo' key='k'>
+                                    <option value="{$k}">{$vo.province}--{$vo.city}--{$vo.district}--{$vo.address}</option>
+                                </foreach>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- <div class="am-g am-margin-bottom-xs">
+                            <div class="task_list_left">包裹重量：</div>
+                            <div class="task_list_right">
+                                <input name="min_weight" type="text" class="task_nums" id="w1" required> ~
+                                <input name="max_weight" id="w2" type="text" class="task_nums" required>&nbsp;范围必须在 0.05-40.00kg 内</div>
+                        </div> -->
+
+                    <div class="am-g am-margin-bottom-xs" style="margin: 10px 0 10px 150px;">
+                        <input name="which" type="radio" class="am-radio-inline" style="float:left;margin-right:10px; margin-top:10px;" id="which1"
+                            checked>
+                        <label for="which1" style="float: left; font-size: 18px;">手工单条下单</label>
+                        <input name="which" type="radio" class="am-radio-inline" style="float:left;margin-right:10px; margin-top:10px;" id="which2">
+                        <label for="which2" style="float: left; font-size: 18px;">批量下单（表格）</label>
+                    </div>
+                    <div id="which1_show">
+                        <div class="am-g am-margin-bottom-xs">
+                            <div class="task_list_left">订单编号：</div>
+                            <div class="task_list_right">
+                                <input name="order_no" type="text" placeholder="请输入淘宝后台订单编号" class="task_input">&nbsp;
+                            </div>
+
+                        </div>
+                        <div class="am-g am-margin-bottom-xs">
+                            <div class="task_list_left">操作：</div>
+                            <div class="task_list_right am-margin-left-xl am-padding-left-xl">
+                                <a href="javascript:add(1)" class="am-btn am-round am-btn-primary" style="background-color: #00b7a3;border-color: #00b7a3;">提交任务</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="which2_show">
+                        <div class="am-g am-margin-bottom-xs">
+                            <div class="task_list_left">导入说明：</div>
+                            <div class="add_list_right">
+                                <div style="color:#0000FF; font-size:16px">
+                                    <a href="{:U('Home/Express/shuoming')}" target="_blank">初次操作请点击这里看操作说明?</a>
+                                </div>
+                                <div style="color:#FF0000">导出来的表格请不要修改任何数据,然后把表格另存为
+                                    <b>xlsx 或者 xls </b>格式</div>
+                                <div class="r">注：请检查表格里是否有真实的订单,只上传刷单的订单即可。由于我们要请求圆通的服务器，每次上次表格请不要大于100条订单。（100条数据全部导入完大概需要80秒时间，请耐心等待）</div>
+                            	<div style="color:#0000FF; font-size:14px">
+                                    <a href="/demo_demo.xls">点击下载模版</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="am-g am-margin-bottom-xs">
+                            <div class="task_list_left">导入文件：</div>
+                            <div class="task_list_right">
+                                <input type="file" name="excel" />
+                            </div>
+                        </div>
+                        <div class="am-g am-margin-bottom-xs">
+                            <div class="task_list_left">操作：</div>
+                            <div class="task_list_right am-margin-left-xl am-padding-left-xl">
+                                <a href="javascript:add(2)" class="am-btn am-round am-btn-primary" style="background-color: #00b7a3;border-color: #00b7a3;">创建任务</a>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+<script>
+    $(function(){
+        $('li.active').removeClass('active');
+        $('#sidebar-nav #dashboard-menu > li').eq(1).addClass('active');
+    })
+    $('#which1').click(function () {
+        $('#which1_show').show();
+        $('#which2_show').hide();
+
+    })
+    $('#which2').click(function () {
+        $('#which2_show').show();
+        $('#which1_show').hide();
+
+    })
+
+    $(function () {
+        $('#which1').click();
+    })
+</script>
+<script>
+    function add(type) {
+        if (type == 1) {
+            $.ajax({
+                url: '{:U('Home/Express/expressAdd')}',
+                type: 'post',
+                data: $('#taskForm').serialize(),
+                dataType: 'json',
+                success: function (data) {
+                    if (data.state) {
+                        alert('提交成功');
+                        window.location.href = "{:U('Home/Express/explist')}";
+                    } else {
+                        alert(data.msg);
+                    }
+                }
+
+            })
+        } else {
+            var form = new FormData(document.getElementById("taskForm"));
+            $.ajax({
+                url: '{:U('Home/Express/uploads')}',
+                type: 'post',
+                dataType: 'json',
+                data: form,
+                cache: false,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    if (data.state) {
+                        alert('导入成功!');
+                        window.location.reload();
+                    } else {
+                        alert(data.msg);
+                    }
+                }
+            })
+        }
+
+    }
+</script>
+<include file="Index/footer" />

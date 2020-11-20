@@ -1,0 +1,76 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title></title>
+<link rel="stylesheet" type="text/css" href="/Public/stadmin/style/style.css" />
+<script type="text/javascript" src="/Public/stadmin/js/common.js"></script>
+<script type="text/javascript" charset="utf-8" src="/Public/My97DatePicker/WdatePicker.js"></script>
+<script src="/Public/Home/js/jquery.min.js"></script>
+</head>
+<body>
+<div class="main">
+	<div class="box">
+		<div class="bhead">
+			<h2>购物车任务记录</h2>
+		</div>
+		<div class="bmiddle">
+			<div class="bcon">
+				<div class="search">
+					<form name="searchform" action="/stadmin/User/exlist.html" method="GET">
+					<input type="text" name="key" class="inp" placeholder="单号、宝贝收件人或者电话"/>
+                    开始日期： <input type="text" name="timestart" id="d_s" onClick="WdatePicker({dateFmt:'yyyy-MM-dd 00:00:00'});" value=""/>
+                   结束日期：<input type="text" name="timeend" onClick="WdatePicker({dateFmt:'yyyy-MM-dd 23:59:59',minDate:'#F{$dp.$D(\'d_s\')}'})"/>
+                    &nbsp;&nbsp;<input type="submit" class="search_btn" value="搜索" />
+					</form>
+				</div>
+	        	<table border="0" cellpadding="0" cellspacing="1" width="100%" class="listtable">
+	            	<tr>
+	              	<th>编号</th><th>用户名</th><th>单号</th><th>店铺</th><th>宝贝</th><th>价格</th><th>重量</th><th>收件人</th><th>方式</th><th>电话</th><th>地址</th><th>发布时间</th>
+	              	</tr>
+	              	<tr>
+	                	<td align="center">1</td>
+	                	<td align="center"><a href="/stadmin/User/exlist/uid/1.html" title="查看过多记录">111111</a></td>
+                        <td align="center">578821627478</td>
+	                	<td align="center"><a href="/stadmin/User/address/uid/1.html" title="地址ID:1">111</a></td>
+                        <td align="center">孕妇枕头</td>
+                        <td align="center">3.00</td>
+                        <td align="center">1.00</td>
+                        <td align="center">张三</td>
+                       <td align="center">普通</td>
+                        <td align="center">13812345678</td>
+                        <td align="center">浙江省 杭州市 下城区 文兴路888号</td>
+                        <td align="center">2018-01-20 11:50:50</td>
+	                </tr>	            </table>
+	            <div class="pageno"> 1 条记录 1/1 页          </div>
+			</div>
+		</div>
+		<div class="bfoot">
+			<font color="#003366">Copyright:2015 快递网在线操作系统 版权所有</font>
+		</div>
+	</div>
+</div>
+    <script>
+ 
+function carshuaxin(taskid){
+		 $("#flash"+taskid).html("<img src='/Public/Home/img/loading.gif' />");
+		$.ajax({
+		url:'/stadmin/User/getcart/',
+		data:{ 
+		id:taskid
+		},
+		type:'post', 
+ 
+		success:function(data){ 
+		 $("#flash"+taskid).html(data);
+		
+		},
+		error:function(data){
+		     alert(data);
+		}
+	})
+}
+	</script>
+</body>
+</html>

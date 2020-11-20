@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/style/style.css" />
+	<script type="text/javascript" src="__PUBLIC__/Admin/js/common.js"></script>
+</head>
+
+<body>
+	<div class="main">
+		<div class="box">
+			<div class="bhead">
+				<h2>修改续费价格</h2>
+			</div>
+			<div class="bmiddle">
+				<div class="bcon">
+					<form name="myform" id="myform" action="#" method="post" enctype="multipart/form-data">
+						<input type="hidden" name="renew_id" value="{$detail.renew_id}">
+						<table border="0" width="100%" class="listtable">
+							<tbody>
+								<tr>
+									<th width="200">月份</th>
+									<td>
+										<input type="text" name="month" size="40" value="{$detail.month}">
+									</td>
+									<td></td>
+								</tr>
+								<tr>
+									<th width="200">价格</th>
+									<td>
+										<input type="text" name="price" size="40" value="{$detail.price}">
+									</td>
+									<td></td>
+								</tr>
+								<tr>
+									<th></th>
+									<td>
+										<input type="button" onclick="edit()" class="button" value="确认修改">
+									</td>
+									<td></td>
+								</tr>
+							</tbody>
+						</table>
+					</form>
+				</div>
+			</div>
+			<div class="bfoot">
+				<font color="#003366">Copyright:2015 易网包在线操作系统 版权所有</font>
+			</div>
+		</div>
+	</div>
+	<script data-cfasync="false" src="/cdn-cgi/scripts/f2bf09f8/cloudflare-static/email-decode.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Admin/js/jquery.min.js"></script>
+	<script>
+		function edit() {
+			$.ajax({
+				url: '{:U('Store/renewEdit')}',
+				type: 'post',
+				data: $('#myform').serialize(),
+				dataType: 'json',
+				success: function (data) {
+					if (data.state) {
+						alert(data.msg);
+						window.location.href = "{:U('Store/renew')}";
+					} else {
+						alert(data.msg);
+					}
+				}
+			})
+		}
+	</script>
+</body>
+
+</html>

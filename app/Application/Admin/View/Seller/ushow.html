@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/style/style.css" />
+	<script src="__PUBLIC__/Admin/js/jquery.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Admin/js/common.js"></script>
+</head>
+
+<body>
+	<div class="main">
+		<div class="box">
+			<div class="bhead">
+				<h2>用户列表</h2>
+			</div>
+			<div class="bmiddle">
+				<div class="bcon">
+					<div class="search">
+						<form id="searchForm" >
+							<input type="text" name="account"  value="{:I('get.account')}"  class="inp" placeholder="会员账号" />&nbsp;&nbsp;
+                            <input type="button" class="search_btn" onclick="search()" id="search_btn" style="cursor: hand" value="查 询" />&nbsp;&nbsp;
+							<a href="{:U('Seller/ushow')}">全部用户</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+							<a href="{:U('Seller/ushow/grade/1')}">普</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+							<a href="{:U('Seller/ushow/grade/2')}">黄</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+							<a href="{:U('Seller/ushow/grade/3')}">钻</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+							<a href="{:U('Seller/ushow/grade/4')}">VIP</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+							<a href="{:U('Seller/ushow/grade/5')}">特</a>
+							&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+							<a href="Admin/stadmin/Seller/export.html">导出全部email</a>
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							<a href="{:U('Seller/addSeller')}">添加会员</a>
+						</form>
+					</div>
+					<form name="myform" action="" method="post">
+						<table border="0" cellpadding="0" cellspacing="1" width="100%" class="listtable">
+							<tr>
+								<th>UID</th>
+								<th>会员账号</th>
+								<th>Email</th>
+								<th>余额</th>
+								<th>等级积分</th>
+								<th>会员组</th>
+								<th>充值-优惠比例</th>
+								<th>推荐用户</th>
+								<th>登录时间</th>
+								<th>注册日期</th>
+								<th>状态</th>
+								<th>推广权限</th>
+                                <th>推广佣金</th>
+								<th>操作</th>
+								<th></th>
+							</tr>
+							<foreach name='list' item='vo' key='k'>
+								<tr>
+									<td align="center">{$vo.seller_id}</td>
+									<td align="center">
+										<a href="{:U('Seller/ulog/seller_id/'.$vo['seller_id'])}" title="查看金额记录">{$vo.account}</a>
+									</td>
+									<td align="center">
+										<a href="{:U('Seller/ulog/seller_id/'.$vo['seller_id'])}" title="查看金额记录">
+											<span class="__cf_email__" data-cfemail="d8efe1e1ebefeae1ef98a9a9f6bbb7b5">{$vo.email}</span>
+										</a>
+									</td>
+									<td align="center">{$vo.money}</td>
+									<td align="center">{$vo.left_points}</td>
+									<td align="center">{$vo.user_grade.level_name}</td>
+									<td align="center">{$vo.user_grade.reduction}</td>
+									<td align="center">
+										<if condition="($vo.parent_user eq '')">无
+											<else />{$vo.unit_price}
+										</if>
+									</td>
+									<td align="center" title="最后IP：{$vo.login_ip}">{$vo.last_login}</td>
+									<td align="center">{$vo.addtime}</td>
+									<td align="center">
+										<font color=green>
+											<if condition="($vo.status eq 1)">正常
+												<elseif condition="$vo.status eq 2" />冻结
+											</if>
+										</font>
+									</td>
+
+									<td align="center">
+										<font color=green>
+											<if condition="($vo.spread eq 1)">无
+												<elseif condition="$vo.spread eq 2" />普通推广
+												<elseif condition="$vo.spread eq 3" />商家推广
+											</if>
+										</font>
+									</td>
+                                    <td align="center">{$vo.bonus}</td>
+									<td align="center">
+										<a href="{:U('Seller/addSeller/seller_id/'.$vo['seller_id'])}">编辑</a>&nbsp;&nbsp;
+										<font color=green>
+											<if condition="($vo.status eq 1)">
+												<a href="javascript:freeze({$vo.seller_id}, 2)">
+													<font color=green>冻结</font>
+												</a>
+												<elseif condition="$vo.status eq 2" />
+												<a href="javascript:freeze({$vo.seller_id}, 1)">
+													<font color=green>解冻</font>
+												</a>
+											</if>
+										</font>
+
+										&nbsp;&nbsp;
+										<a href="javascript:changePw({$vo.seller_id})">改密</a>&nbsp;&nbsp;
+									</td>
+									<td>
+										<a href="{:U('Seller/ulog/seller_id/'.$vo['seller_id'])}">金额记录</a>
+									</td>
+								</tr>
+							</foreach>
+
+						</table>
+					</form>
+					{$page}
+
+				</div>
+			</div>
+			<div class="bfoot">
+				<font color="#003366">Copyright:2015 易网包在线操作系统 版权所有</font>
+			</div>
+		</div>
+	</div>
+	<script data-cfasync="false" src="/cdn-cgi/scripts/f2bf09f8/cloudflare-static/email-decode.min.js"></script>
+	<script>
+		function changePw(ID) {
+			var password = prompt('请输入新密码：');
+			if (password) {
+				$.ajax({
+					url: '{:U('Seller/changePw')}',
+					type: 'post',
+					dataType: 'json',
+					data: { 'user_id': ID, 'new_password': password },
+					success: function (data) {
+						alert(data.msg);
+						window.location.reload();
+					}
+				})
+			}
+		}
+		function freeze(ID, status) {
+			if (confirm('(冻结/解冻)用户？')) {
+				$.ajax({
+					url: '{:U('Seller/freeze')}',
+					type: 'post',
+					dataType: 'json',
+					data: { 'user_id': ID, 'status': status },
+					success: function (data) {
+						alert(data.msg);
+						window.location.reload();
+					}
+				})
+			}
+		}
+
+        function search()
+        {
+            public_url('{:U('')}',1);
+        }Seller/ushow
+
+        function public_url(url,type) {
+            var str1 = $('#searchForm').find('input').serialize();
+            var str2 = $('#searchForm').find('select').serialize();
+            var query = str1 + '&' + str2;
+            query = query.replace(/(&|^)(\w*?\d*?\-*?_*?)*?=?((?=&)|(?=$))/g, '');
+            query = query.replace(/^&/g, '');
+            if (url.indexOf('?') > 0) {
+                url += '&' + query;
+            } else {
+                url += '?' + query;
+            }
+            if (type == 1) {
+                window.location.href = url;
+            } else {
+                window.open(url);
+            }
+        }
+
+	</script>
+
+</body>
+
+</html>

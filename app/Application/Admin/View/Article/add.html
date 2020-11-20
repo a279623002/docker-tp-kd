@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/style/style.css" />
+	<script src="__PUBLIC__/Admin/js/jquery.min.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/Admin/js/common.js"></script>
+  <!-- <script type="text/javascript" charset="utf-8" src="__PUBLIC__/Admin/js/ueditor.config.js"></script> -->
+
+  <script type="text/javascript" charset="utf-8" src="__PUBLIC__/Admin/ueditor/ueditor.config.js"></script>
+  <script type="text/javascript" charset="utf-8" src="__PUBLIC__/Admin/ueditor/ueditor.all.min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="__PUBLIC__/Admin/ueditor/lang/zh-cn/zh-cn.js"></script>
+</head>
+
+<body>
+  <div class="main">
+    <div class="box">
+      <div class="bhead">
+        <h2>添加文档</h2>
+      </div>
+      <div class="bmiddle">
+        <div class="bcon">
+          <form name="myform" id="myform" action="#" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="article_id" value="{$detail.article_id}">
+            <table border="0" width="100%" class="listtable">
+              <tr>
+                <th>文档标题：</th>
+                <td>
+                  <input type="text" name="title" style="width:300px" value="{$detail.title}" />
+                </td>
+                <td></td>
+              </tr>
+              <tr>
+                <th>文档分类：</th>
+                <td>
+                  <select name="cate" style="width:310px;">
+                    <option value="{$detail.cate}">{$detail.cate_name}</option>
+                    <option value="1">运营技巧</option>
+                    <option value="2">推广赚钱</option>
+                    <option value="3">加盟代理</option>
+                  </select>
+                </td>
+                <td></td>
+              </tr>
+              <tr>
+                <th valign="top">文档正文：</th>
+                <td>
+                  <!-- <textarea id="myEditor" name="content" style="width:700px;height:300px;" placeholder="{$detail.content}"></textarea> -->
+                  <script id="editor" type="text/plain" style="width:1024px;height:300px;" name="content">{$detail.content}</script>
+
+                </td>
+                <td></td>
+              </tr>
+              <tr>
+                <th></th>
+                <td>
+                  <input type="button" onclick="add()" class="button" value="确认提交" />
+                </td>
+                <td></td>
+              </tr>
+            </table>
+          </form>
+        </div>
+      </div>
+      <div class="bfoot">
+        <font color="#003366">Copyright:2015 易网包在线操作系统 版权所有</font>
+      </div>
+    </div>
+  </div>
+  <script src="__PUBLIC__/Admin/js/jquery.min.js"></script>
+  <script>
+    $(function () {
+      $('#abstract').val($('#abstract').attr('placeholder'));
+      $('#myEditor').val($('#myEditor').attr('placeholder'));
+    })
+
+    function add() {
+      $.ajax({
+        url: '{:U('Article/add')}',
+        type: 'post',
+        dataType: 'json',
+        data: $('#myform').serialize(),
+        success: function (data) {
+          if (data.state) {
+            alert('添加成功');
+            window.location.href = "{:U('Article/show')}";
+          } else {
+            alert(data.msg)
+          }
+        }
+      })
+    }
+  </script>
+
+  <script type="text/javascript">
+    var ue = UE.getEditor('editor');
+  </script>
+</body>
+
+</html>

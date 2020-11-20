@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/style/style.css" />
+	<script type="text/javascript" src="__PUBLIC__/Admin/js/common.js"></script>
+</head>
+
+<body>
+	<div class="main">
+		<div class="box">
+			<div class="bhead">
+				<h2>充值</h2>
+			</div>
+			<div class="bmiddle">
+				<div class="bcon">
+					<form name="myform" id="myform" action="#" method="post">
+						<input type="hidden" name="charge_id" value="{$data.charge_id}">
+						<input type="hidden" name="account" value="{$account}">
+						<input type="hidden" name="seller_id" value="{$data.seller_id}">
+						<input type="hidden" name="charge_money" value="{$data.charge_money}">
+						<table border="0" width="100%" class="listtable">
+							<tbody>
+								<tr>
+									<th width="200">用户名</th>
+									<td>{$data.account}</td>
+									<td></td>
+								</tr>
+								<tr>
+									<th>付款金额</th>
+									<td>{$data.charge_money}元</td>
+									<td></td>
+								</tr>
+								<tr>
+									<th>充值积分：</th>
+									<td>10</td>
+									<td></td>
+								</tr>
+								<tr>
+									<th>充值单号</th>
+									<td>{$data.order_sn}</td>
+									<td></td>
+								</tr>
+								<tr>
+									<th>充值时间</th>
+									<td>{$data.create_time}</td>
+									<td></td>
+								</tr>
+								<tr>
+									<th>支付宝订单编号</th>
+									<td>
+										<input type="text" value="" name="pay_tradeno" size="60">
+									</td>
+									<td></td>
+								</tr>
+								<tr>
+									<th>充值支付宝</th>
+									<td>{$data.account}</td>
+									<td></td>
+								</tr>
+								<tr>
+									<th>操作密码</th>
+									<td>
+										<input type="password" value="" name="paypwd" size="60">
+									</td>
+									<td></td>
+								</tr>
+								<tr>
+									<th></th>
+									<td>
+										<input type="button" onclick="aliok()" class="button" value="确认充值">&nbsp;&nbsp;&nbsp;&nbsp;
+										<input type="button" class="button" value="取消返回" onclick="history.go(-1);">
+									</td>
+									<td></td>
+								</tr>
+							</tbody>
+						</table>
+					</form>
+				</div>
+			</div>
+			<div class="bfoot">
+				<font color="#003366">Copyright:2015 易网包在线操作系统 版权所有</font>
+			</div>
+		</div>
+	</div>
+	<script data-cfasync="false" src="/cdn-cgi/scripts/f2bf09f8/cloudflare-static/email-decode.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Admin/js/jquery.min.js"></script>
+	<script>
+		function aliok() {
+			$.ajax({
+				url: '{:U('Pay/aliok')}',
+				type: 'post',
+				data: $('#myform').serialize(),
+				dataType: 'json',
+				success: function(data) {
+					if(data.state) {
+						alert(data.msg);
+						window.location.href = "{:U('Pay/record')}";
+					}else {
+						alert(data.msg);
+					}
+				}
+			})
+		}
+	</script>
+</body>
+
+</html>

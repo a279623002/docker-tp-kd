@@ -1,0 +1,94 @@
+<include file="Index/header" />
+<div class="am-panel-default">
+    <div class="am-panel-hd">充值记录</div>
+    <div class="am-panel-bd">
+        <table class="am-table am-table-striped am-table-bordered am-table-hover am-table-radius am-table-compact" id="apptable">
+            <thead>
+                <tr>
+                    <th>充值编号</th>
+                    <th>充值金额</th>
+                    <th>赠送积分</th>
+                    <th>交易号</th>
+                    <th>付款时间</th>
+                    <th>状态</th>
+                    <th>支付平台</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <foreach name='list' item='vo' key='k'>
+                    <tr>
+                        <td>{$vo.charge_id}</td>
+                        <td>{$vo.charge_money}</td>
+                        <td>{$vo.charge_money}</td>
+                        <td>{$vo.charge_descript}</td>
+                        <td>{$vo.back_paytime}</td>
+                        <td>
+
+                            <if condition="($vo.back_true eq 1)"><font color="#0000FF">等待支付</font>
+                                <elseif condition="$vo.back_true eq 2" />  <font color="green">已支付</font>
+                                <elseif condition="$vo.back_true eq 3" />  <font color="#808080">关闭</font>
+                                <else />其它
+                            </if>
+
+                        </td>
+                        <td>
+                            <if condition="($vo.charge_type eq 1)">支付宝</td>
+                        <else />其它
+                        </if>
+                        </td>
+                        <td>
+                            <if condition="($vo.back_true eq 1)">
+                                <a href="{:U('Home/Order/pay')}">付款</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="javascript:close({$vo['charge_id']});">关闭订单</a>
+                        </td>
+                        <else />--
+                        </if>
+                        </td>
+                    </tr>
+                </foreach>
+
+            </tbody>
+        </table>
+        <div class="am-g">
+            <div class="am-u-sm-4"></div>
+            <div class="am-u-sm-8">
+                    {$page}
+            </div>
+        </div>
+
+    </div>
+</div>
+<script>
+    $('#apptable').DataTable({
+        responsive: true,
+        dom: 'ti',
+        order: [0, "desc"],
+        bInfo: false,//页脚信息
+        columnDefs: [{
+            orderable: false,//禁用排序
+            targets: [3, 5, 6, 7]   //指定的列
+        }]
+    });
+
+    function close(ID) {
+        $.ajax({
+            url: '{:U('Home/Recharge/close')}',
+                type: 'post',
+                data: { 'charge_id': ID },
+                dataType: 'json',
+                success: function (data) {
+                    alert(data.msg);
+                    window.location.reload();
+                }
+        })
+    }
+</script>
+<script>
+    $(function () {
+        $('li.active').removeClass('active');
+        $('.submenu:first').show();
+        $('.submenu:first li').eq(1).addClass('active');
+    })
+</script>
+<include file="Index/footer" />

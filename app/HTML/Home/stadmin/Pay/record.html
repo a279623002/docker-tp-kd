@@ -1,0 +1,81 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title></title>
+<link rel="stylesheet" type="text/css" href="/Public/stadmin/style/style.css" />
+<script type="text/javascript" src="/Public/stadmin/js/common.js"></script>
+ 
+
+</head>
+<body>
+<div class="main">
+	<div class="box">
+		<div class="bhead">
+			<h2>充值记录</h2>
+		</div>
+		<div class="bmiddle">
+			<div class="bcon">
+				<div class="search">
+					<form name="searchform" action="/stadmin/Pay/record.html" method="get">
+					<input type="text" name="key" class="inp"  placeholder="搜索用户名、支付宝交易号、订单编号"/>
+                   开始日期： <input type="text" name="timestart" id="d_s" onClick="WdatePicker({dateFmt:'yyyy-MM-dd 00:00:00'});" value=""/>
+                   结束日期：<input type="text" name="timeend" onClick="WdatePicker({dateFmt:'yyyy-MM-dd 23:59:59',minDate:'#F{$dp.$D(\'d_s\')}'})"/>
+                    &nbsp;&nbsp;<input type="submit" class="search_btn" value="搜索"/>
+                    &nbsp;&nbsp;<a href="/stadmin/Pay/record.html">全部</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/stadmin/Pay/record/tid/0.html">未支付</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                     <a href="/stadmin/Pay/record/tid/1.html">已支付</a>
+					</form>
+                    
+				</div>
+				<form name="myform" action="/stadmin/Pay/" method="post">
+	            <table border="0" cellpadding="0" cellspacing="1" width="100%" class="listtable">
+	            	<tr>
+                        <th>ID</th>
+	              		<th>充值编号</th>
+	              		<th>支付宝交易号</th>
+                        <th>付款帐号</th>
+	              		<th>金额</th>
+                        <th>充值积分</th>
+	              		<th>会员账号</th>
+                        <th>创建时间时间</th>
+	              		<th>付款时间</th>
+                        <th>操作人</th>
+                        <th>操作</th>
+	              	</tr>
+	              	<tr>
+                        <td align="center">2</td>
+	                	<td align="center">s2018071714201437</td>
+	                	<td align="center">- -</td>
+                        <td align="center">13417050399</td>
+	                	<td align="center">10.00</td>
+                        <td align="center">10</td>
+	                	<td align="center"><a href="/stadmin/Pay/record/uid/7.html">13417050399</td>
+                        <td align="center">2018-07-17 14:20:14</td>
+	                	<td align="center">- -</td>
+                        <td align="center"></td>
+                        <td align="center"><a href="/index.php/stadmin/Pay/aliok/tid/2">确认</a>&nbsp;&nbsp; | &nbsp;&nbsp;<a href="/index.php/stadmin/Pay/del/tid/2">删除</a></td>
+	                </tr><tr>
+                        <td align="center">1</td>
+	                	<td align="center">s2018062517265666</td>
+	                	<td align="center">- -</td>
+                        <td align="center"><span class="__cf_email__" data-cfemail="51223d3411343022282038303e7f323e3c">[email&#160;protected]</span></td>
+	                	<td align="center">1.00</td>
+                        <td align="center">1</td>
+	                	<td align="center"><a href="/stadmin/Pay/record/uid/2.html">ren</td>
+                        <td align="center">2018-06-25 17:26:56</td>
+	                	<td align="center">2018-06-25 18:37:57</td>
+                        <td align="center">admin</td>
+                        <td align="center">支付成功</td>
+	                </tr>	              </table>
+	            </form>
+	            <div class="pageno"> 2 条记录 1/1 页          </div>
+			</div>
+		</div>
+		<div class="bfoot">
+			<font color="#003366">Copyright:2015 快递网在线操作系统 版权所有</font>
+		</div>
+	</div>
+</div>
+<script data-cfasync="false" src="/cdn-cgi/scripts/f2bf09f8/cloudflare-static/email-decode.min.js"></script></body>
+</html>

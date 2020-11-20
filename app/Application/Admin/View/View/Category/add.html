@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/style/style.css" />
+  <script type="text/javascript" src="__PUBLIC__/Admin/js/common.js"></script>
+  <script type="text/javascript" charset="utf-8" src="__PUBLIC__/Admin/js/ueditor.config.js"></script>
+</head>
+
+<body>
+  <div class="main">
+    <div class="box">
+      <div class="bhead">
+        <h2>添加分类</h2>
+      </div>
+      <div class="bmiddle">
+        <div class="bcon">
+          <form name="myform" id="myform" action="#" method="post">
+            <input type="hidden" name="cate_id" value="{$detail.cate_id}">
+            <table border="0" width="100%" cellpadding="0" cellspacing="1" class="listtable">
+              <tr>
+                <th>栏目名称：</th>
+                <td>
+                  <input type="text" name="name" style="width:300px;" value="{$detail.name}"/>
+                </td>
+                <td></td>
+              </tr>
+              <tr>
+                <th>所属栏目：</th>
+                <td>
+                  <select name="parent_id" style="width:160px;">
+                    <if condition="($detail.parent_id eq 0)"><option value="0" selected>顶级栏目</option></if>
+                  </select>
+                </td>
+                <td></td>
+              </tr>
+              <tr>
+                <th>浏览权限：</th>
+                <td>
+                  <if condition="($detail.status eq 0)">
+                    <input type="radio" name="status" value="0" checked style="border:none;" />所有用户
+                    <input type="radio" name="status" value="1" style="border:none;" />初级VIP
+                    <input type="radio" name="status" value="2" style="border:none" />高级VIP
+                  </if>
+                  <if condition="($detail.status eq 1)">
+                    <input type="radio" name="status" value="0" style="border:none;" />所有用户
+                    <input type="radio" name="status" value="1" checked style="border:none;" />初级VIP
+                    <input type="radio" name="status" value="2" style="border:none" />高级VIP
+                  </if>
+                  <if condition="($detail.status eq 2)">
+                    <input type="radio" name="status" value="0" style="border:none;" />所有用户
+                    <input type="radio" name="status" value="1" style="border:none;" />初级VIP
+                    <input type="radio" name="status" value="2" checked style="border:none" />高级VIP
+                  </if>
+                </td>
+                <td></td>
+              </tr>
+              <tr>
+                <th>IP数限制：</th>
+                <td>
+                  <input type="text" name="ips" style="width:300px;" value="{$detail.ips}" />
+                </td>
+                <td></td>
+              </tr>
+              <tr>
+                <th>栏目类型：</th>
+                <td>
+                  <if condition="($detail.model eq 1)">
+                  <input type="radio" name="model" value="1" checked style="border:none;" />单页&nbsp;&nbsp;
+                  <input type="radio" name="model" value="2" style="border:none;" />列表
+                  <else />
+                  <input type="radio" name="model" value="1" style="border:none;" />单页&nbsp;&nbsp;
+                  <input type="radio" name="model" value="2" checked style="border:none;" />列表
+                  </if>
+                </td>
+                <td></td>
+              </tr>
+              <tr>
+                <th>栏目排序：</th>
+                <td>
+                  <input type="text" name="sort" style="width:300px;" value="{$detail.sort}" />
+                </td>
+                <td></td>
+              </tr>
+              <tr>
+                <th>栏目模板：</th>
+                <td>
+                  <input type="text" name="template" style="width:300px;" value="{$detail.template}" />
+                </td>
+                <td></td>
+              </tr>
+              <tr>
+                <th valign="top">栏目内容：</th>
+                <td>
+                  <textarea id="myEditor" name="content" style="width:700px;height:300px;" placeholder="{$detail.content}"></textarea>
+                  <script type="text/javascript">
+                    var editor = new UE.ui.Editor();
+                    editor.render("myEditor");
+                    editor.ready(function () {
+                      editor.setHeight(300);
+                    });
+                  </script>
+                </td>
+                <td></td>
+              </tr>
+              <tr>
+                <th></th>
+                <td>
+                  <input type="button" onclick="add()" class="button" value="确认提交" />
+                </td>
+                <td></td>
+              </tr>
+            </table>
+          </form>
+        </div>
+      </div>
+      <div class="bfoot">
+        <font color="#003366">Copyright:2015 易网包在线操作系统 版权所有</font>
+      </div>
+    </div>
+  </div>
+  <script src="__PUBLIC__/Admin/js/jquery.min.js"></script>
+  <script>
+    
+    $(function(){
+      var content = $("#myEditor").attr('placeholder');
+      $('#myEditor').val(content);
+    })
+
+    function add() {
+      $.ajax({
+        url: '{:U('Category/add')}',
+        type: 'post',
+        dataType: 'json',
+        data: $('#myform').serialize(),
+        success: function (data) {
+          if (data.state) {
+            alert('添加成功');
+            window.location.href = "{:U('Category/show')}";
+          } else {
+            alert(data.msg)
+          }
+        }
+      })
+    }
+  </script>
+</body>
+
+</html>

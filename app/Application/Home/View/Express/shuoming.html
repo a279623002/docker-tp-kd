@@ -1,0 +1,92 @@
+<include file="Index/header" />
+
+<div class="wraps">
+
+  <div class="am-u-sm-12 news am-margin-bottom-sm">
+    <h1 style="text-align: center;">批量导入订单和批量导出单号说明</h1>
+    <p class="am-article-meta am-text-center am-margin-bottom-xs"> 2015-12-04</p>
+    <hr data-am-widget="divider" style="" class="am-divider am-divider-dashed" />
+    <div class="am-margin-bottom-sm views">
+      <div>一、批量导入订单说明</div>
+      <div>
+        <a href="#A1">二、批量导出单号发货</a>
+      </div>
+      <div>
+        <a href="#A2">三、常见问题</a>
+      </div>
+      <h2>批量导入订单教程：方式一、【此方式只适用于淘宝平台，其他平台看方式二下载模板】</h2>
+      <div class="wsm">
+        <p>准备工作：请在卖出去宝贝中把你要发快递的订单筛选出来</p>
+        <p>①.按照如下图所示导出您需要的订单，点击生成报表</p>
+        <p>
+          <img border="0" src="__PUBLIC__/Home/danhao/10.jpg" width="990">
+        </p>
+        <p>②.然后点击下载订单报表</p>
+        <p>
+          <img border="0" src="__PUBLIC__/Home/danhao/11.jpg">
+        </p>
+        <p>
+          <font color="#FF0000">③.打开导出来的表格，然后另存为
+            <b>xls或者xlsx</b>格式的表格</font>
+        </p>
+        <p>
+          <img border="0" src="__PUBLIC__/Home/danhao/12.jpg">
+        </p>
+        <p>③.然后回到批量发布页面，上传刚刚另存为的表格发货即可</p>
+      </div>
+      <br>
+      <h2>批量导入订单教程：方式二、
+        <a href="moban.xls" class="am-btn am-btn-primary">
+          点击下载其他平台导入模版
+          <i class="am-icon-cloud-download"></i>
+        </a>
+      </h2>
+      <div class="wsm">
+        <p>下载模板文件，按照模板文件整理收货地址</p>
+
+      </div>
+      <br>
+      <h2>
+        <a name="A1"></a>批量导出单号发货教程：</h2>
+      <div class="wsm">
+        <p>准备工作：请在空包任务记录中导出你要发货的订单。
+          <a href="/Express/exlist.html" target="_blank">点击查看空包记录</a>
+        </p>
+        <p>①.如上图步骤4中，点击最后面的“批量发货”按钮。或者
+          <a href="https://fuwu.taobao.com/ser/detail.htm?service_code=FW_GOODS-1978346&tracelog=search" target="_blank">点击这里订购发货软件</a>
+        </p>
+        <p>②.然后点击导入订单,复制在空包记录中导出的数据，然后点击确认导入</p>
+        <p>③.请一定确保导出来的格式是：订单号,运单号,物流公司（案例：596049614632239,1016597686774,圆通）</p>
+        <p>
+          <img border="0" src="__PUBLIC__/Home/danhao/2.jpg">
+        </p>
+        <p>
+          <img border="0" src="__PUBLIC__/Home/danhao/3.jpg">
+        </p>
+      </div>
+      <h2>
+        <a name="A2"></a>常见问题：</h2>
+      <div class="wsm">
+        <p>Q：一次最多可以导入多少条记录？</p>
+        <p>A：由于我们要请求圆通的服务器，每次上次表格请不要大于100条订单。（100条数据全部导入完大概需要80秒时间，请耐心等待）</p>
+        <p>Q：导入的时候不成功怎么回事？</p>
+        <p>A：由于系统导出来的默认格式是CSV，请一定将表格转换为xlsx 或者 xls 格式</p>
+        <p>Q：我们的网店不是淘宝的平台，如何导入？</p>
+        <p>A：非淘宝平台的订单，请下载模版，按照格式登记后导入。
+          <a href="__PUBLIC__/Home/danhao/moban.xls" class="am-btn am-btn-primary">
+            点击下载其他平台导入模版
+            <i class="am-icon-cloud-download"></i>
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function () {
+    $('li.active').removeClass('active');
+    $('#sidebar-nav #dashboard-menu > li').eq(3).addClass('active');
+  })
+</script>
+<include file="Index/footer" />

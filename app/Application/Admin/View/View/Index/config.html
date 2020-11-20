@@ -1,0 +1,159 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>main</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/style/style.css" />
+<script src="__PUBLIC__/Admin/js/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/common.js"></script>
+</head>
+<body>
+<div class="main">
+	<div class="box">
+		<div class="bhead">
+			<h2>系统参数</h2>
+		</div>
+		<div class="bmiddle">
+			<div class="bcon">
+				<form name="myform" id="myform" action="/stadmin/Index/webconfigsave.html" method="post">
+				<input type="hidden" name="system_id" value="{$detail.system_id}">
+	            <table border="0" cellpadding="0" cellspacing="1" width="100%" class="mytable">
+	                <tr>
+	                	<th width="150" align="right">网站名称：</th>
+	                	<td><input type="text" name="name" style="width:300px;" value="{$detail.name}"/></td>
+	                	<td></td>
+	                </tr>
+	                <tr>
+	                	<th align="right">网站地址：</th>
+	                	<td><input type="text" name="website" style="width:300px;" value="{$detail.website}"/> <span class="intro">例如：http://www.baidu.com 结尾不加/</span></td>
+	                	<td></td>
+	                </tr>
+	                <tr>
+	                	<th align="right">关键词：</th>
+	                	<td><input type="text" name="abstract" style="width:300px;" value="{$detail.abstract}"/></td>
+	                	<td></td>
+	                </tr>
+	                <tr>
+	                	<th valign="top" align="right">网站描述：</th>
+	                	<td><textarea name="describe"  style="width:300px;height:60px;">{$detail.describe}</textarea></td>
+	                	<td></td>
+	                </tr>
+	               <tr>
+	                	<th align="right">注册送金额：</th>
+	                	<td>
+	                		<input type="text" name="register_money" style="width:300px;" value="{$detail.register_money}" />
+	                	</td>
+	                	<td></td>
+	                </tr>
+	               
+	                <tr>
+	                	<th align="right">一级推广会员奖励：</th>
+	                	<td><input type="text" name="first_level" style="width:300px;" value="{$detail.first_level}"/><span class="intro">每次充值都奖励</span></td>
+	                	<td></td>
+	                </tr>
+	                <tr>
+	                	<th align="right">二级推广会员奖励：</th>
+	                	<td><input type="text" name="second_level" style="width:300px;" value="{$detail.second_level}"/><span class="intro">每次充值都奖励</span></td>
+	                	<td></td>
+	                </tr>
+                    
+                     <tr>
+	                	<th align="right">在线客服QQ：</th>
+	                	<td><input type="text" name="online_qq" style="width:300px;" value="{$detail.online_qq}"/></td>
+	                	<td></td>
+	                </tr>
+                    
+                    <tr>
+	                	<th align="right">商务合作QQ：</th>
+	                	<td><input type="text" name="commerce_qq" style="width:300px;" value="{$detail.commerce_qq}"/></td>
+	                	<td></td>
+	                </tr>
+                     
+	                <tr>
+	                	<th valign="top" align="right">会员首页公告：</th>
+	                	<td><textarea name="index_notice"  style="width:300px;height:50px;">{$detail.index_notice}</textarea></td>
+	                	<td></td>
+	                </tr>
+	                
+	                <tr>
+	                	<th align="right">支付宝授权密钥：<br/>
+	                	
+	                	</th>
+	                	<td><input type="text" name="alipay_key" style="width:300px;" value="{$detail.alipay_key}"/><span class="intro">用于充值软件通信</span></td>
+	                	<td></td>
+	                </tr>
+	                <tr>
+	                	<th align="right">支付宝收款账号：</th>
+	                	<td><input type="text" name="alipay_account" style="width:300px;" value="{$detail.alipay_account}"/></td>
+	                	<td></td>
+	                </tr>
+	                <tr>
+	                	<th align="right">是否开启注册限制：</th>
+	                	<td>
+						<if condition="($detail.register_limit eq 1)">
+							<input type="radio" name="register_limit" value="1" checked/>是
+							<input type="radio" name="register_limit" value="0" />否
+							<else />
+							<input type="radio" name="register_limit" value="1"/>是
+							<input type="radio" name="register_limit" value="0" checked/>否
+						</if>
+
+	                	<span class="intro">选择是的话，一个IP只能注册两个帐号,主要用于下线推广</span></td>
+	                	<td></td>
+	                </tr>
+	                <tr>
+	                	<th valign="top" align="right">分销联盟说明：</th>
+	                	<td><textarea name="info"  style="width:300px;height:50px;">{$detail.info}</textarea></td>
+	                	<td></td>
+	                </tr>
+	                <tr>
+	                	<th valign="top" align="right">统计代码：</th>
+	                	<td><textarea name="count_code"  style="width:300px;height:50px;">{$detail.count_code}</textarea></td>
+	                	<td></td>
+	                </tr>
+	                <tr>
+	                	<th valign="top" align="right">版权信息：</th>
+	                	<td><textarea name="copyright"  style="width:300px;height:60px;"><span style="font-family:Microsoft YaHei;">{$detail.copyright}</span></textarea></td>
+	                	<td></td>
+	                </tr>
+	                <tr>
+	                	<th height="5"></th>
+	                	<td></td>
+	                	<td></td>
+	                </tr>
+	                <tr>
+	                	<th></th>
+	                	<td>
+	                		<input type="button" onclick="add()" value="确认提交" class="button" />
+	                	</td>
+	                	<td></td>
+	                </tr>
+	            </table>
+	            </form>
+			</div>
+		</div>
+		<div class="bfoot">
+			<font color="#003366">Copyright:2015 易网包在线操作系统 版权所有</font>
+		</div>
+	</div>
+</div>
+
+<script src="__PUBLIC__/Admin/js/jquery.min.js"></script>
+<script>
+
+  function add() {
+	$.ajax({
+	  url: '{:U('Index/config')}',
+	  type: 'post',
+	  dataType: 'json',
+	  data: $('#myform').serialize(),
+	  success: function (data) {
+		alert(data.msg)
+		window.location.href = "{:U('Index/config')}";
+	  }
+	})
+  }
+</script>
+</body>
+</html>

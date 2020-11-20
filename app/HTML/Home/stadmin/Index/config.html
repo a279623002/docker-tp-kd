@@ -1,0 +1,129 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>main</title>
+<link rel="stylesheet" type="text/css" href="/Public/stadmin/style/style.css" />
+<script type="text/javascript" src="/Public/stadmin/js/common.js"></script>
+</head>
+<body>
+<div class="main">
+	<div class="box">
+		<div class="bhead">
+			<h2>系统参数</h2>
+		</div>
+		<div class="bmiddle">
+			<div class="bcon">
+				<form name="myform" id="myform" action="/stadmin/Index/webconfigsave.html" method="post">
+	            <table border="0" cellpadding="0" cellspacing="1" width="100%" class="mytable">
+	                <tr>
+	                	<th width="150" align="right">网站名称：</th>
+	                	<td><input type="text" name="webname" style="width:300px;" value="我要快递网"/></td>
+	                	<td></td>
+	                </tr>
+	                <tr>
+	                	<th align="right">网站地址：</th>
+	                	<td><input type="text" name="weburl" style="width:300px;" value="http://laike.oaishua.com"/> <span class="intro">例如：http://www.baidu.com 结尾不加/</span></td>
+	                	<td></td>
+	                </tr>
+	                <tr>
+	                	<th align="right">关键词：</th>
+	                	<td><input type="text" name="keywords" style="width:300px;" value="我要快递网"/></td>
+	                	<td></td>
+	                </tr>
+	                <tr>
+	                	<th valign="top" align="right">网站描述：</th>
+	                	<td><textarea name="description"  style="width:300px;height:60px;">我要快递网</textarea></td>
+	                	<td></td>
+	                </tr>
+	               <tr>
+	                	<th align="right">注册送金额：</th>
+	                	<td>
+	                		<input type="text" name="songjin" style="width:300px;" value="0" />
+	                	</td>
+	                	<td></td>
+	                </tr>
+	               
+	                <tr>
+	                	<th align="right">推荐会员充值奖励比例：</th>
+	                	<td><input type="text" name="referscore_gaoji" style="width:300px;" value="5"/><span class="intro">每次充值都奖励</span></td>
+	                	<td></td>
+	                </tr>
+                    
+                     <tr>
+	                	<th align="right">在线客服QQ：</th>
+	                	<td><input type="text" name="olqq" style="width:300px;" value="4844952"/></td>
+	                	<td></td>
+	                </tr>
+                    
+                    <tr>
+	                	<th align="right">商务合作QQ：</th>
+	                	<td><input type="text" name="openqq" style="width:300px;" value="4844952"/></td>
+	                	<td></td>
+	                </tr>
+                     
+	                <tr>
+	                	<th valign="top" align="right">会员首页公告：</th>
+	                	<td><textarea name="notice"  style="width:300px;height:50px;"></textarea></td>
+	                	<td></td>
+	                </tr>
+	                
+	                <tr>
+	                	<th align="right">支付宝授权密钥：<br/>
+	                	
+	                	</th>
+	                	<td><input type="text" name="mykey" style="width:300px;" value="52fgdsgsdf324trteter645"/><span class="intro">用于充值软件通信</span></td>
+	                	<td></td>
+	                </tr>
+	                <tr>
+	                	<th align="right">支付宝收款账号：</th>
+	                	<td><input type="text" name="alipay_account" style="width:300px;" value="无需填写"/></td>
+	                	<td></td>
+	                </tr>
+	                <tr>
+	                	<th align="right">是否开启注册限制：</th>
+	                	<td>
+	                	<input type="radio" name="iplock" value="1" checked/>是
+	                	<input type="radio" name="iplock" value="0" />否
+	                	<span class="intro">选择是的话，一个IP只能注册两个帐号,主要用于下线推广</span></td>
+	                	<td></td>
+	                </tr>
+	                <tr>
+	                	<th valign="top" align="right">分销联盟说明：</th>
+	                	<td><textarea name="union"  style="width:300px;height:50px;"></textarea></td>
+	                	<td></td>
+	                </tr>
+	                <tr>
+	                	<th valign="top" align="right">统计代码：</th>
+	                	<td><textarea name="tongji"  style="width:300px;height:50px;">tj</textarea></td>
+	                	<td></td>
+	                </tr>
+	                <tr>
+	                	<th valign="top" align="right">版权信息：</th>
+	                	<td><textarea name="copyright"  style="width:300px;height:60px;"><span style="font-family:Microsoft YaHei;">Copyright © 2014 版权所有 快递网</span></textarea></td>
+	                	<td></td>
+	                </tr>
+	                <tr>
+	                	<th height="5"></th>
+	                	<td></td>
+	                	<td></td>
+	                </tr>
+	                <tr>
+	                	<th></th>
+	                	<td>
+	                		<input type="submit" value="确认提交" class="button" />
+	                	</td>
+	                	<td></td>
+	                </tr>
+	            </table>
+	            </form>
+			</div>
+		</div>
+		<div class="bfoot">
+			<font color="#003366">Copyright:2015 快递网在线操作系统 版权所有</font>
+		</div>
+	</div>
+</div>
+</body>
+</html>

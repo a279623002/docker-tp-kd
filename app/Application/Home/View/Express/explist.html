@@ -1,0 +1,118 @@
+<include file="Index/header" />
+<div class="am-panel-default">
+    <div class="am-panel-hd">空包任务记录</div>
+    <div class="am-panel-bd">
+        <div class="am-alert am-alert-secondary" data-am-alert>
+            <button type="button" class="am-close">&times;</button>
+            <p>温馨提示：下方选择下单时间批量导出单号，方便批量发货！！
+                <a href="{:U('Home/Express/didan')}" target="_blank" style="color:#FF0000">申请底单说明</a>
+            </p>
+        </div>
+
+        <ul class="am-nav am-nav-pills">
+            <li>
+                <a href="{:U('Express/explist')}">全部记录</a>
+            </li>
+            <li>
+                <a href="{:U('Express/explist/express/1')}">查看圆通记录</a>
+            </li>
+
+            <!-- <form  action="/Express/export"  method="POST" class="am-u-lg-5 am-margin-bottom-xs am-fl">
+              <input name="ts"  type="date" class="task_p" placeholder="开始时间" id="d_s" onClick="WdatePicker({dateFmt:'yyyy-MM-dd H:m:s'});">&nbsp;&nbsp;-&nbsp;&nbsp;
+              <input name="te"  type="date" class="task_p" placeholder="结束时间" onClick="WdatePicker({dateFmt:'yyyy-MM-dd H:m:s',minDate:'#F{$dp.$D(\'d_s\')}'})">
+              <button class="am-btn am-btn-primary " type="submit">导出</button>
+          </form> -->
+
+            <form action="{:U('Express/explist')}" method="POST" class="am-u-lg-4 am-margin-bottom-xs am-fr">
+                <div class="am-input-group">
+                    <input type="text" class="am-form-field" name="key" placeholder="搜索单号、收件人">
+                    <span class="am-input-group-btn">
+                        <button class="am-btn am-btn-primary " type="submit" style="background-color: #00b7a3;border-color: #00b7a3;">搜索</button>
+                    </span>
+
+                </div>
+            </form>
+        </ul>
+        <table class="am-table am-table-striped am-table-bordered am-table-hover am-table-radius am-table-compact" id="apptables">
+            <thead>
+                <tr>
+                    <th>订单编号</th>
+                    <th>发货店铺</th>
+                    <th>添加时间</th>
+                    <th>同步状态</th>
+                    <th>备注状态</th>
+                    <th>发货状态</th>
+                    <th>发货时间</th>
+                    <th>快递公司</th>
+                    <th>快递单号</th>
+                    <th>重量</th>
+                    <th>收件人</th>
+                    <th>收件电话</th>
+                    <th>收件地址</th>
+                </tr>
+                <foreach name='list' item='vo' key='k'>
+                    <tr>
+                        <td>{$vo.order_no}</td>
+                        <td>{$vo.store_nick}</td>
+                        <td>{$vo.add_time}</td>
+                        <td>
+                            <if condition="($vo.status eq 1)">待同步
+                                <elseif condition="($vo.status eq 2)"/>
+                                同步成功
+                                <elseif condition="($vo.status eq 3)"/>
+                                <span style="color: red;">同步失败</span>
+                                <else/>
+                            </if>
+                        </td>
+                        <td>
+                            <if condition="($vo.remark_state eq 1)">未备注
+                                <elseif condition="($vo.status eq 2)"/>
+                                备注成功
+                                <elseif condition="($vo.status eq 3)"/>
+                                <span style="color: red;">备注失败</span>
+                                <else/>
+                            </if>
+                        </td>
+                        <td>
+                            <if condition="($vo.tb_status eq 1)">待发货
+                                <elseif condition="($vo.status eq 2)"/>
+                                已发货
+                                <elseif condition="($vo.status eq 3)"/>
+                                <span style="color: red;">发货失败</span>
+                                <else/>
+                            </if>
+                        </td>
+                        <td>{$vo.tbtime}</td>
+                        <td>{$vo.express_name}</td>
+                        <td>{$vo.waybill_no}</td>
+                        <td>{$vo.goods_weight}(kg)</td>
+                        <td>{$vo.receiver_name}</td>
+                        <td>{$vo.receiver_mobile}</td>
+                        <td>{$vo.receiver_provice}--{$vo.receiver_city}--{$vo.receiver_district}--{$vo.receiver_address}</td>
+                    </tr>
+                </foreach>
+            </thead>
+            <tbody>
+
+
+
+            </tbody>
+        </table>
+        <div class="am-g">
+            <div class="am-u-sm-4"></div>
+            <div class="am-u-sm-8">
+                {$page}
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $(function () {
+        $('li.active').removeClass('active');
+        $('#sidebar-nav #dashboard-menu > li').eq(2).addClass('active');
+    })
+</script>
+
+<include file="Index/footer" />

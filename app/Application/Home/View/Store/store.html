@@ -1,0 +1,413 @@
+<include file="Index/header" />
+<div class="am-panel am-panel-default">
+    <div class="am-panel-hd">
+        <span class="am-monospace">淘宝店铺： {$count}个</span>&nbsp;&nbsp;&nbsp;
+        <a href="javascript:add()" class="am-btn am-btn-primary am-round am-btn-sm" style="background-color: #00b7a3;border-color: #00b7a3;">绑定新店铺</a>
+    </div>
+    <table class="am-table am-table-bordered am-table-centered">
+        <thead>
+            <tr>
+                <th>店铺名称</th>
+                <th>所属平台</th>
+                <th>状态</th>
+                <th>发货人信息</th>
+                <th>宝贝重量</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <foreach name='list' item='vo' key='k'>
+                <tr>
+                    <td class="am-text-middle">{$vo.store_nick}</td>
+                    <td class="am-text-middle">
+                        <if condition="($vo.store_type eq 1)">淘宝
+                            <elseif condition="($vo.store_type eq 2)" />天猫店铺
+                            <elseif condition="($vo.store_type eq 3)" />1688
+                            <elseif condition="($vo.store_type eq 4)" />京东
+                            <elseif condition="($vo.store_type eq 5)" />微商
+                            <else />其他
+                        </if>
+                    </td>
+                    <td class="am-text-middle">
+                        <if condition="($vo.status eq 2)">
+                            <font color=green>开启</font>
+                            <elseif condition="$vo.status eq 3" />
+                            <font color=red>拒绝({$vo.msg})</font>
+                            <else />
+                            <font color=gray>未审核</font>
+                        </if>
+                    </td>
+                    <td class="am-text-middle">
+                        <span>姓名：{$vo.name}</span>
+                        <br />
+                        <span>电话：{$vo.mobile}</span>
+                        <br />
+                        <span>发货地址：{$vo.province}-{$vo.city}-{$vo.district}</span>
+                    </td>
+                    <td class="am-text-middle">
+                        <span>{$vo.goods_weight}(kg)</span>
+                    </td>
+                    <td class="am-text-middle">
+                        <a href="javascript:del({$vo['store_id']});" class="am-btn am-btn-primary am-round am-btn-sm" style="background-color: #00b7a3;border-color: #00b7a3;">删除</a>
+                        <a href="javascript:edit({$vo['store_id']});" class="am-btn am-btn-primary am-round am-btn-sm" style="background-color: #00b7a3;border-color: #00b7a3;">编辑</a>
+                    </td>
+                </tr>
+            </foreach>
+        </tbody>
+    </table>
+</div>
+<div class="am-modal am-modal-confirm" tabindex="-1" id="my-stroe">
+    <div class="am-modal-dialog">
+        <form action="#" method="post" id="storeForm" name="exForm" enctype="multipart/form-data" data-am-validator>
+            <input type="hidden" id="store_id" name="store_id">
+            <input type="hidden" id="seller_id" name="seller_id">
+            <div class="am-modal-hd"  style="padding-bottom:15px; background: #00b7a3; color: #FFF;">编辑店铺资料</div>
+            <div class="am-modal-bd">
+                <div class="yctc_458 ycgl_tc_1" style="height:400px; width:90%; overflow-y:auto">
+                    <ul>
+                        <li class="zj-zlzs_3">
+                            <p style="width: 75px; text-align: right; line-height: 40px;">店铺名：</p>
+                            <p style="margin-right: 5px; margin-left: 0px; margin-top: 2px">
+                                <input id="store_nick" name="store_nick" type="text"  readonly="readonly" style="background-color:#dcdcdc;" class="task_input">
+                            </p>
+                        </li>
+
+                        <li class="zj-zlzs_3">
+                            <p style="width: 75px; text-align: right; line-height: 40px;">发件人：</p>
+                            <p style="margin-right: 5px; margin-left: 0px; margin-top: 2px">
+                                <input id="name" name="name" type="text" class="task_input">
+                            </p>
+                        </li>
+                        <li class="zj-zlzs_3">
+                            <p style="width: 75px; text-align: right; line-height: 40px;">手机号码：</p>
+                            <p style="margin-right: 5px; margin-left: 0px; margin-top: 2px">
+                                <input id="mobile" name="mobile" type="text" class="task_input">
+                            </p>
+                        </li>
+                        <li class="zj-zlzs_3">
+                            <p style="width: 75px; text-align: right;line-height: 45px;">发件地区：</p>
+                            <p style=" text-align: right; margin-top: 2px" id="dem">
+                                <select data-am-selected="{maxHeight: 200,btnWidth:100,placeholder:'选择省份'}" id="province" name="province" required
+                                    class="province">
+                                    <option value="">选择省份</option>
+                                </select>
+                                <select data-am-selected="{maxHeight: 200,btnWidth:100,placeholder:'选择城市'}" id="city"  name="city"  required class="city">
+                                    <option value="">选择城市</option>
+                                </select>
+                                <select data-am-selected="{maxHeight: 200,btnWidth:100,placeholder:'选择区'}" id="district"  name="district" required
+                                    class="area">
+                                    <option value="">选择区域</option>
+                                </select>
+                            </p>
+                        </li>
+                        <li class="zj-zlzs_3">
+                            <p style="width: 75px; text-align: right; line-height: 40px;">详细地址：</p>
+                            <p style="margin-right: 5px; margin-left: 0px; margin-top: 2px">
+                                <input id="address" name="address" type="text" class="task_input">
+                            </p>
+                        </li>
+                        <li class="zj-zlzs_3">
+                            <p style="width: 75px; text-align: right; line-height: 40px;">宝贝重量：</p>
+                            <p style="margin-right: 5px; margin-left: 0px; margin-top: 2px">
+                                <input id="goods_weight" name="goods_weight" type="text" class="task_input">（kg）
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="am-modal-footer">
+                <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+                <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="am-modal am-modal-confirm" tabindex="-1" id="my-confirm">
+    <div class="am-modal-dialog">
+        <form action="#" method="post" id="taskForm" name="exForm" enctype="multipart/form-data" data-am-validator>
+            <input type="hidden" id="setID" name="store_id">
+            <input type="hidden" name="seller_id" value="{$seller_id}">
+            <div class="am-modal-hd"  style="padding-bottom:15px; background: #00b7a3; color: #FFF;">提交资料审核</div>
+            <div class="am-modal-bd">
+                <div class="yctc_458 ycgl_tc_1" style="height:650px; overflow-y:auto">
+                    <ul>
+                        <div style="border-bottom: 1px solid rgb(209, 207, 207); padding-bottom: 10px;">
+                            <li id="liMsg" style="text-align: left">
+                                <span style="color: red;">店铺入驻条件：</span>
+                                <br /> 天猫店铺：没有限制
+                                <br /> 淘宝店铺：日均访客
+                                <span style="color: red;">500</span>以上；每日真实成交订单达
+                                <span style="color: red;">5</span>单以上
+                                <br /> 若店铺不符合以上条件，即使提交审核资料，平台一律予以拒绝，多谢配合~
+                            </li>
+                        </div>
+                        <li class="zj-zlzs_3">
+                            <p style="width: 75px; text-align: right;">所属平台：</p>
+                            <p style="margin-right: 5px; margin-left: 0px; margin-top: 2px">
+                                <input id="falg" name="store_type" type="radio" value="1" checked="checked">淘宝
+                            </p>
+                            <p style="width: 75px; text-align: right; margin-top: 2px">
+                                <input id="nofalg" name="store_type" type="radio" value="2">天猫</p>
+                        </li>
+                        <li class="zj-zlzs_3">
+                            <p style="width: 75px; text-align: right; line-height: 40px;">店铺名：</p>
+                            <p style="margin-right: 5px; margin-left: 0px; margin-top: 2px">
+                                <input name="store_nick" type="text" value="{$detail.store_nick}" class="task_input">
+                            </p>
+                        </li>
+                        <li class="zj-zlzs_3">
+                            <p style="width: 75px; text-align: right; line-height: 40px;">掌柜号：</p>
+                            <p style="margin-right: 5px; margin-left: 0px; margin-top: 2px">
+                                <input name="manager" type="text" value="{$detail.manager}" class="task_input">
+                            </p>
+                        </li>
+                        <li class="zj-zlzs_3">
+                            <p style="width: 75px; text-align: right; line-height: 40px;">产品重量：</p>
+                            <p style="margin-right: 5px; margin-left: 0px; margin-top: 2px">
+                                <input name="goods_weight" type="number" min="0" value="{$detail.goods_weight}" class="task_input">
+                            </p>
+                        </li>
+                        <li class="zj-zlzs_3">
+                            <p style="width: 75px; text-align: right;">店铺性质：</p>
+                            <p style="margin-right: 5px; margin-left: 0px; margin-top: 2px">
+                                <input name="property" type="radio" value="1" checked="checked">个人
+                            </p>
+                            <p style="width: 75px; text-align: right; margin-top: 2px">
+                                <input name="property" type="radio" value="2">公司</p>
+                        </li>
+                        <li class="zj-zlzs_3">
+                            <p style="width: 75px; text-align: right; line-height: 40px;">发件人：</p>
+                            <p style="margin-right: 5px; margin-left: 0px; margin-top: 2px">
+                                <input name="name" type="text" value="{$detail.name}" class="task_input">
+                            </p>
+                        </li>
+                        <li class="zj-zlzs_3">
+                            <p style="width: 75px; text-align: right;line-height: 45px;">发件地区：</p>
+                            <p style=" text-align: right; margin-top: 2px" id="dem1">
+                                <select data-am-selected="{maxHeight: 200,btnWidth:100,placeholder:'选择省份'}" name="province" value="{$detail.province}" required
+                                        class="province">
+                                    <option value="">选择省份</option>
+                                </select>
+                                <select data-am-selected="{maxHeight: 200,btnWidth:100,placeholder:'选择城市'}" name="city" value="{$detail.city}" required class="city">
+                                    <option value="">选择城市</option>
+                                </select>
+                                <select data-am-selected="{maxHeight: 200,btnWidth:100,placeholder:'选择区'}" name="district" value="{$detail.district}" required
+                                        class="area">
+                                    <option value="">选择区域</option>
+                                </select>
+                            </p>
+                        </li>
+                        <li class="zj-zlzs_3">
+                            <p style="width: 75px; text-align: right; line-height: 40px;">详细地址：</p>
+                            <p style="margin-right: 5px; margin-left: 0px; margin-top: 2px">
+                                <input name="address" type="text" value="{$detail.address}" class="task_input">
+                            </p>
+                        </li>
+                        <li class="zj-zlzs_3">
+                            <p style="width: 75px; text-align: right; line-height: 40px;">手机号码：</p>
+                            <p style="margin-right: 5px; margin-left: 0px; margin-top: 2px">
+                                <input name="mobile" type="text" value="{$detail.mobile}" class="task_input">
+                            </p>
+                        </li>
+                        <li class="zj-zlzs_3">
+                            <p style="width: 75px; text-align: right;">上传截图：</p>
+                            <p style="margin-right: 5px; margin-left: 0px; margin-top: 2px">
+                                <input name="image" type="file">
+                            </p>
+                            <p style="position:relative;margin-left:10px;">
+                                <a target="_blank" href="__PUBLIC__/Home/img/store_example.jpg" style="display:block;width:100px;height:70px;background:rgba(0,0,0,0.6);position:absolute;left:0;top:0;color:#fff;text-align:center;line-height:70px;">示例</a>
+                                <img src="__PUBLIC__/Home/img/store_example.jpg" style="width:100px;height:70px;" />
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="am-modal-footer">
+                <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+                <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- scripts -->
+<script src="__PUBLIC__/Home/js/address.js"></script>
+<script src="__PUBLIC__/Home/js/jquery.cxselect.js"></script>
+<script type="text/javascript">
+    $('#dem').cxSelect({
+        url: '__PUBLIC__/Home/js/cityData.json',               // 如果服务器不支持 .json 类型文件，请将文件改为 .js 文件 
+        selects: ['province', 'city', 'area']   // 数组格式，请注意顺序 
+    }); 
+</script>
+<script type="text/javascript">
+    $('#dem1').cxSelect({
+        url: '__PUBLIC__/Home/js/cityData.json',               // 如果服务器不支持 .json 类型文件，请将文件改为 .js 文件 
+        selects: ['province', 'city', 'area']   // 数组格式，请注意顺序 
+    }); 
+</script>
+<script>
+
+    function add(ID) {
+        $('#my-confirm').modal({
+            relatedTarget: this,
+            onConfirm: function (options) {
+                // var $link = $(this.relatedTarget).prev('a');
+                // var msg = $link.length ? '你要删除的链接 ID 为 ' + $link.data('id') :
+                //     '确定了，但不知道要整哪样';
+                if (ID) $('#setID').val(ID);
+                var form = new FormData(document.getElementById("taskForm"));
+                $.ajax({
+                    url: '{:U('Home/Store/addStore')}',
+                    type: 'post',
+                    data: form,
+                    dataType: 'json',
+                    cache: false,
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {
+                        if (data.state) {
+                            alert('提交成功');
+                            window.location.href = "{:U('Home/Store/store')}";
+                        } else {
+                            alert(data.msg);
+                        }
+                    }
+                })
+            },
+            // closeOnConfirm: false,
+            onCancel: function () {
+                // alert('算求，不弄了');
+            }
+        });
+    }
+    function del(ID) {
+        $.ajax({
+            url: '{:U('Home/Store/delStore')}',
+            type: 'post',
+            data: { 'store_id': ID },
+            dataType: 'json',
+            success: function (data) {
+                alert(data.msg);
+                window.location.reload();
+            }
+
+        })
+    }
+
+    function edit(ID) {
+
+        $.ajax({
+            url: '{:U('Home/Store/getStore')}',
+                type: 'post',
+                data: { 'store_id': ID },
+                dataType: 'json',
+                success: function (data) {
+                    $('#store_id').val(data.store_id);
+                    $('#seller_id').val(data.seller_id);
+                    $('#store_nick').val(data.store_nick);
+                    $('#name').val(data.name);
+                    $('#mobile').val(data.mobile);
+                    $('#address').val(data.address);
+                    $('#goods_weight').val(data.goods_weight);
+
+                    $("#province option").each(function (){
+                        var txt = $(this).text();
+                        if(txt==data.province){
+                            $(this).attr("selected",true);
+                        }
+                    });
+                    $("#city option").each(function (){
+                        var txt = $(this).text();
+                        if(txt==data.city){
+                            $(this).attr("selected",true);
+                        }
+                    });
+                    $("#district option").each(function (){
+                        var txt = $(this).text();
+                        if(txt==data.district){
+                            $(this).attr("selected",true);
+                        }
+                    });
+                }
+        });
+
+        $('#my-stroe').modal({
+            relatedTarget: this,
+            onConfirm: function (options) {
+                // var $link = $(this.relatedTarget).prev('a');
+                // var msg = $link.length ? '你要删除的链接 ID 为 ' + $link.data('id') :
+                //     '确定了，但不知道要整哪样';
+                //if (ID) $('#store_id').val(ID);
+                var form = new FormData(document.getElementById("storeForm"));
+                $.ajax({
+                    url: '{:U('Home/Store/editStore')}',
+                        type: 'post',
+                        data: form,
+                        dataType: 'json',
+                        cache: false,
+                        processData: false,
+                        contentType: false,
+                        success: function (data) {
+                    if (data.state) {
+                        alert('修改店铺资料成功');
+                        window.location.href = "{:U('Home/Store/store')}";
+                    } else {
+                        alert(data.msg);
+                    }
+                }
+            })
+    },
+    // closeOnConfirm: false,
+    onCancel: function () {
+        // alert('算求，不弄了');
+    }
+    });
+    }
+</script>
+<style>
+    .province,
+    .city,
+    .area {
+        display: none
+    }
+
+
+    .ycgl_tc_1 li {
+        height: auto;
+        width: 100%;
+        display: inline-block;
+
+    }
+
+    .ycgl_tc_1 li p {
+        float: left;
+    }
+
+    .ycgl_tc_1 li p span {
+        float: left;
+    }
+
+    p {
+        margin: 0;
+        padding: 0;
+    }
+
+    .zj-zlzs_3 {
+        margin-top: 10px;
+    }
+
+    .notification-dropdown a {
+        color: #FFF !important;
+    }
+
+    .notification-dropdown a:hover {
+        background: linear-gradient(to bottom, #2c3742 0%, #28303a 100%) !important;
+    }
+</style>
+<script>
+    $(function () {
+        $('li.active').removeClass('active');
+        $('.submenu:last').show();
+        $('.submenu:last li').eq(3).addClass('active');
+    })
+</script>
+<include file="Index/footer" />

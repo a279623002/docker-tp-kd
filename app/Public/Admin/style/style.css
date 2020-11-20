@@ -1,0 +1,707 @@
+@CHARSET "UTF-8";
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-size: 12px;
+    font-family: Arial, '宋体', sans-serif;
+    line-height: 20px;
+    margin: 0;
+}
+
+a:link,
+a:visited {
+    text-decoration: none;
+    color: #000000;
+    font-size: 14px;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #1867A3;
+}
+
+a img {
+    border: none;
+}
+
+.clear {
+    clear: both;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: microsoft yahei;
+    font-weight: normal;
+}
+
+h1 {
+    font-size: 20px;
+}
+
+h2 {
+    font-size: 14px;
+}
+
+.nick {
+    font-family: microsoft yahei;
+    font-size: 16px;
+}
+
+.noborder {
+    border: none;
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.hidden {
+    display: none;
+}
+
+input,
+select,
+textarea {
+    padding: 4px;
+    border: #aaa 1px solid;
+    font-size: 12px;
+    font-family: Arial, "宋体", sans-serif;
+    color: #666;
+}
+
+.checkbox {
+    border: none;
+}
+
+.search {
+    padding: 10px 0;
+}
+
+.search .inp {
+    width: 250px;
+    height: 18px;
+    line-height: 18px;
+    padding: 2px;
+}
+
+.search_btn {
+    height: 24px;
+    width: 80px;
+}
+
+.file {
+    padding: 2px;
+    border: #eee 1px solid;
+}
+
+select {
+    padding: 2px;
+}
+
+.intro {
+    padding-left: 10px;
+}
+
+.button {
+    padding: 5px 20px;
+    font-family: microsoft yahei;
+    font-size: 14px;
+    background: #52A6E6;
+    color: #FFF;
+    border: #529AB3 1px solid;
+    font-family: microsoft yahei;
+}
+
+.button:hover {
+    border: #3271B3 1px solid;
+}
+
+.button2 {
+    padding: 3px 15px;
+    background: #52A6E6;
+    color: #FFF;
+    border: #529AB3 1px solid;
+    font-family: microsoft yahei;
+}
+
+.search_btn01 {
+    width: 80px;
+    line-height: 18px;
+}
+
+.search_btn02 {
+    width: 80px;
+    height: 24px;
+    background: #00C600;
+    color: #fff;
+    font-weight: bold;
+}
+
+.top {
+    height: 80px;
+    border-bottom: #C7D9EE 1px solid;
+    overflow: hidden;
+    background: #ffffff;
+}
+
+.top .con {
+    padding: 8px;
+    color: #fff;
+    overflow: hidden;
+}
+
+.top .title {
+    width: 300px;
+    float: left;
+    padding-top: 8px;
+}
+
+.top .title h1 {
+    font-size: 18px;
+    line-height: 50px;
+    color: #333333;
+    margin-left: 20px;
+}
+
+.topc {
+    width: 200px;
+}
+
+.topr {
+    width: 600px;
+    text-align: right;
+    color: #333;
+}
+
+/*
+ * left
+ */
+
+.menu {
+    width: 210px;
+    height: 120%;
+    float: left;
+    border-right: none;
+    border-left: none;
+    background: #383f52;
+}
+
+.mhead {
+    height: 60px;
+    line-height: 60px;
+}
+
+.mhead h2 a:link,
+.mhead h2 a:visited {
+    padding-left: 60px;
+    display: block;
+    color: #FFF;
+    height: 60px;
+    line-height: 60px;
+    font-size: 16px;
+}
+
+.mhead h2 a:hover {
+    text-decoration: none;
+    color: #05c9a8;
+}
+
+#mm1 {
+    display: block;
+}
+
+.mmiddle ul {
+    padding: 5px 10px;
+}
+
+/* .mmiddle ul li{
+	border-bottom:#f0f0f0 1px solid;
+} */
+
+.mmiddle ul li a:link,
+.mmiddle ul li a:visited {
+    display: block;
+    font-size: 14px;
+    font-family: microsoft yahei;
+    line-height: 50px;
+    text-align: center;
+}
+
+.mmiddle ul li a:hover {
+    text-decoration: none;
+    color: #05c9a8;
+}
+
+/*
+ * box
+ */
+
+body::-webkit-scrollbar {
+    display: none
+}
+
+.box {
+    border: 1px #ccc solid;
+    background: #f4f8f9;
+    border-bottom: none;
+    min-height: 890px;
+    position: relative;
+}
+
+.bhead {
+    height: 45px;
+    line-height: 45px;
+    padding-bottom: 10px;
+}
+
+.bhead h2 {
+    padding-left: 15px;
+    color: #777;
+    font-size: 18px;
+    font-weight: normal !important;
+}
+
+.bmiddle {
+    padding: 0 15px;
+}
+
+.bcon {
+    background: #f4f8f9;
+    min-height: 400px;
+    /*高度最小值设置为：100px*/
+    height: auto !important;
+    /*兼容FF,IE7也支持 !important标签*/
+    height: 400px;
+    /*兼容ie6*/
+    overflow: visible;
+}
+
+.bcon h2 {
+    color: green;
+    font-size: 15px;
+    line-height: 35px;
+    font-family: microsoft yahei;
+    font-weight: normal;
+}
+
+.bcon h3 {
+    color: #ff6600;
+    line-height: 35px;
+    font-family: microsoft yahei;
+    font-weight: normal;
+}
+
+.bfoot {
+    color: #fff;
+    padding: 8px;
+    position: absolute;
+    bottom: 0;
+    left: 40%;
+}
+
+/*
+ * ordersearch
+ */
+
+.ordersearch {
+    padding: 10px;
+}
+
+.ordersearch input,
+.ordersearch select {
+    padding: 2px;
+}
+
+.ordersearch ul {
+    margin-bottom: 5px;
+}
+
+.ordertype {
+    border-bottom: #52A6E6 2px solid;
+}
+
+.ordertype ul {
+    overflow: hidden;
+}
+
+.ordertype ul li {
+    float: left;
+}
+
+.ordertype ul li a:link,
+.ordertype ul li a:visited {
+    font-size: 14px;
+    font-family: microsoft yahei;
+    display: block;
+    line-height: 25px;
+    height: 25px;
+    width: 80px;
+    text-align: center;
+    border: #52A6E6 1px solid;
+}
+
+.ordertype ul li a:hover {
+    background: #52A6E6;
+    color: #fff;
+    text-decoration: none;
+}
+
+.ordertype ul li.this a:link,
+.ordertype ul li.this a:visited {
+    background: #52A6E6;
+    color: #fff;
+}
+
+.green_btn {
+    padding: 0 0 10px 18px;
+}
+
+.submenu {
+    line-height: 35px;
+    padding: 0 3px;
+}
+
+.submenu a:link,
+.submenu a:visited {
+    font-size: 14px;
+    color: green;
+}
+
+.menutable td {
+    padding: 4px;
+}
+
+.submenu span {
+    margin-right: 10px;
+}
+
+.submenu span a:link,
+.subment span a:visited {
+    font-size: 14px;
+    font-family: microsoft yahei;
+}
+
+.ico {
+    vertical-align: middle;
+    padding: 0 2px;
+}
+
+/*
+ * mytable
+ */
+
+.mytable {
+    background: #E2E3E4;
+}
+
+.mytable th {
+    background: #FAFBFC;
+    padding: 4px;
+    font-weight: normal;
+    color: #444;
+}
+
+.mytable td {
+    background: #FAFBFC;
+    padding: 4px;
+}
+
+.mytable .setitle {
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+    font-size: 15px;
+    font-family: microsoft yahei;
+    color: #666;
+    background: #EBEBEB;
+}
+
+/*
+ * listtable
+ */
+
+.listtable {
+    background: #E2E3E4;
+    margin-bottom: 20px;
+}
+
+.listtable tr:hover {
+    background: #ff0000;
+}
+
+.listtable th {
+    background: #EBEBEB;
+    padding: 8px;
+    font-weight: normal;
+    color: #1D67B3;
+}
+
+.listtable td {
+    background: #FAFBFC;
+    padding: 4px;
+    color: #666;
+}
+
+.delall {
+    padding: 0 10px;
+}
+
+.pageno {
+    padding: 10px;
+    text-align: left;
+    color: #666;
+}
+
+.pageno span.current {
+    font-size: 20px;
+}
+
+.tm a:link,
+.tm a:visited {
+    font-size: 15px;
+    font-family: microsoft yahei;
+    color: green;
+    display: block;
+    float: left;
+    margin-right: 20px;
+}
+
+/*
+ * main
+ */
+
+.main {
+    width: 100%;
+}
+
+.standard_type h3 {
+    clear: both;
+}
+
+.standard_type h3 a:link,
+.standard_type h3 a:visited {
+    font-size: 15px;
+    color: #036;
+}
+
+.standard_type ul {
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.standard_type ul li {
+    float: left;
+    width: 20%;
+}
+
+.paginate_button {
+    width: 40px;
+    display: inline;
+    margin-left: 5px;
+}
+
+.am-active a {
+    color: #000000;
+    font-size: 16px
+}
+
+/*
+ * am-pagination
+ */
+
+.am-pagination:after {
+    clear: both
+}
+
+.am-pagination {
+    padding-left: 0;
+    margin: 1.5rem 0;
+    list-style: none;
+    color: #999;
+    text-align: left
+}
+
+
+.am-pagination:after,
+.am-pagination:before {
+    content: " ";
+    display: table
+}
+
+.am-pagination>li {
+    display: inline-block
+}
+
+.am-pagination>li>a,
+.am-pagination>li>span {
+    position: relative;
+    display: block;
+    padding: .5em 1em;
+    text-decoration: none;
+    line-height: 1.2;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 0;
+    margin-bottom: 5px;
+    margin-right: 5px
+}
+
+.am-pagination .am-pagination-next a,
+.am-pagination .am-pagination-prev a {
+    border-radius: 0
+}
+
+.am-pagination>li:last-child>a,
+.am-pagination>li:last-child>span {
+    margin-right: 0
+}
+
+.am-pagination>li>a:focus,
+.am-pagination>li>a:hover,
+.am-pagination>li>span:focus,
+.am-pagination>li>span:hover {
+    background-color: #eee
+}
+
+.am-pagination>.am-active>a,
+.am-pagination>.am-active>a:focus,
+.am-pagination>.am-active>a:hover,
+.am-pagination>.am-active>span,
+.am-pagination>.am-active>span:focus,
+.am-pagination>.am-active>span:hover {
+    z-index: 2;
+    color: #fff;
+    background-color: #0e90d2;
+    border-color: #0e90d2;
+    cursor: default
+}
+
+.am-pagination>.am-disabled>a,
+.am-pagination>.am-disabled>a:focus,
+.am-pagination>.am-disabled>a:hover,
+.am-pagination>.am-disabled>span,
+.am-pagination>.am-disabled>span:focus,
+.am-pagination>.am-disabled>span:hover {
+    color: #999;
+    background-color: #fff;
+    border-color: #ddd;
+    cursor: not-allowed;
+    pointer-events: none
+}
+
+.am-pagination .am-pagination-prev {
+    float: left
+}
+
+.am-pagination .am-pagination-next {
+    float: right
+}
+
+.am-pagination-centered {
+    text-align: center
+}
+
+.am-pagination-right {
+    text-align: right
+}
+
+.am-pagination-default,
+.am-pagination-select {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.am-pagination {
+    position: relative
+}
+
+.am-pagination-default .am-pagination-next,
+.am-pagination-default .am-pagination-prev {
+    float: none
+}
+.am-pagination-select>li>a {
+    line-height: 36px;
+    background-color: #eee;
+    padding: 0 15px;
+    border: 0;
+    color: #555
+}
+
+.am-pagination-select .am-pagination-select {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -35px;
+    width: 70px;
+    height: 36px;
+    text-align: center;
+    border-radius: 0
+}
+
+.am-pagination-select .am-pagination-select select {
+    border: 0;
+    width: 70px;
+    border-radius: 0;
+    background-color: #eee;
+    appearance: none;
+    padding-left: 18px
+}
+
+.am-pagination-one .am-pagination-select select,
+.am-pagination-select .am-pagination-select select {
+    display: block;
+    line-height: 36px;
+    height: 36px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    color: #555
+}
+
+.am-pagination-one {
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: center
+}
+
+.am-pagination-one>li>a {
+    line-height: 36px;
+    background-color: #fff;
+    padding: 0 15px;
+    color: #555
+}
+
+.am-pagination-one .am-pagination-select {
+    float: left;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -25px;
+    width: 50px;
+    height: 36px;
+    text-align: center
+}
+
+.am-pagination-one .am-pagination-select select {
+    width: 50px;
+    border-radius: 0;
+    text-align: center;
+    appearance: none;
+    padding-left: 18px;
+    background: #fff;
+    border: 1px solid #dfdfdf
+}

@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/style/style.css" />
+	<script src="__PUBLIC__/Admin/js/jquery.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Admin/js/common.js"></script>
+</head>
+
+<body>
+	<div class="main">
+		<div class="box">
+			<div class="bhead">
+				<h2>编辑店铺</h2>
+			</div>
+			<div class="bmiddle">
+				<div class="bcon">
+					<form name="myform" id="myform" action="" method="post">
+						<input type="hidden" name="store_id" value="{$detail.store_id}">
+						<table border="0" width="100%" cellpadding="0" cellspacing="1" class="listtable">
+							<tr>
+								<th>所属用户：</th>
+								<td>
+									<input type="text" style="width:300px;" value="{$detail.account}" disabled />
+								</td>
+								<td></td>
+							</tr>
+							<tr>
+								<th>店铺状态：</th>
+								<td>
+									<select name="status" style="width:310px;">
+										<option value="{$detail.status}">
+											<if condition="($detail.status eq 1)">未审核
+												<elseif condition="$detail.status eq 2" />开启
+												<else />拒绝
+											</if>
+										</option>
+										<option value="2">开启</option>
+										<option value="3">拒绝</option>
+									</select>
+								</td>
+								<td></td>
+							</tr>
+							<tr>
+								<th>操作备注：</th>
+								<td>
+									<input type="text" name="msg" style="width:300px;" value="{$detail.msg}" />
+								</td>
+								<td></td>
+							</tr>
+							<tr>
+								<th>店铺名：</th>
+								<td>
+									<input type="text" name="store_nick" style="width:300px;" value="{$detail.store_nick}" />
+								</td>
+								<td></td>
+							</tr>
+							<tr>
+								<th>掌柜号：</th>
+								<td>
+									<input type="text" name="manager" style="width:300px;" value="{$detail.manager}" />
+								</td>
+								<td></td>
+							</tr>
+
+							<tr>
+								<th>所属平台：</th>
+								<td>
+									<select name="store_type" style="width:310px;">
+										<option value="{$detail.store_type}">
+											<if condition="($detail.store_type eq 1)">淘宝
+												<elseif condition="$detail.store_type eq 2" />天猫店铺
+												<elseif condition="$detail.store_type eq 3" />1688
+												<elseif condition="$detail.store_type eq 4" />京东
+												<elseif condition="$detail.store_type eq 5" />微商
+												<else />其它
+											</if>
+										</option>
+										<option value="1">淘宝</option>
+										<option value="2">天猫店铺</option>
+										<option value="3">1688</option>
+										<option value="4">京东</option>
+										<option value="5">微商</option>
+										<option value="6">其它</option>
+									</select>
+								</td>
+								<td></td>
+							</tr>
+							<tr>
+								<th>店铺性质：</th>
+								<td>
+									<select name="property" style="width:310px;">
+										<option value="{$detail.property}">
+											<if condition="($detail.property eq 1)">个人
+												<else />企业
+											</if>
+										</option>
+										<option value="1">个人</option>
+										<option value="2">企业</option>
+									</select>
+								</td>
+								<td></td>
+							</tr>
+
+							<tr>
+								<th>发货人：</th>
+								<td>
+									<input type="text" name="name" style="width:300px;" value="{$detail.name}" />
+								</td>
+								<td></td>
+							</tr>
+
+							<tr>
+								<th>发货电话：</th>
+								<td>
+									<input type="text" name="mobile" style="width:300px;" value="{$detail.mobile}" />
+								</td>
+								<td></td>
+							</tr>
+
+							<tr>
+								<th>发货地址：</th>
+								<td>
+									<div class="am-g am-margin-bottom-xs">
+										<div class="task_list_right" id="dem">
+											<select style="width:101px;height:" data-am-selected="{maxHeight: 200,btnWidth:100,placeholder:'选择省份'}" name="province" value="{$detail.province}"
+											 required class="province">
+												<option value="">选择省份</option>
+											</select>
+											<select style="width:101px;height:" data-am-selected="{maxHeight: 200,btnWidth:100,placeholder:'选择城市'}" name="city" value="{$detail.city}"
+											 required class="city">
+												<option value="">选择城市</option>
+											</select>
+											<select style="width:101px;height:" data-am-selected="{maxHeight: 200,btnWidth:100,placeholder:'选择区'}" name="district" value="{$detail.district}"
+											 required class="area">
+												<option value="">选择区域</option>
+											</select>
+										</div>
+									</div>
+								</td>
+								<td></td>
+							</tr>
+							<tr>
+								<th></th>
+								<td>
+									<input type="button" class="button" onclick="add();" value="确认提交" />
+								</td>
+								<td></td>
+							</tr>
+						</table>
+					</form>
+				</div>
+			</div>
+			<div class="bfoot">
+				<font color="#003366">Copyright:2015 易网包在线操作系统 版权所有</font>
+			</div>
+		</div>
+	</div>
+	<script data-cfasync="false" src="/cdn-cgi/scripts/f2bf09f8/cloudflare-static/email-decode.min.js"></script>
+	<script src="__PUBLIC__/Home/js/address.js"></script>
+	<script src="__PUBLIC__/Home/js/jquery.cxselect.js"></script>
+	<script type="text/javascript">
+		$('#dem').cxSelect({
+			url: '__PUBLIC__/Home/js/cityData.json',               // 如果服务器不支持 .json 类型文件，请将文件改为 .js 文件 
+			selects: ['province', 'city', 'area']   // 数组格式，请注意顺序 
+		}); 
+	</script>
+	<script>
+		function add() {
+			var formData = new FormData(document.getElementById("myform"));//表单id
+			$.ajax({
+				url: '{:U('Store/editShop')}',
+				type: 'post',
+				dataType: 'json',
+				data: formData,
+				async: false,
+				cache: false,
+				contentType: false,
+				processData: false,
+				success: function (data) {
+					if (data.state) {
+						window.location.href = "{:U('Store/shop')}";
+					} else {
+						alert(data.msg);
+					}
+				}
+			});
+		}
+	</script>
+</body>
+
+</html>
